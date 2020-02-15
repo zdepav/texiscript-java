@@ -1,0 +1,56 @@
+Import("color")
+Import("math")
+Import("mix")
+Import("shape")
+Import("transform")
+
+//  T   e   x   i   S   c   r   i   p   t
+// 084 101 120 105 083 099 114 105 112 116
+
+$w  = color.white()
+$b  = color.black()
+
+// S
+$us = circle(circle($b, $w, 0.8, 0.2, 0.05), $b, 0.8, 0.2, 0.15)
+$bs = circle(circle($b, $w, 0.8, 0.4, 0.05), $b, 0.8, 0.4, 0.15)
+$s1 = rect($bs, $us, 0.8, 0.2, 0.2, 0.2)
+$S  = rect($bs, $s1, 0, 0.4, 1, 0.2)
+
+// x
+$x1 = rect($w, $S, 0.3, 0.25, 0.3, 0.3)
+$x2 = triangle($b, $x1, 0.275, 0.2, 0.375, 0.4, 0.275, 0.6)
+$x3 = triangle($b, $x2, 0.625, 0.2, 0.525, 0.4, 0.625, 0.6)
+$x4 = triangle($b, $x3, 0.375, 0.2, 0.525, 0.2, 0.45, 0.35)
+$x  = triangle($b, $x4, 0.375, 0.6, 0.525, 0.6, 0.45, 0.45)
+
+// T
+$T  = rect($w, rect($w, $x, 0.05, 0.05, 0.3, 0.1), 0.15, 0.15, 0.1, 0.4)
+
+//
+$g  = color.noise(#804000, 0.1, 0)
+$f  = mix.switch(perlin.frost:15(0.5), #215210, #83DE43, #F5FFDF)
+$l  = switch($T, $g, $f)
+
+// reflection
+$r1 = filter.fastblur(translate(flipy($l), 0.5, 0.7), 0.1)
+$r2 = switch(0.35, scale(perlin.glass:36(0.5, 1, #7AB6FF, #AAE2FF), 0, 0, 1, 0.5), $r1)
+$d  = switch(rrot(curve.linear(0.5, 1)), 0.5, scale(perlin.noise:24(1, 0.35, 0.65), 0, 0, 1, 0.5))
+$d2_a = sub($d, 0.5)
+$d2_b = mul(sub($d, 0.5), 0.25)
+$d2 = add(0.5, mul(sub($d, 0.5), 0.25))
+$R  = translate(add(mul(2, sub($d, 0.5)), $r2), $d, $d2)
+
+// water area
+$W0 = rect($w, $b, -1, 0.6, 3, 3)
+$W1 = translate(rect($w, $b, -1, 0.6, 3, 3), $d, $d2)
+$L1 = switch($W1, $l, $R)
+
+Debugtex(64)
+Smoothing(2)
+Size(16)  Filename("logo-16")  Texture($L1)
+Size(32)  Filename("logo-32")  Texture($L1)
+Size(48)  Filename("logo-48")  Texture($L1)
+Size(64)  Filename("logo-64")  Texture($L1)
+Size(128) Filename("logo-128") Texture($L1)
+Size(256) Filename("logo-256") Texture($L1)
+

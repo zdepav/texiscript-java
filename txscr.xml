@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language
+    name="TexiScript"
+    author="Zdeněk Pavlátka &lt;zdenek.pavlatka@gmail.com&gt;"
+    version="1"
+    kateversion="2.4"
+    section="Scripts"
+    extensions="*.txscr;*.texiscript">
+    <highlighting>
+        <contexts>
+            <context attribute="Text" lineEndContext="#stay" name="text">
+                <DetectSpaces context="#stay"/>
+                <DetectChar attribute="Color" context="color" char="#"/>
+                <DetectChar attribute="String" context="string" char="&quot;"/>
+                <DetectChar attribute="Variable" context="variable" char="$"/>
+                <Detect2Chars context="comment" attribute="Comment" char="/" char1="/"/>
+                <Detect2Chars context="multilineComment" attribute="Comment" char="/" char1="*" beginRegion="RegionComment"/>
+                <RegExpr attribute="Seed" context="#stay" String=":[0-9]+"/>
+                <RegExpr attribute="Command" context="#stay" String="[A-Z][a-z]+"/>
+                <RegExpr attribute="Number" context="#stay" String="[+-]?[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?"/>
+                <RegExpr attribute="Package" context="#stay" String="[a-z]+\."/>
+            </context>
+            <context attribute="Comment" lineEndContext="#pop" name="comment"/>
+            <context attribute="Comment" lineEndContext="#stay" name="multilineComment">
+                <Detect2Chars context="#pop" attribute="Comment" char="*" char1="/" endRegion="RegionComment"/>
+            </context>
+            <context attribute="Variable" lineEndContext="#pop" name="variable" fallthrough="true" fallthroughContext="text">
+                <RegExpr attribute="Package" context="#stay" String="[a-z]+\."/>
+                <RegExpr attribute="Variable" context="#pop" String="[a-zA-Z0-9_]+"/>
+            </context>
+            <context attribute="String" lineEndContext="#stay" name="string">
+                <Detect2Chars attribute="String" context="#stay" char="\" char1="&quot;"/>
+                <DetectChar attribute="String" context="#pop" char="&quot;"/>
+            </context>
+            <context attribute="Color" lineEndContext="#pop" name="color" fallthrough="true" fallthroughContext="text">
+                <RegExpr attribute="Color" context="#stay" String="[a-fA-F0-9]"/>
+            </context>
+        </contexts>
+        <itemDatas>
+            <!-- light theme ->
+            <itemData name="Text" defStyleNum="dsNormal"/>
+            <itemData name="Command" color="#0080FF" bold="true"/>
+            <itemData name="String" color="#C02000"/>
+            <itemData name="Color" color="#00A0A0" underline="true"/>
+            <itemData name="Number" color="#808000"/>
+            <itemData name="Comment" color="#50A050" italic="true"/>
+            <itemData name="Package" color="#808080"/>
+            <itemData name="Seed" color="#C08060"/>
+            <itemData name="Variable" color="#C000C0"/>
+            <!- dark theme -->
+            <itemData name="Text" defStyleNum="dsNormal"/>
+            <itemData name="Command" color="#2090FF" bold="true"/>
+            <itemData name="String" color="#FF8080"/>
+            <itemData name="Color" color="#00C0C0" underline="true"/>
+            <itemData name="Number" color="#C0C000"/>
+            <itemData name="Comment" color="#80C080" italic="true"/>
+            <itemData name="Package" color="#808080"/>
+            <itemData name="Seed" color="#D09070"/>
+            <itemData name="Variable" color="#FFC0FF"/>
+            <!-- -->
+        </itemDatas>
+    </highlighting>
+    <general>
+        <comments>
+            <comment name="singleLine" start="//" region="Comment"/>
+            <comment name="multiLine" start="/*" end="*/" region="Comment"/>
+        </comments>
+        <keywords casesensitive="1"/>
+    </general>
+</language>

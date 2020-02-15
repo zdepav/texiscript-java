@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Generate examples and logo" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="13" />
+    <option name="MAIN_CLASS_NAME" value="cz.zdepav.school.texiscript.Main" />
+    <module name="texiscript.main" />
+    <option name="PROGRAM_PARAMETERS" value="logo.txscr examples.txscr" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
