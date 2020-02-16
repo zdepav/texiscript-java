@@ -65,9 +65,6 @@ Texture(color.hsl(curve.linear(), $in3, transform.rrot(curve.linear(0, 1, 0.1, 0
 Filename("color.grayscale")
 Texture(color.grayscale($in3))
 
-Filename("color.invert")
-Texture(color.invert($in3))
-
 Filename("color.noise")
 Texture(color.noise($in3, 0.5, 0.5))
 
@@ -172,6 +169,9 @@ Texture(math.cos(curve.linear()))
 
 Filename("math.random")
 Texture(math.random(curve.linear()))
+
+Filename("math.invert")
+Texture(math.invert($in3))
 
 // combinations
 

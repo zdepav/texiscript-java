@@ -218,19 +218,18 @@ public class Scope {
                 .func4("hsla", HslaGenerator::new)
                 .func2("setalpha", SetAlphaGenerator::new)
                 .func1("grayscale", GrayscaleGenerator::new)
-                .func1("invert", InvertingGenerator::new)
                 .func3("noise", NoiseGenerator::new)
                 .func1("sepia", SepiaGenerator::new)
-                .func0("black", l -> RgbaColor.black.generator())
-                .func0("red", l -> RgbaColor.red.generator())
-                .func0("green", l -> RgbaColor.green.generator())
-                .func0("blue", l -> RgbaColor.blue.generator())
-                .func0("yellow", l -> RgbaColor.yellow.generator())
-                .func0("cyan", l -> RgbaColor.cyan.generator())
-                .func0("magenta", l -> RgbaColor.magenta.generator())
-                .func0("gray", l -> RgbaColor.gray.generator())
-                .func0("white", l -> RgbaColor.white.generator())
-                .func0("transparent", l -> RgbaColor.transparent.generator())
+                .func0("black", p -> RgbaColor.black.generator())
+                .func0("red", p -> RgbaColor.red.generator())
+                .func0("green", p -> RgbaColor.green.generator())
+                .func0("blue", p -> RgbaColor.blue.generator())
+                .func0("yellow", p -> RgbaColor.yellow.generator())
+                .func0("cyan", p -> RgbaColor.cyan.generator())
+                .func0("magenta", p -> RgbaColor.magenta.generator())
+                .func0("gray", p -> RgbaColor.gray.generator())
+                .func0("white", p -> RgbaColor.white.generator())
+                .func0("transparent", p -> RgbaColor.transparent.generator())
         );
     }
 
@@ -276,6 +275,7 @@ public class Scope {
                 .func1("sin", SineGenerator::new)
                 .func1("cos", CosineGenerator::new)
                 .func1("random", RandomGenerator::new)
+                .func1("invert", InvertingGenerator::new)
         );
     }
 

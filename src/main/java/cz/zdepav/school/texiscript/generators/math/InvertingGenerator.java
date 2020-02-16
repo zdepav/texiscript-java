@@ -1,4 +1,4 @@
-package cz.zdepav.school.texiscript.generators.color;
+package cz.zdepav.school.texiscript.generators.math;
 
 import cz.zdepav.school.texiscript.generators.Generator;
 import cz.zdepav.school.texiscript.script.parser.CodePosition;

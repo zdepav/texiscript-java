@@ -166,6 +166,9 @@ public class Interpreter {
             case "Debugtex":
                 executeDebugtexCommand(command);
                 break;
+            case "Debugtime":
+                executeDebugtimeCommand(command);
+                break;
             case "Filename":
                 executeFilenameCommand(command);
                 break;
@@ -186,9 +189,6 @@ public class Interpreter {
                 break;
             case "Texture":
                 executeTextureCommand(command);
-                break;
-            case "Time":
-                executeTimeCommand(command);
                 break;
             case "Video":
                 executeVideoCommand(command);
@@ -214,6 +214,15 @@ public class Interpreter {
         }
         imageRenderer.setTextureSize(textureSize);
         imageRenderer.setOutputFile(outputFile);
+    }
+
+    private void executeDebugtimeCommand(StCommand command) throws SemanticException {
+        TypedArgument[] args = getArguments(command, StType.NUMBER);
+        var time = args[0].getNumber();
+        if (time < 0.0 || time >= 2.0) {
+            throw error(command.getArgument(0), "Debugtime command takes a boolean as its only argument");
+        }
+        imageRenderer.setMeasureTime((int)time != 0);
     }
 
     private void executeFilenameCommand(StCommand command) throws SemanticException {
@@ -285,15 +294,6 @@ public class Interpreter {
     private void executeTextureCommand(StCommand command) throws SemanticException {
         TypedArgument[] args = getArguments(command, StType.GENERATOR);
         imageRenderer.generateImage(command.getArgument(0).getCodePosition(), args[0].getGenerator());
-    }
-
-    private void executeTimeCommand(StCommand command) throws SemanticException {
-        TypedArgument[] args = getArguments(command, StType.NUMBER);
-        var time = args[0].getNumber();
-        if (time < 0.0 || time >= 2.0) {
-            throw error(command.getArgument(0), "Time command takes a boolean as its only argument");
-        }
-        imageRenderer.setMeasureTime((int)time != 0);
     }
 
     private void executeVideoCommand(StCommand command) throws SemanticException {
