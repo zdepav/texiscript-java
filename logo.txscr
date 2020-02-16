@@ -45,7 +45,7 @@ $W0 = rect($w, $b, -1, 0.6, 3, 3)
 $W1 = translate(rect($w, $b, -1, 0.6, 3, 3), $d, $d2)
 $L1 = switch($W1, $l, $R)
 
-Debugtex(64)
+
 Smoothing(2)
 Size(16)  Filename("logo-16")  Texture($L1)
 Size(32)  Filename("logo-32")  Texture($L1)
@@ -53,4 +53,5 @@ Size(48)  Filename("logo-48")  Texture($L1)
 Size(64)  Filename("logo-64")  Texture($L1)
 Size(128) Filename("logo-128") Texture($L1)
 Size(256) Filename("logo-256") Texture($L1)
+Size(512) Filename("logo-512") Texture($L1)
 

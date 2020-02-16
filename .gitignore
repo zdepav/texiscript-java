@@ -1,7 +1,6 @@
 /.gradle/
 /gradle/
 /out/
-*.png
 *.class
 *.jar
 /build/
