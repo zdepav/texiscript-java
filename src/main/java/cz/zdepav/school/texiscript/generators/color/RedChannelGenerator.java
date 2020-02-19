@@ -14,8 +14,7 @@ public class RedChannelGenerator extends Generator {
 
     @Override
     public RgbaColor getColor(double x, double y) {
-        var col = base.getColor(x, y);
-        return new RgbaColor(col.r);
+        return new RgbaColor(base.getColor(x, y).r);
     }
 
     @Override
@@ -23,8 +22,7 @@ public class RedChannelGenerator extends Generator {
 
     @Override
     public double getDouble(double x, double y, double min, double max) {
-        var col = base.getColor(x, y);
-        return Utils.lerp(min, max, col.r);
+        return Utils.lerp(min, max, base.getColor(x, y).r);
     }
 
     @Override

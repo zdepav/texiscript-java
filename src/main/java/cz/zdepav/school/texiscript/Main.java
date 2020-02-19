@@ -7,6 +7,7 @@ import cz.zdepav.school.texiscript.script.parser.SyntaxException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 /** @author Zdenek Pavlatka */
 public class Main {
@@ -16,25 +17,28 @@ public class Main {
             testRandom(i);
         }
         testRandom2();*/
-        for (var file: args) {
-            System.out.println("Executing " + file);
-            try (var input = new FileInputStream(file)) {
-                var interpreter = new Interpreter(file, input);
-                interpreter.execute();
+        for (var arg: args) {
+            try {
+                var file = Paths.get(arg).getFileName().toFile();
+                System.out.println("Executing " + file);
+                try (var input = new FileInputStream(arg)) {
+                    var interpreter = new Interpreter(Paths.get(arg).getParent(), file.getName(), input);
+                    interpreter.execute();
+                }
             } catch (SyntaxException ex) {
                 System.err.println("Error on " + ex.getCodePosition() + ": " + ex.getMessage());
             } catch (SemanticException ex) {
                 System.err.println("Error on " + ex.getCodePosition() + ": " + ex.getMessage());
             } catch (FileNotFoundException ex) {
-                System.err.println("Could not find file '" + file + '\'');
+                System.err.println("Could not find file '" + arg + '\'');
             } catch (IOException ex) {
-                System.err.println("Could not read file '" + file + '\'');
+                System.err.println("Could not read file '" + arg + '\'');
             } catch (RuntimeException ex) {
                 System.err.println(ex.getMessage());
             }
         }
     }
-
+//
     /*private static void testRandom(int predefs) {
         try (var f = new FileWriter("out" + predefs + ".dat")) {
             var distribution = new int[1000];

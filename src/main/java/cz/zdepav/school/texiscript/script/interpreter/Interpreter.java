@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -37,15 +38,17 @@ public class Interpreter {
 
     private List<StNode> script;
     private Scope scope;
+    private Path directory;
     private TokenSource tokenSource;
     private ImageRenderer imageRenderer;
 
-    public Interpreter(String scriptFileName, InputStream input) {
+    public Interpreter(Path directory, String scriptFileName, InputStream input) {
+        this.directory = directory;
         this.tokenSource = new Lexer(input);
         script = null;
         scope = new Scope();
         var m = fileNamePattern.matcher(scriptFileName);
-        imageRenderer = new ImageRenderer(m.find() ? m.group(1) : "tex");
+        imageRenderer = new ImageRenderer(directory, m.find() ? m.group(1) : "tex");
     }
 
     public void precompile() throws SyntaxException {
@@ -261,7 +264,7 @@ public class Interpreter {
         }
         BufferedImage img;
         try {
-            img = ImageIO.read(new File(fileName));
+            img = ImageIO.read(directory.resolve(fileName).toFile());
         } catch (IOException e) {
             throw error(command.getArgument(1), "Could not load file '" + fileName + "'");
         }

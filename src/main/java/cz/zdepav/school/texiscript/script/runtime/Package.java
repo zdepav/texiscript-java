@@ -11,36 +11,44 @@ import java.util.Map;
 /** @author Zdenek Pavlatka */
 public class Package {
 
+    @FunctionalInterface
     public interface BuildFrom0 {
         Generator build(CodePosition line);
     }
 
+    @FunctionalInterface
     public interface BuildFrom1 {
         Generator build(CodePosition pos, Generator g1);
     }
 
+    @FunctionalInterface
     public interface BuildFrom2 {
         Generator build(CodePosition pos, Generator g1, Generator g2) throws SemanticException;
     }
 
+    @FunctionalInterface
     public interface BuildFrom3 {
         Generator build(CodePosition pos, Generator g1, Generator g2, Generator g3) throws SemanticException;
     }
 
+    @FunctionalInterface
     public interface BuildFrom4 {
         Generator build(CodePosition pos, Generator g1, Generator g2, Generator g3, Generator g4) throws SemanticException;
     }
 
+    @FunctionalInterface
     public interface BuildFrom5 {
         Generator build(CodePosition pos, Generator g1, Generator g2, Generator g3, Generator g4, Generator g5) throws SemanticException;
     }
 
+    @FunctionalInterface
     public interface BuildFrom6 {
         Generator build(
             CodePosition pos, Generator g1, Generator g2, Generator g3, Generator g4, Generator g5, Generator g6
         ) throws SemanticException;
     }
 
+    @FunctionalInterface
     public interface BuildFrom7 {
         Generator build(
             CodePosition pos, Generator g1, Generator g2, Generator g3,
@@ -48,6 +56,7 @@ public class Package {
         ) throws SemanticException;
     }
 
+    @FunctionalInterface
     public interface BuildFrom8 {
         Generator build(
             CodePosition pos, Generator g1, Generator g2, Generator g3, Generator g4,

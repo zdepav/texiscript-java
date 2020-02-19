@@ -185,6 +185,13 @@ public class RgbaColor {
         return new RgbaColor(1.0 - r, 1.0 - g, 1.0 - b, a);
     }
 
+    public RgbaColor smartNegate() {
+        var max = Math.max(r, Math.max(g, b));
+        var min = Math.min(r, Math.min(g, b));
+        var sub = min + max - 1.0;
+        return new RgbaColor(r - sub, g - sub, b - sub, a);
+    }
+
     public RgbaColor normalize() {
         return new RgbaColor(
             Utils.clamp(r, 0, 1),
@@ -192,6 +199,34 @@ public class RgbaColor {
             Utils.clamp(b, 0, 1),
             a
         );
+    }
+
+    public double hue() {
+        var delta = Math.max(r, Math.max(g, b)) - Math.min(r, Math.min(g, b));
+        if (Math.abs(delta) < 0.00001) {
+            return 0.0;
+        } else if (r >= g && r >= b) {
+            return (((g - b) / delta + 6) % 6) / 6;
+        } else if (g >= r && g >= b) {
+            return ((b - r) / delta + 2) / 6;
+        } else {
+            return ((r - g) / delta + 4) / 6;
+        }
+    }
+
+    public double saturation() {
+        var cmax = Math.max(r, Math.max(g, b));
+        var cmin = Math.min(r, Math.min(g, b));
+        var delta = cmax - cmin;
+        if (Math.abs(delta) < 0.00001) {
+            return 0.0;
+        } else {
+            return delta / (1.0 - Math.abs(cmax + cmin - 1.0));
+        }
+    }
+
+    public double lightness() {
+        return (Math.max(r, Math.max(g, b)) + Math.min(r, Math.min(g, b))) / 2;
     }
 
     public RgbaColor abs() {

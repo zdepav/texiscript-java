@@ -7,8 +7,8 @@ import cz.zdepav.school.texiscript.utils.SeededPositionedRandom;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -22,8 +22,10 @@ public class ImageRenderer {
     private int textureSize, textureSmoothing;
     private String outputFile;
     private Set<String> usedOutputFiles;
+    private Path directory;
 
-    public ImageRenderer(String outputFile) {
+    public ImageRenderer(Path directory, String outputFile) {
+        this.directory = directory;
         randomize = false;
         measureTime = false;
         textureSize = 256;
@@ -123,7 +125,7 @@ public class ImageRenderer {
                 generateSupersmoothImage(generator, img);
                 break;
         }
-        var file = new File(outputFile + ".png");
+        var file = directory.resolve(outputFile + ".png").toFile();
         try {
             if (ImageIO.write(img, "png", file)) {
                 if (measureTime) {

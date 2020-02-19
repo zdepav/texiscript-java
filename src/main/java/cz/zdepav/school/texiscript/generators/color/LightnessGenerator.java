@@ -6,23 +6,23 @@ import cz.zdepav.school.texiscript.utils.RgbaColor;
 import cz.zdepav.school.texiscript.utils.Utils;
 
 /** @author Zdenek Pavlatka */
-public class GreenChannelGenerator extends Generator {
+public class LightnessGenerator extends Generator {
 
     private final Generator base;
 
-    public GreenChannelGenerator(CodePosition pos, Generator base) { this.base = base; }
+    public LightnessGenerator(CodePosition pos, Generator base) { this.base = base; }
 
     @Override
     public RgbaColor getColor(double x, double y) {
-        return new RgbaColor(base.getColor(x, y).g);
+        return new RgbaColor(base.getColor(x, y).lightness());
     }
 
     @Override
-    public double getDouble(double x, double y) { return base.getColor(x, y).g; }
+    public double getDouble(double x, double y) { return base.getColor(x, y).lightness(); }
 
     @Override
     public double getDouble(double x, double y, double min, double max) {
-        return Utils.lerp(min, max, base.getColor(x, y).g);
+        return Utils.lerp(min, max, base.getColor(x, y).lightness());
     }
 
     @Override

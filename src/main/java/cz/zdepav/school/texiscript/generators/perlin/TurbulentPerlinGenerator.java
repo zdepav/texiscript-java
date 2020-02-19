@@ -9,6 +9,7 @@ import cz.zdepav.school.texiscript.utils.RgbaColor;
 /** @author Zdenek Pavlatka */
 public abstract class TurbulentPerlinGenerator extends PerlinGenerator {
 
+    @FunctionalInterface
     public interface TurbulentConstructor {
         Generator construct(Generator color1, Generator color2, double scale, Generator turbulence, Generator curve);
     }

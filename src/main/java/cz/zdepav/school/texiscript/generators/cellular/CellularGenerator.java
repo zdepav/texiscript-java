@@ -13,6 +13,7 @@ import cz.zdepav.school.texiscript.utils.Vec2;
 /** @author Zdenek Pavlatka */
 public abstract class CellularGenerator extends Generator {
 
+    @FunctionalInterface
     public interface BasicConstructor {
         Generator construct(
             double density, Metric metric,

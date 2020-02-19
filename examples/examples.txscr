@@ -48,13 +48,22 @@ Texture(
 // colors
 
 Filename("color.r")
-Texture(color.rgb($in3, 0, 0))
+Texture(color.rgb(color.r($in3), 0, 0))
 
 Filename("color.g")
-Texture(color.rgb(0, $in3, 0))
+Texture(color.rgb(0, color.g($in3), 0))
 
 Filename("color.b")
-Texture(color.rgb(0, 0, $in3))
+Texture(color.rgb(0, 0, color.b($in3)))
+
+Filename("color.h")
+Texture(color.hsl(color.h($in1), 1, 0.5))
+
+Filename("color.s")
+Texture(color.s($in1))
+
+Filename("color.l")
+Texture(color.l($in1))
 
 Filename("color.rgb")
 Texture(color.rgb($in1, $in2, $in4))
@@ -70,6 +79,9 @@ Texture(color.noise($in3, 0.5, 0.5))
 
 Filename("color.sepia")
 Texture(color.sepia($in3))
+
+Filename("color.lightinvert")
+Texture(color.lightinvert($in3))
 
 Filename("color.black")
 Texture(color.black())

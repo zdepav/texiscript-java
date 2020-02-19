@@ -3,26 +3,29 @@ package cz.zdepav.school.texiscript.generators.color;
 import cz.zdepav.school.texiscript.generators.Generator;
 import cz.zdepav.school.texiscript.script.parser.CodePosition;
 import cz.zdepav.school.texiscript.utils.RgbaColor;
-import cz.zdepav.school.texiscript.utils.Utils;
 
 /** @author Zdenek Pavlatka */
-public class GreenChannelGenerator extends Generator {
+public class SmartInvertGenerator extends Generator {
 
     private final Generator base;
 
-    public GreenChannelGenerator(CodePosition pos, Generator base) { this.base = base; }
-
-    @Override
-    public RgbaColor getColor(double x, double y) {
-        return new RgbaColor(base.getColor(x, y).g);
+    public SmartInvertGenerator(CodePosition pos, Generator base) {
+        this.base = base;
     }
 
     @Override
-    public double getDouble(double x, double y) { return base.getColor(x, y).g; }
+    public RgbaColor getColor(double x, double y) {
+        return base.getColor(x, y).smartNegate();
+    }
+
+    @Override
+    public double getDouble(double x, double y) {
+        return 1 - base.getDouble(x, y);
+    }
 
     @Override
     public double getDouble(double x, double y, double min, double max) {
-        return Utils.lerp(min, max, base.getColor(x, y).g);
+        return base.getDouble(x, y, max, min);
     }
 
     @Override

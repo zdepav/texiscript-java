@@ -10,6 +10,7 @@ import cz.zdepav.school.texiscript.utils.Utils;
 /** @author Zdenek Pavlatka */
 public abstract class PerlinGenerator extends Generator {
 
+    @FunctionalInterface
     public interface BasicConstructor {
         Generator construct(Generator color1, Generator color2, double scale, Generator curve);
     }
