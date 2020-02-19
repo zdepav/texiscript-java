@@ -26,7 +26,7 @@ public class LinearGradientGenerator extends GradientGenerator {
 
     public static Generator build(CodePosition pos, Generator[] args) throws SemanticException {
         if (args.length < 6) {
-            throw new SemanticException(pos, "gradient.linear requires at least 4 arguments");
+            throw new SemanticException(pos, "gradient.linear requires at least 6 arguments");
         }
         var g = new LinearGradientGenerator(args[0], args[1], args[2], args[3]);
         for (int i = 4; i < args.length; ++i) {
