@@ -26,6 +26,11 @@ public class SetAlphaGenerator extends Generator {
     }
 
     @Override
+    public boolean isColor() {
+        return rgbGen.isColor() && aGen.isNumber();
+    }
+
+    @Override
     public void init(int outputSize, boolean randomize) {
         rgbGen.init(outputSize, randomize);
         aGen.init(outputSize, randomize);

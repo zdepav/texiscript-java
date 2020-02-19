@@ -26,6 +26,11 @@ public class RedChannelGenerator extends Generator {
     }
 
     @Override
+    public boolean isNumber() {
+        return base.isColor();
+    }
+
+    @Override
     public void init(int outputSize, boolean randomize) {
         base.init(outputSize, randomize);
     }

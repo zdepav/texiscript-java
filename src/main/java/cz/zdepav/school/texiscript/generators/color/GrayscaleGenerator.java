@@ -30,6 +30,11 @@ public class GrayscaleGenerator extends Generator {
     }
 
     @Override
+    public boolean isColor() {
+        return base.isColor();
+    }
+
+    @Override
     public void init(int outputSize, boolean randomize) {
         base.init(outputSize, randomize);
     }

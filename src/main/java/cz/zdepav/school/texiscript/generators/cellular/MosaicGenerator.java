@@ -22,7 +22,7 @@ public class MosaicGenerator extends Generator {
 
     protected boolean randomized;
 
-    protected MosaicGenerator(
+    public MosaicGenerator(
         double density, Metric metric,
         Generator color1, Generator color2,
         double chaos, Generator curve

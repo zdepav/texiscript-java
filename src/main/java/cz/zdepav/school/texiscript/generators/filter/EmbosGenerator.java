@@ -42,12 +42,14 @@ public class EmbosGenerator extends Generator {
 
     public static Generator build(CodePosition pos, Generator[] args) throws SemanticException {
         switch (args.length) {
+            case 1:
+                return new EmbosGenerator(args[0], args[0], Generator.get(1));
             case 2:
                 return new EmbosGenerator(args[0], args[1], Generator.get(1));
             case 3:
                 return new EmbosGenerator(args[0], args[1], args[2]);
             default:
-                throw new SemanticException(pos, "filter.emboss requires 2 or 3 arguments");
+                throw new SemanticException(pos, "filter.emboss requires 1 to 3 arguments");
         }
     }
 }
