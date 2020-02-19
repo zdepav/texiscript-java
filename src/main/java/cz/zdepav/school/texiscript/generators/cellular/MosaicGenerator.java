@@ -124,7 +124,7 @@ public class MosaicGenerator extends Generator {
             );
         }
         if (!args[1].isNumber()) {
-            throw new SemanticException(pos, "cellular.mosaic expects a number as its first argument");
+            throw new SemanticException(pos, "cellular.mosaic expects a number as its second argument");
         }
         var m = Metric.euclidean;
         switch ((int)args[1].getDouble(0, 0)) {
