@@ -197,7 +197,8 @@ public class Scope {
                     CellularGenerator.build(pos, args, "sparks", SparksCellularGenerator::new))
                 .func("cobble", (pos, args) ->
                     CellularGenerator.build(pos, args, "cobble", CobbleCellularGenerator::new))
-                .func("mosaic", MosaicGenerator::build)
+                .func("mosaic", (pos, args) ->
+                    CellularGenerator.build(pos, args, "mosaic", MosaicGenerator::new))
                 .value("M_EUCLIDEAN", 0)
                 .value("M_MANHATTAN", 1)
                 .value("M_CHEBYSHEV", 2)
