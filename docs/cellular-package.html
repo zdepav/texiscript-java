@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>cellular package</title>
+    <link type="text/css" rel="stylesheet" href="styles.css"/>
+  </head>
+  <body>
+    <div class="main-panel">
+      <h1>cellular package</h1>
+      <p>Package with filters that generate cellular textures. Each filter takes a <code>metric</code> argument, that expects one of the constants in this package as its value.</p>
+      <h3>Constants</h3>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <td id="v-cellular-M_EUCLIDEAN"><code>$cellular.M_EUCLIDEAN</code></td>
+          <td><code>integer</code></td>
+          <td><code>0</code></td>
+        </tr>
+        <tr>
+          <td id="v-cellular-M_MANHATTAN"><code>$cellular.M_MANHATTAN</code></td>
+          <td><code>integer</code></td>
+          <td><code>1</code></td>
+        </tr>
+        <tr>
+          <td id="v-cellular-M_CHEBYSHEV"><code>$cellular.M_CHEBYSHEV</code></td>
+          <td><code>integer</code></td>
+          <td><code>2</code></td>
+        </tr>
+        <tr>
+          <td id="v-cellular-M_MINKOWSKI"><code>$cellular.M_MINKOWSKI</code></td>
+          <td><code>integer</code></td>
+          <td><code>3</code></td>
+        </tr>
+      </table>
+      <h3>Filters</h3>
+      <table>
+        <tr class="header">
+          <td>
+            <img alt="cellular.cells" src="examples/cellular.cells.png"
+              style="width:128px;height:128px;margin:0 auto;border:1px solid #E0E0E0"/>
+          </td>
+          <td id="f-cellular-cells" colspan="2"
+            style="text-align:left;font-size:1.1em;padding-left:32px">
+            <strong>cells</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colspan="2">Generates a cellular texture using the formula <code>a<sup><span class="txscr-number">2</span></sup></code>.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colspan="2"><code>cellular.cells()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="6">Argument&nbsp;types:</td>
+          <td><code>density:</code></td>
+          <td><code>[optional] integer between 2 and 256</code></td>
+        </tr>
+        <tr>
+          <td><code>metric:</code></td>
+          <td><code>[optional] 0, 1, 2 or 3</code></td>
+        </tr>
+        <tr>
+          <td><code>color1:</code></td>
+          <td><code>[optional] any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>color2:</code></td>
+          <td><code>[optional] any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>chaos:</code></td>
+          <td><code>[optional] number between 0 and 1</code></td>
+        </tr>
+        <tr>
+          <td><code>curve:</code></td>
+          <td><code>[optional] any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colspan="2"><pre><code><span class="txscr-package">cellular.</span>cells(<span class="txscr-number">0.075</span>, <span class="txscr-var">$</span><span class="txscr-package">cellular.</span><span class="txscr-var">M_CHEBYSHEV</span>)</code></pre></td>
+        </tr>
+        <tr><td colspan="3" style="border:0"></td></tr>
+        <tr class="header">
+          <td>
+            <img alt="cellular.sparks" src="examples/cellular.sparks.png"
+              style="width:128px;height:128px;margin:0 auto;border:1px solid #E0E0E0"/>
+          </td>
+          <td id="f-cellular-sparks" colspan="2"
+            style="text-align:left;font-size:1.1em;padding-left:32px">
+            <strong>sparks</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colspan="2">Generates a cellular texture using the formula <code>a * b</code>.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colspan="2"><code>cellular.sparks()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="6">Argument&nbsp;types:</td>
+          <td><code>density:</code></td>
+          <td><code>[optional] integer between 2 and 256</code></td>
+        </tr>
+        <tr>
+          <td><code>metric:</code></td>
+          <td><code>[optional] 0, 1, 2 or 3</code></td>
+        </tr>
+        <tr>
+          <td><code>color1:</code></td>
+          <td><code>[optional] any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>color2:</code></td>
+          <td><code>[optional] any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>chaos:</code></td>
+          <td><code>[optional] number between 0 and 1</code></td>
+        </tr>
+        <tr>
+          <td><code>curve:</code></td>
+          <td><code>[optional] any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colspan="2"><pre><code><span class="txscr-package">cellular.</span>sparks(<span class="txscr-number">0.075</span>, <span class="txscr-var">$</span><span class="txscr-package">cellular.</span><span class="txscr-var">M_MANHATTAN</span>, <span class="txscr-number">0</span>, <span class="txscr-number">1</span>, <span class="txscr-number">1</span>, <a href="curve-package.html#f-curve-invarc"><span class="txscr-package">curve.</span>invarc</a>())</code></pre></td>
+        </tr>
+        <tr><td colspan="3" style="border:0"></td></tr>
+        <tr class="header">
+          <td>
+            <img alt="cellular.cobble" src="examples/cellular.cobble.png"
+              style="width:128px;height:128px;margin:0 auto;border:1px solid #E0E0E0"/>
+          </td>
+          <td id="f-cellular-cobble" colspan="2"
+            style="text-align:left;font-size:1.1em;padding-left:32px">
+            <strong>cobble</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colspan="2">Generates a cellular texture using the formula <code>b - a</code>.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colspan="2"><code>cellular.cobble()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="6">Argument&nbsp;types:</td>
+          <td><code>density:</code></td>
+          <td><code>[optional] integer between 2 and 256</code></td>
+        </tr>
+        <tr>
+          <td><code>metric:</code></td>
+          <td><code>[optional] 0, 1, 2 or 3</code></td>
+        </tr>
+        <tr>
+          <td><code>color1:</code></td>
+          <td><code>[optional] any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>color2:</code></td>
+          <td><code>[optional] any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>chaos:</code></td>
+          <td><code>[optional] number between 0 and 1</code></td>
+        </tr>
+        <tr>
+          <td><code>curve:</code></td>
+          <td><code>[optional] any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colspan="2"><pre><code><span class="txscr-package">cellular.</span>cobble(<span class="txscr-number">0.075</span>, <span class="txscr-var">$</span><span class="txscr-package">cellular.</span><span class="txscr-var">M_MINKOWSKI</span>)</code></pre></td>
+        </tr>
+        <tr><td colspan="3" style="border:0"></td></tr>
+        <tr class="header">
+          <td>
+            <img alt="cellular.mosaic" src="examples/cellular.mosaic.png"
+              style="width:128px;height:128px;margin:0 auto;border:1px solid #E0E0E0"/>
+          </td>
+          <td id="f-cellular-mosaic" colspan="2"
+            style="text-align:left;font-size:1.1em;padding-left:32px">
+            <strong>mosaic</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colspan="2">Generates a mosaic.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colspan="2"><code>cellular.mosaic()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="6">Argument&nbsp;types:</td>
+          <td><code>density:</code></td>
+          <td><code>[optional] integer between 2 and 256</code></td>
+        </tr>
+        <tr>
+          <td><code>metric:</code></td>
+          <td><code>[optional] 0, 1, 2 or 3</code></td>
+        </tr>
+        <tr>
+          <td><code>color1:</code></td>
+          <td><code>[optional] any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>color2:</code></td>
+          <td><code>[optional] any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>chaos:</code></td>
+          <td><code>[optional] number between 0 and 1</code></td>
+        </tr>
+        <tr>
+          <td><code>curve:</code></td>
+          <td><code>[optional] any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colspan="2"><pre><code><span class="txscr-package">cellular.</span>mosaic(<span class="txscr-number">0.075</span>, <span class="txscr-var">$</span><span class="txscr-package">cellular.</span><span class="txscr-var">M_EUCLIDEAN</span>)</code></pre></td>
+        </tr>
+      </table>
+    </div>
+    <div class="side-panel">
+      <ul>
+        <li class="home"><a href="Home.html">Home</a></li>
+        <li><a href="Language-syntax.html">Language syntax</a></li>
+        <li><a href="Commands.html">Commands</a></li>
+        <li>
+          <a href="Filter-library.html">Filter library</a>
+          <ul>
+            <li><b>cellular package</b></li>
+            <li><a href="color-package.html">color package</a></li>
+            <li><a href="curve-package.html">curve package</a></li>
+            <li><a href="filter-package.html">filter package</a></li>
+            <li><a href="gradient-package.html">gradient package</a></li>
+            <li><a href="math-package.html">math package</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>filter package</title>
+    <link type="text/css" rel="stylesheet" href="styles.css"/>
+  </head>
+  <body>
+    <div class="main-panel">
+      <h1>filter package</h1>
+      <p>Package with various processing filters.</p>
+      <h3>Filters</h3>
+      <table>
+        <tr class="header">
+          <td>
+            <img alt="filter.blur" src="examples/filter.blur.png"
+              style="width:128px;height:128px;margin:0 auto;border:1px solid #E0E0E0"/>
+          </td>
+          <td id="f-filter-blur" colspan="2"
+            style="text-align:left;font-size:1.1em;padding-left:32px">
+            <strong>blur</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colspan="2">Blurs the generated image. This filter can be very slow.<br/>If only horizontal strength is specified it will be applied to both directions.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colspan="2"><code>filter.blur()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="4">Argument&nbsp;types:</td>
+          <td><code>base:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>horizontal:</code></td>
+          <td><code>[optional] any generator, expects values between 0 and 4</code></td>
+        </tr>
+        <tr>
+          <td><code>vertical:</code></td>
+          <td><code>[optional] any generator, expects values between 0 and 4</code></td>
+        </tr>
+        <tr>
+          <td><code>tiled:</code></td>
+          <td><code>[optional] boolean (0 or 1)</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colspan="2"><pre><code><span class="txscr-package">filter.</span>blur(<span class="txscr-var">$input</span>, <span class="txscr-number">0.6</span>, <span class="txscr-number">0.3</span>, <span class="txscr-var">$FALSE</span>)</code></pre></td>
+        </tr>
+        <tr><td colspan="3" style="border:0"></td></tr>
+        <tr class="header">
+          <td>
+            <img alt="filter.fastblur" src="examples/filter.fastblur.png"
+              style="width:128px;height:128px;margin:0 auto;border:1px solid #E0E0E0"/>
+          </td>
+          <td id="f-filter-fastblur" colspan="2"
+            style="text-align:left;font-size:1.1em;padding-left:32px">
+            <strong>fastblur</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colspan="2">Faster blur implementation with less customization. Can decrease quality when combined with transformation.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colspan="2"><code>filter.fastblur()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="2">Argument&nbsp;types:</td>
+          <td><code>base:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>strength:</code></td>
+          <td><code>[optional] any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colspan="2"><pre><code><span class="txscr-package">filter.</span>fastblur(<span class="txscr-var">$input</span>, <span class="txscr-number">0.5</span>)</code></pre></td>
+        </tr>
+        <tr><td colspan="3" style="border:0"></td></tr>
+        <tr class="header">
+          <td>
+            <img alt="filter.emboss" src="examples/filter.emboss.png"
+              style="width:128px;height:128px;margin:0 auto;border:1px solid #E0E0E0"/>
+          </td>
+          <td id="f-filter-emboss" colspan="2"
+            style="text-align:left;font-size:1.1em;padding-left:32px">
+            <strong>emboss</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colspan="2">Adds embossed effect onto an image. Optionally uses another generator as a heightmap.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colspan="2"><code>filter.emboss()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="3">Argument&nbsp;types:</td>
+          <td><code>base:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>heightmap:</code></td>
+          <td><code>[optional] any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>strength:</code></td>
+          <td><code>[optional] any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colspan="2"><pre><code><span class="txscr-package">filter.</span>emboss(<span class="txscr-var">$input</span>)</code></pre></td>
+        </tr>
+      </table>
+    </div>
+    <div class="side-panel">
+      <ul>
+        <li class="home"><a href="Home.html">Home</a></li>
+        <li><a href="Language-syntax.html">Language syntax</a></li>
+        <li><a href="Commands.html">Commands</a></li>
+        <li>
+          <a href="Filter-library.html">Filter library</a>
+          <ul>
+            <li><a href="cellular-package.html">cellular package</a></li>
+            <li><a href="color-package.html">color package</a></li>
+            <li><a href="curve-package.html">curve package</a></li>
+            <li><b>filter package</b></li>
+            <li><a href="gradient-package.html">gradient package</a></li>
+            <li><a href="math-package.html">math package</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Commands</title>
+    <link type="text/css" rel="stylesheet" href="styles.css"/>
+  </head>
+  <body>
+    <div class="main-panel">
+      <h1>Commands</h1>
+      <table>
+        <tr class="header">
+          <td id="c-filename" style="text-align:center;font-size:1.1em" colspan="3">
+            <strong>Filename</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colspan="2"><code>Filename(name)</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Argument&nbsp;types:</td>
+          <td><code>name:</code></td><td><code>string</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colspan="2">Sets file name for the generated image.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colspan="2"><pre><code><span class="txscr-command">Filename</span>(<span class="txscr-string">"output"</span>)</code></pre></td>
+        </tr>
+        
+        <tr><td colspan="3" style="border:none"></td></tr>
+
+        <tr class="header">
+          <td id="c-import" style="text-align:center;font-size:1.1em" colspan="3">
+            <strong>Import</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colspan="2"><code>Import(packageName)</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Argument&nbsp;types:</td>
+          <td><code>packageName:</code></td><td><code>string</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colspan="2">
+            Imports the specified package.
+            After a package is imported, functions and variables from it can be used
+            without being prefixed with the package name. The prefix is still needed
+            in case of a conflict (e.g. two functions from different packages having
+            the same name).
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colspan="2"><pre><code><span class="txscr-command">Import</span>(<span class="txscr-string">"shape"</span>)</code></pre></td>
+        </tr>
+        
+        <tr><td colspan="3" style="border:none"></td></tr>
+
+        <tr class="header">
+          <td id="c-load" style="text-align:center;font-size:1.1em" colspan="3">
+            <strong>Load</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colspan="2"><code>Load(variable, filename)</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="2">Argument&nbsp;types:</td>
+          <td><code>variable:</code></td><td><code>variable name</code></td>
+        </tr>
+      <tr>
+        <td><code>filename:</code></td><td><code>string</code></td>
+      </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colspan="2">
+            Loads an image from the specified file and stores it as a generator in a
+            new variable.<br />
+            <i>
+              Note: the variable must not have any value before this command is used.
+            </i>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colspan="2"><pre><code><span class="txscr-command">Load</span>(<span class="txscr-var">$input</span>, <span class="txscr-string">"input.png"</span>)</code></pre></td>
+        </tr>
+        
+        <tr><td colspan="3" style="border:none"></td></tr>
+
+        <tr class="header">
+          <td id="c-randomize" style="text-align:center;font-size:1.1em" colspan="3">
+            <strong>Randomize</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colspan="2"><code>Randomize(doRandomize)</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Argument&nbsp;types:</td>
+          <td><code>doRandomize:</code></td><td><code>boolean (0 or 1)</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colspan="2">
+            Enables or disables randomization. By default, filters with the same seed
+            and arguments always generate the same output. Enabling randomization
+            changes this behavior, so that the generation is fully randomized.
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colspan="2"><pre><code><span class="txscr-command">Randomize</span>(<span class="txscr-var">$TRUE</span>)</code></pre></td>
+        </tr>
+        
+        <tr><td colspan="3" style="border:none"></td></tr>
+
+        <tr class="header">
+          <td id="c-size" style="text-align:center;font-size:1.1em" colspan="3">
+            <strong>Size</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colspan="2"><code>Size(size)</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Argument&nbsp;types:</td>
+          <td><code>size:</code></td><td><code>integer number between 1 and 8192</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colspan="2">Sets size (in pixels) for the output image.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colspan="2"><pre><code><span class="txscr-command">Size</span>(<span class="txscr-number">512</span>)</code></pre></td>
+        </tr>
+        
+        <tr><td colspan="3" style="border:none"></td></tr>
+
+        <tr class="header">
+          <td id="c-smoothing" style="text-align:center;font-size:1.1em" colspan="3">
+            <strong>Smoothing</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colspan="2"><code>Smoothing(level)</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Argument&nbsp;types:</td>
+          <td><code>level:</code></td><td><code>0, 1 or 2</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colspan="2">
+            Sets texture smoothing (antialiasing) level. 0 means no smoothing, higher
+            values will slow down image generation.
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colspan="2"><pre><code><span class="txscr-command">Smoothing</span>(<span class="txscr-number">2</span>)</code></pre></td>
+        </tr>
+        
+        <tr><td colspan="3" style="border:none"></td></tr>
+
+        <tr class="header">
+          <td id="c-texture" style="text-align:center;font-size:1.1em" colspan="3">
+            <strong>Texture</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colspan="2"><code>Texture(generator)</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Argument&nbsp;types:</td>
+          <td><code>generator:</code></td><td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colspan="2">
+            Generates image with the currently set size and saves it in a file with
+            the currently set file name in PNG format.
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colspan="2">
+            <pre><code><span class="txscr-command">Texture</span>(
+    <span class="txscr-package">perlin.</span>noise<span class="txscr-seed">:20</span>(
+        <span class="txscr-number">1.5</span>,
+        <span class="txscr-package">color.</span>red(),
+        <span class="txscr-package">color.</span>yellow()
+    )
+)</code></pre>
+          </td>
+        </tr>
+        
+        <tr><td colspan="3" style="border:none"></td></tr>
+
+        <tr class="header">
+          <td id="c-video" style="text-align:center;font-size:1.1em" colspan="3">
+            <strong>Video</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colspan="2"><code>Video(frames, generator)</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight:bold" rowspan="2">Argument&nbsp;types:</td>
+          <td><code>frames:</code></td><td><code>integer number between 1 and 7,500</code></td>
+        </tr>
+      <tr>
+        <td><code>generator:</code></td><td><code>any generator</code></td>
+      </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colspan="2">
+            Like <a href="#c-texture">Texture</a>, but generates multiple images/frames.
+            First argument determines how many frames should be generated, filters
+            from the <a href="video-package.html">video package</a> can be used to change
+            the output according to the current frame/time.
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colspan="2">
+            <pre><code><span class="txscr-command">Video</span>(
+    <span class="txscr-number">100</span>,
+    <span class="txscr-package">transform.</span>rotate(
+        <span class="txscr-package">shape.</span>circle(<span class="txscr-number">1</span>, <span class="txscr-number">0</span>, <span class="txscr-number">0.5</span>, <span class="txscr-number">0.2</span>, <span class="txscr-number">0.2</span>),
+        <span class="txscr-number">0.5</span>, <span class="txscr-number">0.5</span>, video.time()
+    )
+)</code></pre>
+          </td>
+        </tr>
+        
+        <tr><td colspan="3" style="border:none"></td></tr>
+
+        <tr class="header">
+          <td id="c-debugtex" style="text-align:center;font-size:1.1em" colspan="3">
+            <strong>Debugtex</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colspan="2"><code>Debugtex(size)</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Argument&nbsp;types:</td>
+          <td><code>size:</code></td><td><code>integer number between 1 and 8192</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colspan="2">
+            Generates image for each currently defined custom variable, all images
+            will have the specified size.
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colspan="2"><pre><code><span class="txscr-command">Debugtex</span>(<span class="txscr-number">256</span>)</code></pre></td>
+        </tr>
+
+        <tr><td colspan="3" style="border:none"></td></tr>
+
+        <tr class="header">
+          <td id="c-debugtime" style="text-align:center;font-size:1.1em" colspan="3">
+            <strong>Debugtime</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colspan="2"><code>Debugtime(measureTime)</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Argument&nbsp;types:</td>
+          <td><code>measureTime:</code></td><td><code>boolean (0 or 1)</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colspan="2">
+            Enables or disables time measurement. When enabled, every
+            <a href="#c-texture">Texture</a> and <a href="#c-video">Video</a>
+            command will measure the time it takes to generate each image/frame.
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colspan="2"><pre><code><span class="txscr-command">Debugtime</span>(<span class="txscr-var">$TRUE</span>)</code></pre></td>
+        </tr>
+
+      </table>
+    </div>
+    <div class="side-panel">
+      <ul>
+        <li class="home"><a href="Home.html">Home</a></li>
+        <li><a href="Language-syntax.html">Language syntax</a></li>
+        <li><b>Commands</b></li>
+        <li><a href="Filter-library.html">Filter library</a></li>
+      </ul>
+    </div>
+  </body>
+</html>
