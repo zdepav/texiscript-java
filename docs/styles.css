@@ -8,6 +8,10 @@ pre {
     padding: 12px;
 }
 
+code {
+    font-size: 1.1em;
+}
+
 .main-panel {
     margin-right: 230px;
     padding: 0 10px;
@@ -117,3 +121,4 @@ code a {
     color: black;
     text-decoration: none;
 }
+
