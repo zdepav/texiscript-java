@@ -4,10 +4,11 @@ import cz.zdepav.school.texiscript.generators.Generator;
 import cz.zdepav.school.texiscript.utils.Rand;
 import cz.zdepav.school.texiscript.utils.Utils;
 
-/** @author Zdenek Pavlatka */
+/** Generates camouflage-style pattern. */
 public class CamouflageGenerator extends PerlinGenerator {
 
     private final double[] inverseScales, coeficients;
+
     private final PerlinGradient[] gradients;
 
     public CamouflageGenerator(Generator color1, Generator color2, double scale, Generator curve) {
@@ -17,6 +18,7 @@ public class CamouflageGenerator extends PerlinGenerator {
         gradients = new PerlinGradient[9];
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         super.init(outputSize, randomize);
@@ -25,10 +27,14 @@ public class CamouflageGenerator extends PerlinGenerator {
             for (var i = 0; i < 9; ++i) {
                 gradients[i] = new PerlinGradient(inverseScales[i % 3], rand);
             }
+            for (var i = 0; i < 3; ++i) {
+                inverseScales[i] = gradients[i].realScale;
+            }
             randomized = randomize;
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected double get(double x, double y) {
         var _x = x * inverseScale;

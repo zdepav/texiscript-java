@@ -3,20 +3,23 @@ package cz.zdepav.school.texiscript.script.parser;
 import cz.zdepav.school.texiscript.utils.RgbaColor;
 
 import java.io.InputStream;
-import java.util.regex.Pattern;
 
-/** @author Zdenek Pavlatka */
+/** A bysic lexer, reads tokens from input stream. */
 public class Lexer implements TokenSource {
 
+    /** input reader */
     private final InputReader input;
+
+    /** peeked token */
     private Token buffer;
 
+    /** Constructs a lexer on top of an input stream. */
     public Lexer(InputStream input) {
         this.input = new InputReader(input);
         buffer = null;
     }
 
-    @Override
+    /** {@inheritDoc} */
     public Token peekToken() throws SyntaxException {
         if (buffer != null) {
             return buffer;
@@ -25,7 +28,7 @@ public class Lexer implements TokenSource {
         }
     }
 
-    @Override
+    /** {@inheritDoc} */
     public Token readToken() throws SyntaxException {
         if (buffer != null) {
             Token ret = buffer;
@@ -36,7 +39,7 @@ public class Lexer implements TokenSource {
         }
     }
 
-    @Override
+    /** {@inheritDoc} */
     public void skipToken() throws SyntaxException {
         if (buffer != null) {
             buffer = null;
@@ -45,15 +48,25 @@ public class Lexer implements TokenSource {
         }
     }
 
-    @Override
+    /** {@inheritDoc} */
     public CodePosition getCodePosition() {
         return input.getCodePosition();
     }
 
+    /**
+     * Helper method for exception construction.
+     * @param message error message
+     * @return the constructed exception
+     */
     private SyntaxException error(String message) {
         return new SyntaxException(input.getCodePosition(), message);
     }
 
+    /**
+     * Parses a single token.
+     * @return the parsed token
+     * @throws SyntaxException When the input contains errors.
+     */
     private Token parseNextToken() throws SyntaxException {
         if (!input.hasNext()) {
             return null;
@@ -103,6 +116,7 @@ public class Lexer implements TokenSource {
         return null;
     }
 
+    /** Skips to the end of multiline comment. */
     private void skipRestOfComment() {
         int c;
         while ((c = input.peek()) > 0) {
@@ -114,6 +128,7 @@ public class Lexer implements TokenSource {
         }
     }
 
+    /** Skips to the end of the current line. */
     private void skipRestOfLine() {
         int c;
         while ((c = input.peek()) > 0 && c != '\n') {
@@ -121,6 +136,7 @@ public class Lexer implements TokenSource {
         }
     }
 
+    /** Returns true if given character can be used in a variable name. */
     private boolean isValidVariableNameCharacter(int c) {
         return c == '_' ||
             (c >= 'a' && c <= 'z') ||
@@ -128,12 +144,18 @@ public class Lexer implements TokenSource {
             (c >= '0' && c <= '9');
     }
 
+    /** Returns true if given character is a hexadecimal digit. */
     private boolean isValidHexCharacter(int c) {
         return (c >= 'a' && c <= 'f') ||
             (c >= 'A' && c <= 'F') ||
             (c >= '0' && c <= '9');
     }
 
+    /**
+     * Parses a variable name token.
+     * @return the parsed token
+     * @throws SyntaxException When the input contains errors.
+     */
     private Token readVariableToken() throws SyntaxException {
         var posA = input.getCodePosition();
         var buffer = new StringBuilder();
@@ -164,6 +186,10 @@ public class Lexer implements TokenSource {
         }
     }
 
+    /**
+     * Parses a seed token.
+     * @return the parsed token
+     */
     private Token readSeedToken() {
         var posA = input.getCodePosition();
         int seed = 0;
@@ -174,6 +200,10 @@ public class Lexer implements TokenSource {
         return Token.seed(posA.until(input.getCodePosition()), seed);
     }
 
+    /**
+     * Parses a command name token.
+     * @return the parsed token
+     */
     private Token readCommandToken(char firstChar) {
         var posA = input.getCodePosition();
         var buffer = new StringBuilder();
@@ -185,6 +215,11 @@ public class Lexer implements TokenSource {
         return Token.command(posA.until(input.getCodePosition()), buffer.toString());
     }
 
+    /**
+     * Parses a generator name token.
+     * @return the parsed token
+     * @throws SyntaxException When the input contains errors.
+     */
     private Token readFunctionToken(char firstChar) throws SyntaxException {
         var posA = input.getCodePosition();
         var buffer = new StringBuilder();
@@ -210,6 +245,11 @@ public class Lexer implements TokenSource {
         return Token.function(posA.until(input.getCodePosition()), buffer.toString());
     }
 
+    /**
+     * Parses a string literal.
+     * @return the parsed token
+     * @throws SyntaxException When the input contains errors.
+     */
     private Token readStringToken() throws SyntaxException {
         var posA = input.getCodePosition();
         var buffer = new StringBuilder();
@@ -230,6 +270,11 @@ public class Lexer implements TokenSource {
         throw error("Unexpected end of input");
     }
 
+    /**
+     * Parses a color literal.
+     * @return the parsed token
+     * @throws SyntaxException When the input contains errors.
+     */
     private Token readColorToken() throws SyntaxException {
         var posA = input.getCodePosition();
         var buffer = new StringBuilder("#");
@@ -244,6 +289,10 @@ public class Lexer implements TokenSource {
         }
     }
 
+    /**
+     * Parses an integer into a StringBuilder.
+     * @throws SyntaxException When the input contains errors.
+     */
     private void readIntegerString(StringBuilder buffer, char firstChar, boolean allowSign) throws SyntaxException {
         if (firstChar == '-' || firstChar == '+') {
             if (!allowSign) {
@@ -259,6 +308,11 @@ public class Lexer implements TokenSource {
         }
     }
 
+    /**
+     * Parses a number literal.
+     * @return the parsed token
+     * @throws SyntaxException When the input contains errors.
+     */
     private Token readNumberToken(char firstChar) throws SyntaxException {
         var posA = input.getCodePosition();
         var buffer = new StringBuilder();

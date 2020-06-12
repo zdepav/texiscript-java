@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>mix package</title>
+    <link href="styles.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <div class="main-panel">
+      <h1>mix package</h1>
+      <p>Package with filters used to combine multiple images.</p>
+      <h3>Filters</h3>
+      <table>
+        <tr class="header">
+          <td></td>
+          <td class="filter-name" id="f-mix-blend" colSpan="2"><strong>blend</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Blends two inputs using alpha-blending.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">mix.</span>blend()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="2">Argument&nbsp;types:</td>
+          <td><code>a:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>b:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">mix.</span>blend(<span class="txscr-var">$image1</span>, <span class="txscr-var">$overlay</span>)</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="mix.quattro" src="examples/mix.quattro.png" class="example-image"/></td>
+          <td class="filter-name" id="f-mix-quattro" colSpan="2"><strong>quattro</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Fills a <span class="txscr-number">2</span> by <span class="txscr-number">2</span> grid with inputs.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">mix.</span>quattro()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="4">Argument&nbsp;types:</td>
+          <td><code>topLeft:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>topRight:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>bottomLeft:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>bottomRight:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">mix.</span>quattro(<span class="txscr-color" text-decoration-color="#F00">#F00</span>, <span class="txscr-color" text-decoration-color="#0F0">#0F0</span>, <span class="txscr-color" text-decoration-color="#0F0">#0F0</span>, <span class="txscr-color" text-decoration-color="#00F">#00F</span>)</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="mix.sides" src="examples/mix.sides.png" class="example-image"/></td>
+          <td class="filter-name" id="f-mix-sides" colSpan="2"><strong>sides</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Splits output into <span class="txscr-number">4</span> triangles filling each one using a different input.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">mix.</span>sides()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="4">Argument&nbsp;types:</td>
+          <td><code>top:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>right:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>bottom:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>left:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">mix.</span>sides(<span class="txscr-number">0</span>, <span class="txscr-number">1</span>, <span class="txscr-number">0</span>, <span class="txscr-number">1</span>)</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="mix.choice" src="examples/mix.choice.png" class="example-image"/></td>
+          <td class="filter-name" id="f-mix-choice" colSpan="2"><strong>choice</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Chooses between inputs based on the control input.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">mix.</span>choice(control, inputs...)</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="2">Argument&nbsp;types:</td>
+          <td><code>control:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>inputs:</code></td>
+          <td><code>two or more generators</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">mix.</span>choice(<span class="txscr-package">perlin.</span>noise(), <span class="txscr-color" text-decoration-color="#000">#000</span>, <span class="txscr-color" text-decoration-color="#800">#800</span>, <span class="txscr-color" text-decoration-color="#F80">#F80</span>, <span class="txscr-color" text-decoration-color="#FF8">#FF8</span>, <span class="txscr-color" text-decoration-color="#FFF">#FFF</span>)</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="mix.switch" src="examples/mix.switch.png" class="example-image"/></td>
+          <td class="filter-name" id="f-mix-switch" colSpan="2"><strong>switch</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Interpolates between inputs based on the control input.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">mix.</span>switch(control, inputs...)</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="2">Argument&nbsp;types:</td>
+          <td><code>control:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>inputs:</code></td>
+          <td><code>two or more generators</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">mix.</span>switch(<span class="txscr-package">perlin.</span>noise(), <span class="txscr-color" text-decoration-color="#000">#000</span>, <span class="txscr-color" text-decoration-color="#800">#800</span>, <span class="txscr-color" text-decoration-color="#F80">#F80</span>, <span class="txscr-color" text-decoration-color="#FF8">#FF8</span>, <span class="txscr-color" text-decoration-color="#FFF">#FFF</span>)</code></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="side-panel">
+      <ul>
+        <li class="home"><a href="index.html">Home</a></li>
+        <li><a href="Language-syntax.html">Language syntax</a></li>
+        <li><a href="Commands.html">Commands</a></li>
+        <li><a href="Filter-library.html">Filter library</a>
+          <ul>
+            <li><a href="cellular-package.html">cellular package</a></li>
+            <li><a href="color-package.html">color package</a></li>
+            <li><a href="curve-package.html">curve package</a></li>
+            <li><a href="filter-package.html">filter package</a></li>
+            <li><a href="gradient-package.html">gradient package</a></li>
+            <li><a href="math-package.html">math package</a></li>
+            <li><b>mix package</b></li>
+            <li><a href="perlin-package.html">perlin package</a></li>
+            <li><a href="shape-package.html">shape package</a></li>
+            <li><a href="transform-package.html">transform package</a></li>
+            <li><a href="video-package.html">video package</a></li>
+          </ul>
+        </li>
+        <li><a href="code/index.html">Source code</a></li>
+      </ul>
+    </div>
+  </body>
+</html>

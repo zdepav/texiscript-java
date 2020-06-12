@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>perlin package</title>
+    <link href="styles.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <div class="main-panel">
+      <h1>perlin package</h1>
+      <p>Package with filters based on perlin noise. If only one color is suplied to any filter, it will be used as the second color.</p>
+      <h3>Filters</h3>
+      <table>
+        <tr class="header">
+          <td><img alt="perlin.noise" src="examples/perlin.noise.png" class="example-image"/></td>
+          <td class="filter-name" id="f-perlin-noise" colSpan="2"><strong>noise</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Generates basic perlin noise.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">perlin.</span>noise()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="4">Argument&nbsp;types:</td>
+          <td><code>scale:</code></td>
+          <td><code>[optional] number, default value is <span class="txscr-number">1</span></code></td>
+        </tr>
+        <tr>
+          <td><code>color1:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-number">0</span></code></td>
+        </tr>
+        <tr>
+          <td><code>color2:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-number">1</span></code></td>
+        </tr>
+        <tr>
+          <td><code>curve:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-package">curve.</span>linear()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">perlin.</span>noise([scale], [color1], [color2], [curve])</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="perlin.frost" src="examples/perlin.frost.png" class="example-image"/></td>
+          <td class="filter-name" id="f-perlin-frost" colSpan="2"><strong>frost</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Generates ice texture.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">perlin.</span>frost()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="4">Argument&nbsp;types:</td>
+          <td><code>scale:</code></td>
+          <td><code>[optional] number, default value is <span class="txscr-number">1</span></code></td>
+        </tr>
+        <tr>
+          <td><code>color1:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-number">0</span></code></td>
+        </tr>
+        <tr>
+          <td><code>color2:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-number">1</span></code></td>
+        </tr>
+        <tr>
+          <td><code>curve:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-package">curve.</span>linear()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">perlin.</span>frost([scale], [color1], [color2], [curve])</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="perlin.camouflage" src="examples/perlin.camouflage.png" class="example-image"/></td>
+          <td class="filter-name" id="f-perlin-camouflage" colSpan="2"><strong>camouflage</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Generates camouflage-style pattern.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">perlin.</span>camouflage()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="4">Argument&nbsp;types:</td>
+          <td><code>scale:</code></td>
+          <td><code>[optional] number, default value is <span class="txscr-number">1</span></code></td>
+        </tr>
+        <tr>
+          <td><code>color1:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-number">0</span></code></td>
+        </tr>
+        <tr>
+          <td><code>color2:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-number">1</span></code></td>
+        </tr>
+        <tr>
+          <td><code>curve:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-package">curve.</span>linear()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">perlin.</span>camouflage([scale], [color1], [color2], [curve])</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="perlin.velvet" src="examples/perlin.velvet.png" class="example-image"/></td>
+          <td class="filter-name" id="f-perlin-velvet" colSpan="2"><strong>velvet</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Generates velvet texture.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">perlin.</span>velvet()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="4">Argument&nbsp;types:</td>
+          <td><code>scale:</code></td>
+          <td><code>[optional] number, default value is <span class="txscr-number">1</span></code></td>
+        </tr>
+        <tr>
+          <td><code>color1:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-number">0</span></code></td>
+        </tr>
+        <tr>
+          <td><code>color2:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-number">1</span></code></td>
+        </tr>
+        <tr>
+          <td><code>curve:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-package">curve.</span>linear()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">perlin.</span>velvet([scale], [color1], [color2], [curve])</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="perlin.clouds" src="examples/perlin.clouds.png" class="example-image"/></td>
+          <td class="filter-name" id="f-perlin-clouds" colSpan="2"><strong>clouds</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Generates basic perlin-based fractal noise.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">perlin.</span>clouds()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="4">Argument&nbsp;types:</td>
+          <td><code>scale:</code></td>
+          <td><code>[optional] number, default value is <span class="txscr-number">1</span></code></td>
+        </tr>
+        <tr>
+          <td><code>color1:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-number">0</span></code></td>
+        </tr>
+        <tr>
+          <td><code>color2:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-number">1</span></code></td>
+        </tr>
+        <tr>
+          <td><code>curve:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-package">curve.</span>linear()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">perlin.</span>clouds([scale], [color1], [color2], [curve])</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="perlin.glass" src="examples/perlin.glass.png" class="example-image"/></td>
+          <td class="filter-name" id="f-perlin-glass" colSpan="2"><strong>glass</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Generates glass/liquid texture.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">perlin.</span>glass()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="5">Argument&nbsp;types:</td>
+          <td><code>scale:</code></td>
+          <td><code>[optional] number, default value is <span class="txscr-number">1</span></code></td>
+        </tr>
+        <tr>
+          <td><code>turbulence:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-number">1</span></code></td>
+        </tr>
+        <tr>
+          <td><code>color1:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-number">0</span></code></td>
+        </tr>
+        <tr>
+          <td><code>color2:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-number">1</span></code></td>
+        </tr>
+        <tr>
+          <td><code>curve:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-package">curve.</span>linear()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">perlin.</span>glass([scale], [turbulence], [color1], [color2], [curve])</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="perlin.bark" src="examples/perlin.bark.png" class="example-image"/></td>
+          <td class="filter-name" id="f-perlin-bark" colSpan="2"><strong>bark</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Generates pattern similar to tree bark.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">perlin.</span>bark()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="5">Argument&nbsp;types:</td>
+          <td><code>scale:</code></td>
+          <td><code>[optional] number, default value is <span class="txscr-number">1</span></code></td>
+        </tr>
+        <tr>
+          <td><code>turbulence:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-number">1</span></code></td>
+        </tr>
+        <tr>
+          <td><code>color1:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-number">0</span></code></td>
+        </tr>
+        <tr>
+          <td><code>color2:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-number">1</span></code></td>
+        </tr>
+        <tr>
+          <td><code>curve:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-package">curve.</span>linear()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">perlin.</span>bark([scale], [turbulence], [color1], [color2], [curve])</code></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="side-panel">
+      <ul>
+        <li class="home"><a href="index.html">Home</a></li>
+        <li><a href="Language-syntax.html">Language syntax</a></li>
+        <li><a href="Commands.html">Commands</a></li>
+        <li><a href="Filter-library.html">Filter library</a>
+          <ul>
+            <li><a href="cellular-package.html">cellular package</a></li>
+            <li><a href="color-package.html">color package</a></li>
+            <li><a href="curve-package.html">curve package</a></li>
+            <li><a href="filter-package.html">filter package</a></li>
+            <li><a href="gradient-package.html">gradient package</a></li>
+            <li><a href="math-package.html">math package</a></li>
+            <li><a href="mix-package.html">mix package</a></li>
+            <li><b>perlin package</b></li>
+            <li><a href="shape-package.html">shape package</a></li>
+            <li><a href="transform-package.html">transform package</a></li>
+            <li><a href="video-package.html">video package</a></li>
+          </ul>
+        </li>
+        <li><a href="code/index.html">Source code</a></li>
+      </ul>
+    </div>
+  </body>
+</html>

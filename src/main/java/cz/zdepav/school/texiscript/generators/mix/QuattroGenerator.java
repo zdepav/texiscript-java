@@ -4,7 +4,7 @@ import cz.zdepav.school.texiscript.generators.Generator;
 import cz.zdepav.school.texiscript.script.parser.CodePosition;
 import cz.zdepav.school.texiscript.utils.RgbaColor;
 
-/** @author Zdenek Pavlatka */
+/** Puts four generators into a 2 by 2 grid. */
 public class QuattroGenerator extends Generator {
 
     private final Generator g00, g10, g01, g11;
@@ -16,6 +16,7 @@ public class QuattroGenerator extends Generator {
         this.g11 = g11;
     }
 
+    /** {@inheritDoc} */
     @Override
     public RgbaColor getColor(double x, double y) {
         x *= 2;
@@ -27,6 +28,7 @@ public class QuattroGenerator extends Generator {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public double getDouble(double x, double y) {
         x *= 2;
@@ -38,6 +40,7 @@ public class QuattroGenerator extends Generator {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         g00.init(outputSize, randomize);

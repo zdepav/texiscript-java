@@ -6,7 +6,7 @@ import cz.zdepav.school.texiscript.utils.Curve;
 import cz.zdepav.school.texiscript.utils.Utils;
 import cz.zdepav.school.texiscript.utils.Vec2;
 
-/** @author Zdenek Pavlatka */
+/** Creates a fish eye effect. */
 public class FisheyeGenerator extends TransformationGenerator {
 
     private final Generator scale, radius, x, y;
@@ -25,6 +25,7 @@ public class FisheyeGenerator extends TransformationGenerator {
         this.scale = scale;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Vec2 reverseTransform(double x, double y) {
         var v = new Vec2(x, y);
@@ -39,15 +40,13 @@ public class FisheyeGenerator extends TransformationGenerator {
             return v;
         }
         var scale = this.scale.getDouble(x, y);
-        if (scale < 0) {
-            var coef = Utils.lerp(d, Curve.arc.at(d), -scale);
-            return dv.mul(coef / d).add(_x, _y);
-        } else {
-            var coef = Utils.lerp(d, Curve.invArc.at(d), scale);
-            return dv.mul(coef / d).add(_x, _y);
-        }
+        double coef = scale < 0
+            ? Utils.lerp(d, Curve.arc.at(d), -scale)
+            : Utils.lerp(d, Curve.invArc.at(d), scale);
+        return dv.mul(coef / d).add(_x, _y);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         super.init(outputSize, randomize);

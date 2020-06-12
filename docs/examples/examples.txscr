@@ -1,0 +1,448 @@
+Load($in1, "in1.png")
+Load($in2, "in2.png")
+Load($in3, "in3.png")
+Load($in4, "in4.png")
+Load($in5, "in5.png")
+
+Randomize($FALSE)
+Smoothing(2)
+Debugtime($TRUE)
+Size(128)
+
+// cellular
+
+Filename("cellular.cells")
+Texture(mix.quattro(
+    shape.rect(cellular.cells(5, $cellular.M_EUCLIDEAN), 0, 0.02, 0.02, 0.94, 0.94),
+    shape.rect(cellular.cells(5, $cellular.M_MANHATTAN), 0, 0.02, 0.02, 0.94, 0.94),
+    shape.rect(cellular.cells(5, $cellular.M_CHEBYSHEV), 0, 0.02, 0.02, 0.94, 0.94),
+    shape.rect(cellular.cells(5, $cellular.M_MINKOWSKI), 0, 0.02, 0.02, 0.94, 0.94)
+))
+
+Filename("cellular.cobble")
+Texture(mix.quattro(
+    shape.rect(cellular.cobble(5, $cellular.M_EUCLIDEAN), 0, 0.02, 0.02, 0.94, 0.94),
+    shape.rect(cellular.cobble(5, $cellular.M_MANHATTAN), 0, 0.02, 0.02, 0.94, 0.94),
+    shape.rect(cellular.cobble(5, $cellular.M_CHEBYSHEV), 0, 0.02, 0.02, 0.94, 0.94),
+    shape.rect(cellular.cobble(5, $cellular.M_MINKOWSKI), 0, 0.02, 0.02, 0.94, 0.94)
+))
+
+Filename("cellular.sparks")
+Texture(mix.quattro(
+    shape.rect(cellular.sparks(5, $cellular.M_EUCLIDEAN, 0, 1, 1, curve.invarc()), 0, 0.02, 0.02, 0.94, 0.94),
+    shape.rect(cellular.sparks(5, $cellular.M_MANHATTAN, 0, 1, 1, curve.invarc()), 0, 0.02, 0.02, 0.94, 0.94),
+    shape.rect(cellular.sparks(5, $cellular.M_CHEBYSHEV, 0, 1, 1, curve.invarc()), 0, 0.02, 0.02, 0.94, 0.94),
+    shape.rect(cellular.sparks(5, $cellular.M_MINKOWSKI, 0, 1, 1, curve.invarc()), 0, 0.02, 0.02, 0.94, 0.94)
+))
+
+Filename("cellular.mosaic")
+Texture(
+    mix.quattro(
+        shape.rect(color.hsl(cellular.mosaic(5, $cellular.M_EUCLIDEAN), 0.7, 0.5), 0, 0.02, 0.02, 0.94, 0.94),
+        shape.rect(color.hsl(cellular.mosaic(5, $cellular.M_MANHATTAN), 0.7, 0.5), 0, 0.02, 0.02, 0.94, 0.94),
+        shape.rect(color.hsl(cellular.mosaic(5, $cellular.M_CHEBYSHEV), 0.7, 0.5), 0, 0.02, 0.02, 0.94, 0.94),
+        shape.rect(color.hsl(cellular.mosaic(5, $cellular.M_MINKOWSKI), 0.7, 0.5), 0, 0.02, 0.02, 0.94, 0.94)
+    )
+)
+
+// colors
+
+Filename("color.r")
+Texture(color.rgb(color.r($in3), 0, 0))
+
+Filename("color.g")
+Texture(color.rgb(0, color.g($in3), 0))
+
+Filename("color.b")
+Texture(color.rgb(0, 0, color.b($in3)))
+
+Filename("color.h")
+Texture(color.hsl(color.h($in1), 1, 0.5))
+
+Filename("color.s")
+Texture(color.s($in1))
+
+Filename("color.l")
+Texture(color.l($in1))
+
+Filename("color.rgb")
+Texture(color.rgb($in1, $in2, $in4))
+
+Filename("color.hsl")
+Texture(color.hsl(curve.linear(), $in3, transform.rrot(curve.linear(0, 1, 0.1, 0.9))))
+
+Filename("color.grayscale")
+Texture(color.grayscale($in3))
+
+Filename("color.noise")
+Texture(color.noise($in3, 0.5, 0.5))
+
+Filename("color.sepia")
+Texture(color.sepia($in3))
+
+Filename("color.lightinvert")
+Texture(color.lightinvert($in3))
+
+Filename("color.black")
+Texture(color.black())
+
+Filename("color.red")
+Texture(color.red())
+
+Filename("color.green")
+Texture(color.green())
+
+Filename("color.blue")
+Texture(color.blue())
+
+Filename("color.yellow")
+Texture(color.yellow())
+
+Filename("color.cyan")
+Texture(color.cyan())
+
+Filename("color.magenta")
+Texture(color.magenta())
+
+Filename("color.gray")
+Texture(color.gray())
+
+Filename("color.white")
+Texture(color.white())
+
+
+// curves
+
+$curve_line = gradient.linear(
+    0.49, 0.49, 0.51, 0.51,
+    gradient.stop(0, 0),
+    gradient.stop(0.25, 0.75),
+    gradient.stop(0.5, 1),
+    gradient.stop(0.75, 0.75),
+    gradient.stop(1, 0)
+)
+
+Filename("curve.linear")
+$curve_linear = curve.linear()
+Texture(
+    mix.switch(
+        transform.offset(
+            $curve_line,
+            0.5,
+            math.invert(math.add(0.5, math.sub($curve_linear, curve.linear())))
+        ),
+        $curve_linear,
+        #000
+    )
+)
+
+Filename("curve.arc")
+$curve_arc = curve.arc()
+Texture(
+    mix.switch(
+        transform.offset(
+            $curve_line,
+            0.5,
+            math.invert(math.add(0.5, math.sub($curve_arc, curve.linear())))
+        ),
+        $curve_arc,
+        #000
+    )
+)
+
+Filename("curve.invarc")
+$curve_invarc = curve.invarc()
+Texture(
+    mix.switch(
+        transform.offset(
+            $curve_line,
+            0.5,
+            math.invert(math.add(0.5, math.sub($curve_invarc, curve.linear())))
+        ),
+        $curve_invarc,
+        #000
+    )
+)
+
+Filename("curve.doublearc")
+$curve_doublearc = curve.doublearc()
+Texture(
+    mix.switch(
+        transform.offset(
+            $curve_line,
+            0.5,
+            math.invert(math.add(0.5, math.sub($curve_doublearc, curve.linear())))
+        ),
+        $curve_doublearc,
+        #000
+    )
+)
+
+Filename("curve.invdoublearc")
+$curve_invdoublearc = curve.invdoublearc()
+Texture(
+    mix.switch(
+        transform.offset(
+            $curve_line,
+            0.5,
+            math.invert(math.add(0.5, math.sub($curve_invdoublearc, curve.linear())))
+        ),
+        $curve_invdoublearc,
+        #000
+    )
+)
+
+Filename("curve.sqr")
+$curve_sqr = curve.sqr()
+Texture(
+    mix.switch(
+        transform.offset(
+            $curve_line,
+            0.5,
+            math.invert(math.add(0.5, math.sub($curve_sqr, curve.linear())))
+        ),
+        $curve_sqr,
+        #000
+    )
+)
+
+Filename("curve.sqrt")
+$curve_sqrt = curve.sqrt()
+Texture(
+    mix.switch(
+        transform.offset(
+            $curve_line,
+            0.5,
+            math.invert(math.add(0.5, math.sub($curve_sqrt, curve.linear())))
+        ),
+        $curve_sqrt,
+        #000
+    )
+)
+
+Filename("curve.log")
+$curve_log = curve.log()
+Texture(
+    mix.switch(
+        transform.offset(
+            $curve_line,
+            0.5,
+            math.invert(math.add(0.5, math.sub($curve_log, curve.linear())))
+        ),
+        $curve_log,
+        #000
+    )
+)
+
+Filename("curve.sin")
+$curve_sin = curve.sin()
+Texture(
+    mix.switch(
+        transform.offset(
+            $curve_line,
+            0.5,
+            math.invert(math.add(0.5, math.sub($curve_sin, curve.linear())))
+        ),
+        $curve_sin,
+        #000
+    )
+)
+
+Filename("curve.quadratic")
+$curve_quadratic = curve.quadratic(0.25, 0.75)
+Texture(
+    shape.circle(
+        shape.rect(#000, shape.rect(#000, $curve_quadratic, 0.24, 0, 0.02, 1), 0, 0.24, 1, 0.02),
+        mix.switch(
+            transform.offset(
+                $curve_line,
+                0.5,
+                math.invert(math.add(0.5, math.sub($curve_quadratic, curve.linear())))
+            ),
+            $curve_quadratic,
+            #000
+        ),
+        0.25, 0.25, 0.04
+    )
+)
+
+Filename("curve.bezier")
+$curve_bezier = curve.bezier(0.1, 0.9, 0.9, 0.5)
+Texture(
+    shape.circle(
+        shape.rect(#000, shape.rect(#000, $curve_bezier, 0.89, 0, 0.02, 1), 0, 0.49, 1, 0.02),
+        shape.circle(
+            shape.rect(#000, shape.rect(#000, $curve_bezier, 0.09, 0, 0.02, 1), 0, 0.09, 1, 0.02),
+            mix.switch(
+                transform.offset(
+                    $curve_line,
+                    0.5,
+                    math.invert(math.add(0.5, math.sub($curve_bezier, curve.linear())))
+                ),
+                $curve_bezier,
+                #000
+            ),
+            0.1, 0.1, 0.04
+        ),
+        0.9, 0.5, 0.04
+    )
+)
+
+// filters
+
+Filename("filter.emboss")
+Texture(filter.emboss(#A0C080, $in3, 1.25))
+
+Filename("filter.fastblur")
+Texture(filter.fastblur($in1, 0.15))
+
+Filename("filter.blur")
+$blurLevel = curve.linear(0, 1, 0, 0.4)
+Texture(filter.blur($in1, transform.rrot($blurLevel), $blurLevel, $TRUE))
+
+// gradients
+
+$g1 = gradient.stop(0, #C04040)
+$g2 = gradient.stop(0.333, #40C040)
+$g3 = gradient.stop(0.667, #4040C0)
+$g4 = gradient.stop(1, #C04040)
+
+Filename("gradient.linear")
+Texture(gradient.linear(0, 0, 1, 0, $g1, $g2, $g3, $g4))
+
+Filename("gradient.radial")
+Texture(gradient.radial(0.5, 0.5, 0, 0.5, $g1, $g2, $g3, $g4))
+
+Filename("gradient.angular")
+Texture(gradient.angular(0.5, 0.5, $g1, $g2, $g3, $g4))
+
+// math
+
+Filename("math.add")
+Texture(math.add($in4, $in2))
+
+Filename("math.sub")
+Texture(math.sub($in4, $in2))
+
+Filename("math.mul")
+Texture(math.mul($in4, $in1))
+
+Filename("math.sin")
+Texture(math.sin(curve.linear()))
+
+Filename("math.cos")
+Texture(math.cos(curve.linear()))
+
+Filename("math.random")
+Texture(math.random(curve.linear()))
+
+Filename("math.invert")
+Texture(math.invert($in3))
+
+// combinations
+
+Filename("mix.quattro")
+Texture(mix.quattro($in1, $in2, $in3, $in4))
+
+Filename("mix.sides")
+Texture(mix.sides($in1, $in2, $in3, $in4))
+
+Filename("mix.choice")
+Texture(mix.choice(curve.linear(), $in1, $in2, $in3, $in4))
+
+Filename("mix.switch")
+Texture(mix.switch(curve.linear(), $in1, $in2, $in3, $in4))
+
+// perlin noise
+
+Filename("perlin.noise")
+Texture(perlin.noise())
+
+Filename("perlin.clouds")
+Texture(perlin.clouds())
+
+Filename("perlin.velvet")
+Texture(mix.switch(perlin.velvet(), #000000, #66072D, #C85281))
+
+Filename("perlin.frost")
+Texture(mix.switch(perlin.frost(), #194C82, #669FD6, #B1DBFF))
+
+Filename("perlin.camouflage")
+Texture(math.mul(perlin.camouflage(), mix.switch(perlin.camouflage(), #7FA74B, #7F694B, #81C481)))
+
+Filename("perlin.glass")
+Texture(mix.switch(perlin.glass(), #215210, #83DE43, #F5FFDF))
+
+Filename("perlin.bark")
+Texture(mix.switch(perlin.bark(), #040102, #71543E, #E9DDD7))
+
+// shapes
+
+$c = color.noise(#E0E000, 0.1, 0)
+$c2 = #804000
+$b = color.noise(#202020, 0.1, 0)
+
+Filename("shape.rect")
+Texture(shape.rect(shape.rect($c, $c2, 0.1, 0.25, 0.8, 0.5, 1, curve.arc()), $b, 0.1, 0.25, 0.8, 0.5))
+
+Filename("shape.circle")
+Texture(shape.circle(shape.circle($c, $c2, 0.5, 0.5, 0.3, 1, curve.arc()), $b, 0.5, 0.5, 0.3))
+
+Filename("shape.ellipse")
+Texture(shape.ellipse(shape.ellipse($c, $c2, 0.5, 0.5, 0.4, 0.2, 1, curve.arc()), $b, 0.5, 0.5, 0.4, 0.2))
+
+Filename("shape.star")
+Texture(shape.star(shape.star($c, $c2, 0.5, 0.5, 0.4, 8, 0.5, 1, curve.arc()), $b, 0.5, 0.5, 0.4, 8, 0.5))
+
+Filename("shape.triangle")
+Texture(shape.triangle(shape.triangle($c, $c2, 0.1, 0.1, 0.9, 0.4, 0.4, 0.9, 1, curve.arc()), $b, 0.1, 0.1, 0.9, 0.4, 0.4, 0.9))
+
+$cR = perlin.frost(0.5, #A00000, #FF0000)
+$cG = perlin.frost(0.5, #00C000, #00FF00)
+$cB = perlin.frost(0.5, #0000A0, #0000FF)
+
+Filename("shape.itriangle")
+Texture(shape.itriangle($b, 0.5, 0.1, $cR, 0.05, 0.9, $cG, 0.95, 0.9, $cB))
+
+// transformations
+
+Filename("transform.fisheye")
+Texture(transform.fisheye($in3, 0.5, 0.5, 0.5, 0.75))
+
+Filename("transform.polar")
+Texture(transform.polar($in3, 0.5, 0.5))
+
+Filename("transform.depolar")
+Texture(transform.depolar($in3, 0.5, 0.5))
+
+Filename("transform.rotate")
+Texture(transform.rotate($in1, 0.5, 0.5, 0.125))
+
+Filename("transform.offset")
+Texture(transform.offset(shape.rect($in1, 0, 0.01, 0.01, 0.98, 0.98), transform.lrot(curve.linear(0, 1, 0.65, 0.35)), curve.linear(0, 1, 0.35, 0.65)))
+
+Filename("transform.translate")
+Texture(transform.translate(shape.rect($in1, 0, 0.01, 0.01, 0.98, 0.98), 0.2, 0.2))
+
+Filename("transform.scale")
+Texture(transform.scale($in3, 0.5, 0.5, math.add(math.mul(curve.linear(), 1.5), 0.25)))
+
+Filename("transform.rrot")
+Texture(transform.rrot($in5))
+
+Filename("transform.hrot")
+Texture(transform.hrot($in5))
+
+Filename("transform.lrot")
+Texture(transform.lrot($in5))
+
+Filename("transform.flipx")
+Texture(transform.flipx($in5))
+
+Filename("transform.flipy")
+Texture(transform.flipy($in5))
+
+Filename("transform.tiles")
+$tileBorderH = curve.arc(0, 0.25, 0, curve.arc(1, 0.75, 0, 1))
+$tileBorder = math.mul($tileBorderH, transform.rrot($tileBorderH))
+Texture(transform.tiles(filter.emboss(mix.switch(0.5, $in5, math.mul($in5, $tileBorder)), $tileBorder, 2), 4, 4))

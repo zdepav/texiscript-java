@@ -3,106 +3,45 @@
   <head>
     <meta charset="utf-8"/>
     <title>Language syntax</title>
-    <link type="text/css" rel="stylesheet" href="styles.css"/>
+    <link href="styles.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
     <div class="main-panel">
       <h1>Language syntax</h1>
       <p>A TexiScript script consists of commands and variable declarations.</p>
       <h3 id="commands">Commands</h3>
-      <pre><code><span class="txscr-command">Filename</span>(<span class="txscr-string">&quot;output&quot;</span>)</code></pre>
-      <p>
-        Commands consist of their name followed by parentheses containing their
-        arguments. The name always starts with a uppercase letter followed by lowercase
-        letters. Command arguments can be strings (sequence of characters enclosed in
-        quotation marks, e.g. <code class="txscr-string">"Hello"</code>) or generators.
-      </p>
+      <pre><code><a href="Commands.html#filename"><span class="txscr-command">Filename</span></a>(<span class="txscr-string">&quot;output&quot;</span>)</code></pre>
+      <p>Commands consist of their name followed by parentheses containing their arguments. The name always starts with a uppercase letter followed by lowercase letters. Command arguments can be strings (sequence of characters enclosed in quotation marks, e.g. <code class="txscr-string">&quot;Hello&quot;</code>) or generators.</p>
       <p>All available commands are described here: <a href="Commands.html">Commands</a></p>
       <h3 id="generators">Generators</h3>
-      <p>
-        Generators are the main part of the language - a generator generates colors (or
-        values) based on position in the generated image.
-      </p>
+      <p>Generators are the main part of the language - a generator generates colors (or values) based on position in the generated image.</p>
       <h4 id="constants">Constants</h4>
-      <p>
-        The simpliest type of a generator is a constant. A constant is a generator that
-        returns the same value for every position. There are 2 types of constant
-        values - numbers and colors.
-      </p>
+      <p>The simpliest type of a generator is a constant. A constant is a generator that returns the same value for every position. There are 2 types of constant values - numbers and colors.</p>
       <ul>
-        <li>
-          Numbers are written in decimal form and can be written using scientific
-          notation (e.g. <code class="txscr-number">1</code>, <code class="txscr-number">-2</code>,
-          <code class="txscr-number">0.33</code>, <code class="txscr-number">12.1e-4</code> etc.).
-        </li>
-        <li>
-          Colors are written in hexadecimal RGB format starting with #, optionally with
-          alpha channel. Both short (one digit per channel) and long (two digits per
-          channel) forms can be used, letters can be both lower and upper case. (e.g.
-          <code class="txscr-color" style="text-decoration-color:#FF3">#FF3</code>,
-          <code class="txscr-color">#0080C0</code>,
-          <code class="txscr-color">#FF00FF80</code>)
-        </li>
+        <li>Numbers are written in decimal form and can be written using scientific notation (e.g. <code class="txscr-number">1</code>, <code class="txscr-number">-2</code>, <code class="txscr-number">0.33</code>, <code class="txscr-number">12.1e-4</code> etc.).</li>
+        <li>Colors are written in hexadecimal RGB format starting with #, optionally with alpha channel. Both short (one digit per channel) and long (two digits per channel) forms can be used, letters can be both lower and upper case. (e.g.<code class="txscr-color" text-decoration-color="#FF3">#FF3</code>, <code class="txscr-color" text-decoration-color="#0080C0">#0080C0</code>, <code class="txscr-color" text-decoration-color="#FF00FF80">#FF00FF80</code>)</li>
       </ul>
       <h4 id="filters">Filters</h4>
-      <p>
-        More complex generators can be created using filters (functions). Filters are
-        similar to commands, but unlike them filters can be used wherever a generator
-        is expected and start with a lowercase letter.
-      </p>
-      <p>
-        Filters are separated into packages. When being called, function name must be
-        prefixed with the name of the package it belongs to (in the form
-        <code><span class="txscr-package">package.</span>function</code>), unless its package was imported by the
-        <a href="Commands.html#import"><span class="txscr-command">Import</span></a> command.
-      </p>
+      <p>More complex generators can be created using filters (functions). Filters are similar to commands, but unlike them filters can be used wherever a generator is expected and start with a lowercase letter.</p>
+      <p>Filters are separated into packages. When being called, function name must be prefixed with the name of the package it belongs to (in the form <code><span class="txscr-package">package.</span>function</code>), unless its package was imported by the <a href="Commands.html#import"><span class="txscr-command">Import</span></a> command.</p>
       <p>All available filters are described here: <a href="Filter-library.html">Filter library</a></p>
       <h4 id="seeds">Seeds</h4>
-      <p>
-        Some filters have a &quot;hidden&quot; argument called seed. By default, seed is 0, but
-        can be changed by appending <code class="txscr-seed">:number</code> to the filter&apos;s name (e.g.
-        <code><span class="txscr-package">perlin.</span>noise<span class="txscr-seed">:15</span></code>).
-        Unless randomization is enabled using the <a href="Commands.html#randomize"><span class="txscr-command">Randomize</span></a> command,
-        filters with the same seed and same arguments will always generate the same output.
-      </p>
-      <p>
-        <em>Note: seed can be specified for any filter, but most will ignore it.</em>
-      </p>
+      <p>Some filters have a &quot;hidden&quot; argument called seed. By default the seed is set to 0, but can be changed by appending <code class="txscr-seed">:number</code> to the filter's name (e.g. <code><span class="txscr-package">perlin.</span>noise<span class="txscr-seed">:15</span></code>). Unless randomization is enabled using the <a href="Commands.html#randomize"><span class="txscr-command">Randomize</span></a> command, filters with the same seed and same arguments will always generate the same output.</p>
+      <p><em>Note: seed can be specified for any filter, but most will ignore it.</em></p>
       <h4 id="variables">Variables</h4>
       <pre><code><span class="txscr-var">$a</span> = <span class="txscr-number">1.0</span></code></pre>
-      <p>
-        Variables can be used to store constants or other generators. Once assigned,
-        their value can not be changed. Variable names start with dollar sign
-        followed by a combination of lowercase and uppercase letters, decimal digits
-        and underscores. After being defined, variables can be used as generators.
-      </p>
-      <p>
-        Some filter packages can contain predefined variables, in such cases the dollar
-        sign is placed before the package name (e.g. <code class="txscr-var">$package.VALUE</code>). Custom
-        variables can not be placed into packages. Additionaly, variables
-        <code><span class="txscr-var">$TRUE</span> = <span class="txscr-number">1</span></code>
-        and <code><span class="txscr-var">$FALSE</span> = <span class="txscr-number">0</span></code> are always defined
-      </p>
+      <p>Variables can be used to store constants or other generators. Once assigned, their value can not be changed. Variable names start with dollar sign followed by a combination of lowercase and uppercase letters, decimal digits and underscores. After being defined, variables can be used as generators.</p>
+      <p>Some filter packages can contain predefined variables, in such cases the dollar sign is placed before the package name (e.g. <code><span class="txscr-var">$</span><span class="txscr-package">package.</span><span class="txscr-var">VALUE</span></code>). Custom variables can not be placed into packages. Additionaly, variables <code><span class="txscr-var">$TRUE</span> = <span class="txscr-number">1</span></code> and <code><span class="txscr-var">$FALSE</span> = <span class="txscr-number">0</span></code> are always defined.</p>
       <h4 id="comments">Comments</h4>
       <pre><code class="txscr-comment">// comment 1<br/>/* comment 2 */</code></pre>
-      <p>
-        Comments are the same as in most C-like languages: single-line comments start
-        with <code>//</code> and continue until the end of the current line, multiline comments
-        start with <code>/*</code> and end with <code>*/</code>.
-      </p>
+      <p>Comments are the same as in most C-like languages: single-line comments start with <code>//</code> and continue until the end of the current line, multiline comments start with <code>/*</code> and end with <code>*/</code>.</p>
       <h4 id="additional-notes">Additional notes</h4>
       <ul>
         <li>strings can not be assigned to variables or used as filter arguments</li>
-        <li>
-          unless stated otherwise, numeric values used and generated by filters are between
-          <span class="txscr-number">0</span> (black color) and <span class="txscr-number">1</span> (white color)
-        </li>
+        <li>unless stated otherwise, numeric values used and generated by filters are between <span class="txscr-number">0</span> (black color) and <span class="txscr-number">1</span> (white color)</li>
         <li>whitespace is mostly ignored, so the code can be arbitrarily formatted</li>
-        <li>TexiScript scripts should have .txscr extension.</li>
-        <li>
-          file txscr.xml contains definitions for syntax highlighting
-          in the <a href="https://kate-editor.org/">Kate</a> editor
-        </li>
+        <li>TexiScript scripts should have .txscr extension</li>
+        <li>file txscr.xml contains definitions for syntax highlighting in the <a href="https://kate-editor.org">Kate</a> editor</li>
       </ul>
     </div>
     <div class="side-panel">
@@ -111,6 +50,7 @@
         <li><b>Language syntax</b></li>
         <li><a href="Commands.html">Commands</a></li>
         <li><a href="Filter-library.html">Filter library</a></li>
+        <li><a href="code/index.html">Source code</a></li>
       </ul>
     </div>
   </body>

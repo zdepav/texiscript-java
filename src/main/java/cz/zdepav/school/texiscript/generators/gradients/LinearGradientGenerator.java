@@ -4,7 +4,7 @@ import cz.zdepav.school.texiscript.generators.Generator;
 import cz.zdepav.school.texiscript.script.interpreter.SemanticException;
 import cz.zdepav.school.texiscript.script.parser.CodePosition;
 
-/** @author Zdenek Pavlatka */
+/** Generates linear gradient between two points. */
 public class LinearGradientGenerator extends GradientGenerator {
 
     private final Generator x1, y1, x2, y2;
@@ -16,6 +16,7 @@ public class LinearGradientGenerator extends GradientGenerator {
         this.y2 = y2;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected double getPosition(double x, double y) {
         var a = x2.getDouble(x, y) - x1.getDouble(x, y);
@@ -24,6 +25,13 @@ public class LinearGradientGenerator extends GradientGenerator {
         return (a * x + b * y + c) / (a * a + b * b);
     }
 
+    /**
+     * Builds the generator.
+     * @param pos current position in script
+     * @param args function arguments
+     * @return created generator
+     * @throws SemanticException When the arguments are not valid.
+     */
     public static Generator build(CodePosition pos, Generator[] args) throws SemanticException {
         if (args.length < 6) {
             throw new SemanticException(pos, "gradient.linear requires at least 6 arguments");
@@ -39,6 +47,7 @@ public class LinearGradientGenerator extends GradientGenerator {
         return g;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         super.init(outputSize, randomize);

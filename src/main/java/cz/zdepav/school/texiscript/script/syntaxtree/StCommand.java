@@ -2,10 +2,13 @@ package cz.zdepav.school.texiscript.script.syntaxtree;
 
 import cz.zdepav.school.texiscript.script.parser.CodePosition;
 
-/** @author Zdenek Pavlatka */
+/** A node in the syntactic tree that represents a command. */
 public class StCommand extends StNode {
 
+    /** command name */
     private final String name;
+
+    /** command arguments */
     private final StCommandArgument[] arguments;
 
     public StCommand(CodePosition pos, String name, StCommandArgument[] arguments) {
@@ -14,14 +17,21 @@ public class StCommand extends StNode {
         this.arguments = arguments;
     }
 
+    /** Gets command name. */
     public String getName() {
         return name;
     }
 
+    /** Gets command argument count. */
     public int getArgumentCount() {
         return arguments.length;
     }
 
+    /**
+     * Gets command argument.
+     * @param i argument index
+     * @return argument at the given index
+     */
     public StCommandArgument getArgument(int i) {
         return arguments[i];
     }

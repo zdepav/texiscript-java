@@ -7,13 +7,26 @@ import cz.zdepav.school.texiscript.utils.Curve;
 import cz.zdepav.school.texiscript.utils.RgbaColor;
 import cz.zdepav.school.texiscript.utils.Utils;
 
-/** @author Zdenek Pavlatka */
+/** Generates curve y value based on x coordinate. */
 public class CurveGenerator extends Generator {
 
+    /** basic linear curve, used as default curve by other generators */
     public final static Generator LINEAR = new CurveGenerator(Curve.linear);
 
+    /** generated curve implementation */
     private final Curve curve;
-    private final Generator from, to, min, max;
+
+    /** curve starting point (on horizontal axis) */
+    private final Generator from;
+
+    /** curve ending point (on horizontal axis) */
+    private final Generator to;
+
+    /** curve minimum value */
+    private final Generator min;
+
+    /** curve maximum value */
+    private final Generator max;
 
     public CurveGenerator(Curve curve) {
         this.curve = curve;
@@ -37,12 +50,13 @@ public class CurveGenerator extends Generator {
         this.max = max;
     }
 
+    /** {@inheritDoc} */
     @Override
     public RgbaColor getColor(double x, double y) {
-        var i = getDouble(x, y);
-        return new RgbaColor(i);
+        return new RgbaColor(getDouble(x, y));
     }
 
+    /** {@inheritDoc} */
     @Override
     public double getDouble(double x, double y) {
         var from = this.from.getDouble(x, y);
@@ -60,6 +74,15 @@ public class CurveGenerator extends Generator {
         return Utils.lerp(min, max, curve.at(Utils.clamp(f, 0, 1)));
     }
 
+    /**
+     * Builds a curve generator with given curve.
+     * @param pos current position in script
+     * @param curve curve implementation
+     * @param functionName curve name
+     * @param args function arguments
+     * @return created generator
+     * @throws SemanticException When the arguments are not valid.
+     */
     public static Generator build(CodePosition pos, Curve curve, String functionName, Generator[] args) throws SemanticException {
         switch (args.length) {
             case 0:
@@ -73,6 +96,7 @@ public class CurveGenerator extends Generator {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         from.init(outputSize, randomize);

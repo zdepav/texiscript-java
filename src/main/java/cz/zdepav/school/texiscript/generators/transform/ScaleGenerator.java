@@ -5,7 +5,7 @@ import cz.zdepav.school.texiscript.script.interpreter.SemanticException;
 import cz.zdepav.school.texiscript.script.parser.CodePosition;
 import cz.zdepav.school.texiscript.utils.Vec2;
 
-/** @author Zdenek Pavlatka */
+/** Scales its input. */
 public class ScaleGenerator extends TransformationGenerator {
 
     private final Generator xScale, yScale, x, y;
@@ -18,6 +18,7 @@ public class ScaleGenerator extends TransformationGenerator {
         this.yScale = yScale;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Vec2 reverseTransform(double x, double y) {
         var scaleX = xScale.getDouble(x, y);
@@ -39,6 +40,7 @@ public class ScaleGenerator extends TransformationGenerator {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         super.init(outputSize, randomize);

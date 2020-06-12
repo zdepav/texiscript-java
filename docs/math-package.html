@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"/>
     <title>math package</title>
-    <link type="text/css" rel="stylesheet" href="styles.css"/>
+    <link href="styles.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
     <div class="main-panel">
@@ -13,18 +13,15 @@
       <table>
         <tr class="header">
           <td></td>
-          <td id="f-math-abs" colspan="2"
-            style="text-align:left;font-size:1.1em;padding-left:32px">
-            <strong>abs</strong>
-          </td>
+          <td class="filter-name" id="f-math-abs" colSpan="2"><strong>abs</strong></td>
         </tr>
         <tr>
           <td style="font-weight: bold">Meaning:</td>
-          <td colspan="2">Computes absolute value of input.</td>
+          <td colSpan="2">Computes absolute value of input.</td>
         </tr>
         <tr>
           <td style="font-weight: bold">Syntax:</td>
-          <td colspan="2"><code><span class="txscr-package">math.</span>abs()</code></td>
+          <td colSpan="2"><code><span class="txscr-package">math.</span>abs()</code></td>
         </tr>
         <tr>
           <td style="font-weight: bold" rowspan="1">Argument&nbsp;types:</td>
@@ -33,23 +30,24 @@
         </tr>
         <tr>
           <td style="font-weight: bold">Usage&nbsp;example:</td>
-          <td colspan="2"><pre><code><span class="txscr-package">math.</span>abs(<a href="curve-package.html#f-curve-linear"><span class="txscr-package">curve.</span>linear</a>(<span class="txscr-number">0</span>, <span class="txscr-number">1</span>, <span class="txscr-number">-1</span>, <span class="txscr-number">1</span>))</code></pre></td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">math.</span>abs(<code><a href="curve-package.html#f-curve-linear"><span class="txscr-package">curve.</span>linear</a></code>(<span class="txscr-number">0</span>, <span class="txscr-number">1</span>, <span class="txscr-number">-1</span>, <span class="txscr-number">1</span>))</code></pre>
+          </td>
         </tr>
-        <tr><td colspan="3" style="border:0"></td></tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
         <tr class="header">
           <td></td>
-          <td id="f-math-normalize" colspan="2"
-            style="text-align:left;font-size:1.1em;padding-left:32px">
-            <strong>normalize</strong>
-          </td>
+          <td class="filter-name" id="f-math-normalize" colSpan="2"><strong>normalize</strong></td>
         </tr>
         <tr>
           <td style="font-weight: bold">Meaning:</td>
-          <td colspan="2">Clamps input between <span class="txscr-number">0</span> and <span class="txscr-number">1</span>.</td>
+          <td colSpan="2">Clamps input between <span class="txscr-number">0</span> and <span class="txscr-number">1</span>.</td>
         </tr>
         <tr>
           <td style="font-weight: bold">Syntax:</td>
-          <td colspan="2"><code><span class="txscr-package">math.</span>normalize()</code></td>
+          <td colSpan="2"><code><span class="txscr-package">math.</span>normalize()</code></td>
         </tr>
         <tr>
           <td style="font-weight: bold" rowspan="1">Argument&nbsp;types:</td>
@@ -58,26 +56,24 @@
         </tr>
         <tr>
           <td style="font-weight: bold">Usage&nbsp;example:</td>
-          <td colspan="2"><pre><code><span class="txscr-package">math.</span>normalize(<a href="#f-math-add"><span class="txscr-package">math.</span>add</a>(<span class="txscr-var">$a</span>, <span class="txscr-var">$b</span>))</code></pre></td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">math.</span>normalize(<code><a href="#f-math-add"><span class="txscr-package">math.</span>add</a></code>(<span class="txscr-var">$a</span>, <span class="txscr-var">$b</span>))</code></pre>
+          </td>
         </tr>
-        <tr><td colspan="3" style="border:0"></td></tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
         <tr class="header">
-          <td>
-            <img alt="math.add" src="examples/math.add.png"
-              style="width:128px;height:128px;margin:0 auto;border:1px solid #E0E0E0"/>
-          </td>
-          <td id="f-math-add" colspan="2"
-            style="text-align:left;font-size:1.1em;padding-left:32px">
-            <strong>add</strong>
-          </td>
+          <td><img alt="math.add" src="examples/math.add.png" class="example-image"/></td>
+          <td class="filter-name" id="f-math-add" colSpan="2"><strong>add</strong></td>
         </tr>
         <tr>
           <td style="font-weight: bold">Meaning:</td>
-          <td colspan="2">Adds two or more inputs.</td>
+          <td colSpan="2">Adds two or more inputs.</td>
         </tr>
         <tr>
           <td style="font-weight: bold">Syntax:</td>
-          <td colspan="2"><code><span class="txscr-package">math.</span>add(inputs...)</code></td>
+          <td colSpan="2"><code><span class="txscr-package">math.</span>add(inputs...)</code></td>
         </tr>
         <tr>
           <td style="font-weight: bold" rowspan="1">Argument&nbsp;types:</td>
@@ -86,54 +82,24 @@
         </tr>
         <tr>
           <td style="font-weight: bold">Usage&nbsp;example:</td>
-          <td colspan="2"><pre><code><span class="txscr-package">math.</span>add(<span class="txscr-var">$a</span>, <span class="txscr-var">$b</span>, <span class="txscr-var">$c</span>)</code></pre></td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">math.</span>add(<span class="txscr-var">$a</span>, <span class="txscr-var">$b</span>, <span class="txscr-var">$c</span>)</code></pre>
+          </td>
         </tr>
-        <tr><td colspan="3" style="border:0"></td></tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
         <tr class="header">
-          <td>
-            <img alt="math.mul" src="examples/math.mul.png"
-              style="width:128px;height:128px;margin:0 auto;border:1px solid #E0E0E0"/>
-          </td>
-          <td id="f-math-mul" colspan="2"
-            style="text-align:left;font-size:1.1em;padding-left:32px">
-            <strong>mul</strong>
-          </td>
+          <td><img alt="math.sub" src="examples/math.sub.png" class="example-image"/></td>
+          <td class="filter-name" id="f-math-sub" colSpan="2"><strong>sub</strong></td>
         </tr>
         <tr>
           <td style="font-weight: bold">Meaning:</td>
-          <td colspan="2">Multiplies two or more inputs.</td>
+          <td colSpan="2">Subtracts one input from another.</td>
         </tr>
         <tr>
           <td style="font-weight: bold">Syntax:</td>
-          <td colspan="2"><code><span class="txscr-package">math.</span>mul(inputs...)</code></td>
-        </tr>
-        <tr>
-          <td style="font-weight: bold" rowspan="1">Argument&nbsp;types:</td>
-          <td><code>inputs:</code></td>
-          <td><code>two or more generators</code></td>
-        </tr>
-        <tr>
-          <td style="font-weight: bold">Usage&nbsp;example:</td>
-          <td colspan="2"><pre><code><span class="txscr-package">math.</span>mul(<span class="txscr-var">$a</span>, <span class="txscr-var">$b</span>, <span class="txscr-var">$c</span>)</code></pre></td>
-        </tr>
-        <tr><td colspan="3" style="border:0"></td></tr>
-        <tr class="header">
-          <td>
-            <img alt="math.sub" src="examples/math.sub.png"
-              style="width:128px;height:128px;margin:0 auto;border:1px solid #E0E0E0"/>
-          </td>
-          <td id="f-math-sub" colspan="2"
-            style="text-align:left;font-size:1.1em;padding-left:32px">
-            <strong>sub</strong>
-          </td>
-        </tr>
-        <tr>
-          <td style="font-weight: bold">Meaning:</td>
-          <td colspan="2">Subtracts one input from another.</td>
-        </tr>
-        <tr>
-          <td style="font-weight: bold">Syntax:</td>
-          <td colspan="2"><code><span class="txscr-package">math.</span>sub()</code></td>
+          <td colSpan="2"><code><span class="txscr-package">math.</span>sub()</code></td>
         </tr>
         <tr>
           <td style="font-weight: bold" rowspan="2">Argument&nbsp;types:</td>
@@ -146,23 +112,50 @@
         </tr>
         <tr>
           <td style="font-weight: bold">Usage&nbsp;example:</td>
-          <td colspan="2"><pre><code><span class="txscr-package">math.</span>sub(<span class="txscr-var">$a</span>, <span class="txscr-number">0.5</span>)</code></pre></td>
-        </tr>
-        <tr><td colspan="3" style="border:0"></td></tr>
-        <tr class="header">
-          <td></td>
-          <td id="f-math-div" colspan="2"
-            style="text-align:left;font-size:1.1em;padding-left:32px">
-            <strong>div</strong>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">math.</span>sub(<span class="txscr-var">$a</span>, <span class="txscr-number">0.5</span>)</code></pre>
           </td>
         </tr>
         <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="math.mul" src="examples/math.mul.png" class="example-image"/></td>
+          <td class="filter-name" id="f-math-mul" colSpan="2"><strong>mul</strong></td>
+        </tr>
+        <tr>
           <td style="font-weight: bold">Meaning:</td>
-          <td colspan="2">Divides one input by another.</td>
+          <td colSpan="2">Multiplies two or more inputs.</td>
         </tr>
         <tr>
           <td style="font-weight: bold">Syntax:</td>
-          <td colspan="2"><code><span class="txscr-package">math.</span>div()</code></td>
+          <td colSpan="2"><code><span class="txscr-package">math.</span>mul(inputs...)</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="1">Argument&nbsp;types:</td>
+          <td><code>inputs:</code></td>
+          <td><code>two or more generators</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">math.</span>mul(<span class="txscr-var">$a</span>, <span class="txscr-var">$b</span>, <span class="txscr-var">$c</span>)</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td></td>
+          <td class="filter-name" id="f-math-div" colSpan="2"><strong>div</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Divides one input by another.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">math.</span>div()</code></td>
         </tr>
         <tr>
           <td style="font-weight: bold" rowspan="2">Argument&nbsp;types:</td>
@@ -175,26 +168,24 @@
         </tr>
         <tr>
           <td style="font-weight: bold">Usage&nbsp;example:</td>
-          <td colspan="2"><pre><code><span class="txscr-package">math.</span>div(<span class="txscr-var">$a</span>, <span class="txscr-number">2</span>)</code></pre></td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">math.</span>div(<span class="txscr-var">$a</span>, <span class="txscr-number">2</span>)</code></pre>
+          </td>
         </tr>
-        <tr><td colspan="3" style="border:0"></td></tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
         <tr class="header">
-          <td>
-            <img alt="math.sin" src="examples/math.sin.png"
-              style="width:128px;height:128px;margin:0 auto;border:1px solid #E0E0E0"/>
-          </td>
-          <td id="f-math-sin" colspan="2"
-            style="text-align:left;font-size:1.1em;padding-left:32px">
-            <strong>sin</strong>
-          </td>
+          <td><img alt="math.sin" src="examples/math.sin.png" class="example-image"/></td>
+          <td class="filter-name" id="f-math-sin" colSpan="2"><strong>sin</strong></td>
         </tr>
         <tr>
           <td style="font-weight: bold">Meaning:</td>
-          <td colspan="2">Computes sine.</td>
+          <td colSpan="2">Computes sine.</td>
         </tr>
         <tr>
           <td style="font-weight: bold">Syntax:</td>
-          <td colspan="2"><code><span class="txscr-package">math.</span>sin()</code></td>
+          <td colSpan="2"><code><span class="txscr-package">math.</span>sin()</code></td>
         </tr>
         <tr>
           <td style="font-weight: bold" rowspan="1">Argument&nbsp;types:</td>
@@ -203,26 +194,24 @@
         </tr>
         <tr>
           <td style="font-weight: bold">Usage&nbsp;example:</td>
-          <td colspan="2"><pre><code><span class="txscr-package">math.</span>sin(<span class="txscr-var">$input</span>)</code></pre></td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">math.</span>sin(<span class="txscr-var">$input</span>)</code></pre>
+          </td>
         </tr>
-        <tr><td colspan="3" style="border:0"></td></tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
         <tr class="header">
-          <td>
-            <img alt="math.cos" src="examples/math.cos.png"
-              style="width:128px;height:128px;margin:0 auto;border:1px solid #E0E0E0"/>
-          </td>
-          <td id="f-math-cos" colspan="2"
-            style="text-align:left;font-size:1.1em;padding-left:32px">
-            <strong>cos</strong>
-          </td>
+          <td><img alt="math.cos" src="examples/math.cos.png" class="example-image"/></td>
+          <td class="filter-name" id="f-math-cos" colSpan="2"><strong>cos</strong></td>
         </tr>
         <tr>
           <td style="font-weight: bold">Meaning:</td>
-          <td colspan="2">Computes cosine.</td>
+          <td colSpan="2">Computes cosine.</td>
         </tr>
         <tr>
           <td style="font-weight: bold">Syntax:</td>
-          <td colspan="2"><code><span class="txscr-package">math.</span>cos()</code></td>
+          <td colSpan="2"><code><span class="txscr-package">math.</span>cos()</code></td>
         </tr>
         <tr>
           <td style="font-weight: bold" rowspan="1">Argument&nbsp;types:</td>
@@ -231,26 +220,50 @@
         </tr>
         <tr>
           <td style="font-weight: bold">Usage&nbsp;example:</td>
-          <td colspan="2"><pre><code><span class="txscr-package">math.</span>cos(<span class="txscr-var">$input</span>)</code></pre></td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">math.</span>cos(<span class="txscr-var">$input</span>)</code></pre>
+          </td>
         </tr>
-        <tr><td colspan="3" style="border:0"></td></tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
         <tr class="header">
-          <td>
-            <img alt="math.invert" src="examples/math.invert.png"
-              style="width:128px;height:128px;margin:0 auto;border:1px solid #E0E0E0"/>
-          </td>
-          <td id="f-math-invert" colspan="2"
-            style="text-align:left;font-size:1.1em;padding-left:32px">
-            <strong>invert</strong>
-          </td>
+          <td><img alt="math.random" src="examples/math.random.png" class="example-image"/></td>
+          <td class="filter-name" id="f-math-random" colSpan="2"><strong>random</strong></td>
         </tr>
         <tr>
           <td style="font-weight: bold">Meaning:</td>
-          <td colspan="2">Computes <span class="txscr-number">1</span> - input.</td>
+          <td colSpan="2">Returns a pseudo-random value. When used twice with the same <a href="Language-syntax.html#seed">seed</a> and the same argument value it generates the same value.</td>
         </tr>
         <tr>
           <td style="font-weight: bold">Syntax:</td>
-          <td colspan="2"><code><span class="txscr-package">math.</span>invert()</code></td>
+          <td colSpan="2"><code><span class="txscr-package">math.</span>random()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="1">Argument&nbsp;types:</td>
+          <td><code>x:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-number">0</span></code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">math.</span>random([x])</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="math.invert" src="examples/math.invert.png" class="example-image"/></td>
+          <td class="filter-name" id="f-math-invert" colSpan="2"><strong>invert</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Computes <span class="txscr-number">1</span> - input.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">math.</span>invert()</code></td>
         </tr>
         <tr>
           <td style="font-weight: bold" rowspan="1">Argument&nbsp;types:</td>
@@ -259,35 +272,9 @@
         </tr>
         <tr>
           <td style="font-weight: bold">Usage&nbsp;example:</td>
-          <td colspan="2"><pre><code><span class="txscr-package">math.</span>invert(<span class="txscr-var">$input</span>)</code></pre></td>
-        </tr>
-        <tr><td colspan="3" style="border:0"></td></tr>
-        <tr class="header">
-          <td>
-            <img alt="math.random" src="examples/math.random.png"
-              style="width:128px;height:128px;margin:0 auto;border:1px solid #E0E0E0"/>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">math.</span>invert(<span class="txscr-var">$input</span>)</code></pre>
           </td>
-          <td id="f-math-random" colspan="2"
-            style="text-align:left;font-size:1.1em;padding-left:32px">
-            <strong>random</strong>
-          </td>
-        </tr>
-        <tr>
-          <td style="font-weight: bold">Meaning:</td>
-          <td colspan="2">Returns a pseudo-random value. When used twice with the same <a href="Language-syntax.html#seed">seed</a> and the same argument value it generates the same value.</td>
-        </tr>
-        <tr>
-          <td style="font-weight: bold">Syntax:</td>
-          <td colspan="2"><code><span class="txscr-package">math.</span>random()</code></td>
-        </tr>
-        <tr>
-          <td style="font-weight: bold" rowspan="1">Argument&nbsp;types:</td>
-          <td><code>x:</code></td>
-          <td><code>[optional] any generator</code></td>
-        </tr>
-        <tr>
-          <td style="font-weight: bold">Usage&nbsp;example:</td>
-          <td colspan="2"><pre><code><span class="txscr-package">math.</span>random()</code></pre></td>
         </tr>
       </table>
     </div>
@@ -304,8 +291,14 @@
             <li><a href="filter-package.html">filter package</a></li>
             <li><a href="gradient-package.html">gradient package</a></li>
             <li><b>math package</b></li>
+            <li><a href="mix-package.html">mix package</a></li>
+            <li><a href="perlin-package.html">perlin package</a></li>
+            <li><a href="shape-package.html">shape package</a></li>
+            <li><a href="transform-package.html">transform package</a></li>
+            <li><a href="video-package.html">video package</a></li>
           </ul>
         </li>
+        <li><a href="code/index.html">Source code</a></li>
       </ul>
     </div>
   </body>

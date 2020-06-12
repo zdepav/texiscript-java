@@ -7,15 +7,16 @@ import cz.zdepav.school.texiscript.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-/** @author Zdenek Pavlatka */
+/** Base class for gradient generators. */
 public abstract class GradientGenerator extends Generator {
 
-    private List<GradientStopGenerator> colorStops;
+    private final List<GradientStopGenerator> colorStops;
 
     public GradientGenerator() {
         colorStops = new ArrayList<>();
     }
 
+    /** Adds a position-color pair to the gradient. */
     public void addColorStop(GradientStopGenerator stop) {
         if (colorStops.size() == 0 || stop.pos >= colorStops.get(colorStops.size() - 1).pos) {
             colorStops.add(stop);
@@ -26,8 +27,10 @@ public abstract class GradientGenerator extends Generator {
         }
     }
 
+    /** Converts coordinates to a position in the gradient. */
     protected abstract double getPosition(double x, double y);
 
+    /** {@inheritDoc} */
     @Override
     public RgbaColor getColor(double x, double y) {
         var position = getPosition(x, y);
@@ -47,6 +50,7 @@ public abstract class GradientGenerator extends Generator {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public double getDouble(double x, double y) {
         var position = getPosition(x, y);
@@ -67,6 +71,7 @@ public abstract class GradientGenerator extends Generator {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         for (var stop: colorStops) {

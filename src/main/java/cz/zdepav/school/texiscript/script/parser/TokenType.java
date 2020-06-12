@@ -1,6 +1,5 @@
 package cz.zdepav.school.texiscript.script.parser;
 
-/** @author Zdenek Pavlatka */
 enum TokenType {
     COMMAND,    // [A-Z][a-z]*
     FUNCTION,   // ([a-z]+\.)*[a-z]+
@@ -12,6 +11,36 @@ enum TokenType {
     LPAR,       // (
     RPAR,       // )
     ASSIGNMENT, // =
-    COMMA       // ,
+    COMMA;      // ,
+
+    @Override
+    public String toString() {
+        switch (this) {
+            case COMMAND:
+                return "command";
+            case FUNCTION:
+                return "function";
+            case VARIABLE:
+                return "variable";
+            case STRING:
+                return "string";
+            case NUMBER:
+                return "number";
+            case COLOR:
+                return "color";
+            case SEED:
+                return "seed";
+            case LPAR:
+                return "(";
+            case RPAR:
+                return ")";
+            case ASSIGNMENT:
+                return "=";
+            case COMMA:
+                return ",";
+            default:
+                return "undefined";
+        }
+    }
 }
 

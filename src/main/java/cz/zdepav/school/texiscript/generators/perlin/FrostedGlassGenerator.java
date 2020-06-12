@@ -3,10 +3,11 @@ package cz.zdepav.school.texiscript.generators.perlin;
 import cz.zdepav.school.texiscript.generators.Generator;
 import cz.zdepav.school.texiscript.utils.Rand;
 
-/** @author Zdenek Pavlatka */
+/** Generates ice texture. */
 public class FrostedGlassGenerator extends PerlinGenerator {
 
     private final double[] inverseScales, coeficients;
+
     private final PerlinGradient[] gradients;
 
     public FrostedGlassGenerator(Generator color1, Generator color2, double scale, Generator curve) {
@@ -16,6 +17,7 @@ public class FrostedGlassGenerator extends PerlinGenerator {
         gradients = new PerlinGradient[7];
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         super.init(outputSize, randomize);
@@ -24,10 +26,14 @@ public class FrostedGlassGenerator extends PerlinGenerator {
             for (var i = 0; i < 7; ++i) {
                 gradients[i] = new PerlinGradient(inverseScales[i % 3], rand);
             }
+            for (var i = 0; i < 3; ++i) {
+                inverseScales[i] = gradients[i].realScale;
+            }
             randomized = randomize;
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected double get(double x, double y) {
         var _x = x * inverseScale;

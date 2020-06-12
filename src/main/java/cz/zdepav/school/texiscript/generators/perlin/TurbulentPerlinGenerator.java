@@ -6,7 +6,7 @@ import cz.zdepav.school.texiscript.script.interpreter.SemanticException;
 import cz.zdepav.school.texiscript.script.parser.CodePosition;
 import cz.zdepav.school.texiscript.utils.RgbaColor;
 
-/** @author Zdenek Pavlatka */
+/** Base class for perlin-based generators with turbulence. */
 public abstract class TurbulentPerlinGenerator extends PerlinGenerator {
 
     @FunctionalInterface
@@ -25,6 +25,15 @@ public abstract class TurbulentPerlinGenerator extends PerlinGenerator {
         this.turbulence = turbulence;
     }
 
+    /**
+     * Builds the generator.
+     * @param pos current position in script
+     * @param args function arguments
+     * @param name generator name
+     * @param constructor generator constructor to use
+     * @return created generator
+     * @throws SemanticException When the arguments are not valid.
+     */
     public static Generator build(
         CodePosition pos,
         Generator[] args,
@@ -33,16 +42,16 @@ public abstract class TurbulentPerlinGenerator extends PerlinGenerator {
     ) throws SemanticException {
         if (args.length == 0) {
             return constructor.construct(
-                RgbaColor.black.generator(),
-                RgbaColor.white.generator(),
+                Generator.get(0),
+                Generator.get(1),
                 1, Generator.get(1),
                 CurveGenerator.LINEAR
             );
         } else if (args[0].isNumber()) {
             if (args.length == 1) {
                 return constructor.construct(
-                    RgbaColor.black.generator(),
-                    RgbaColor.white.generator(),
+                    Generator.get(0),
+                    Generator.get(1),
                     args[0].getDouble(0, 0),
                     Generator.get(1),
                     CurveGenerator.LINEAR
@@ -51,14 +60,14 @@ public abstract class TurbulentPerlinGenerator extends PerlinGenerator {
                 switch (args.length) {
                     case 2:
                         return constructor.construct(
-                            RgbaColor.black.generator(),
-                            RgbaColor.white.generator(),
+                            Generator.get(0),
+                            Generator.get(1),
                             args[0].getDouble(0, 0),
                             args[1], CurveGenerator.LINEAR
                         );
                     case 3:
                         return constructor.construct(
-                            RgbaColor.black.generator(),
+                            Generator.get(0),
                             args[2],
                             args[0].getDouble(0, 0),
                             args[1], CurveGenerator.LINEAR
@@ -73,7 +82,7 @@ public abstract class TurbulentPerlinGenerator extends PerlinGenerator {
                         return constructor.construct(
                             args[2], args[3],
                             args[0].getDouble(0, 0),
-                            args[1], args[3]
+                            args[1], args[4]
                         );
                     default:
                         throw new SemanticException(pos, "perlin." + name + " requires 0 to 5 arguments");

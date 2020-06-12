@@ -9,7 +9,7 @@ import cz.zdepav.school.texiscript.utils.Metric;
 import cz.zdepav.school.texiscript.utils.RgbaColor;
 import cz.zdepav.school.texiscript.utils.Utils;
 
-/** @author Zdenek Pavlatka */
+/** Interpolates between inputs based on the position in video. */
 public class TransitionGenerator extends Generator {
 
     private final Generator min, max, curve;
@@ -20,16 +20,19 @@ public class TransitionGenerator extends Generator {
         this.curve = curve;
     }
 
+    /** {@inheritDoc} */
     @Override
     public RgbaColor getColor(double x, double y) {
         return min.getColor(x, y).lerp(max.getColor(x, y), curve.getDouble(TimeGenerator.getGlobalTime(), y));
     }
 
+    /** {@inheritDoc} */
     @Override
     public double getDouble(double x, double y) {
         return Utils.lerp(min.getDouble(x, y), max.getDouble(x, y), curve.getDouble(TimeGenerator.getGlobalTime(), y));
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         min.init(outputSize, randomize);

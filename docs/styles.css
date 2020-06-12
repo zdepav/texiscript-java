@@ -1,22 +1,19 @@
 body {
     font-family: Helvetica, sans-serif;
 }
-
 pre {
     background: #F5F2F0;
     border-radius: 4px;
     padding: 12px;
 }
-
 code {
     font-size: 1.1em;
 }
-
 .main-panel {
     margin-right: 230px;
+    margin-bottom: 32px;
     padding: 0 10px;
 }
-
 .side-panel {
     width: 204px;
     border: 1px solid #E0E0E0;
@@ -28,97 +25,111 @@ code {
     right: 10px;
     padding: 8px;
 }
-
 .side-panel ul {
     list-style-type: none;
     margin: 8px 0;
     padding-left: 30px;
 }
-
 .side-panel li {
     list-style-type: none;
     padding: 3px 0;
 }
-
 .side-panel li.home {
     margin-left: -20px;
 }
-
 .side-panel li:not(.home):before {
     content: '-';
     margin-left: -20px;
     margin-right: 10px;
 }
-
 .txscr-command {
     color: #0080FF;
     font-weight: bold;
 }
-
 .txscr-string {
     color: #C02000;
 }
-
 .txscr-color {
     color: #00A0A0;
     text-decoration: underline;
 }
-
 .txscr-number {
     color: #808000;
 }
-
 .txscr-comment {
     color: #50A050;
     font-style: italic;
 }
-
 .txscr-package {
     color: #808080;
 }
-
 .txscr-seed {
     color: #C08060;
 }
-
 .txscr-var {
     color: #C000C0;
 }
-
 table {
     border-collapse: collapse;
     width: 100%;
 }
-
 table td {
     border: 1px solid #E0E0E0;
     padding: 10px;
 }
-
 table th {
     background: #F5F5F5;
     border: 1px solid #E0E0E0;
     padding: 10px;
 }
-
 table td:last-child {
     width: 100%;
 }
-
 tr.header {
     background: #F5F5F5;
 }
-
 tr.header td {
     padding: 16px;
 }
-
 td pre {
     margin: 0;
 }
-
 code a {
     color: black;
     text-decoration: none;
 }
-
+.example-image {
+    width: 128px;
+    height: 128px;
+    margin: 0 auto;
+    border: 1px solid #E0E0E0;
+}
+.filter-name {
+    text-align: left;
+    font-size: 1.1em;
+    padding-left: 32px;
+}
+.constant-preview-container {
+    height: 24px;
+    display: inline-block;
+    margin: -8px 0;
+    position: relative;
+}
+.constant-preview {
+    border: 1px solid #E0E0E0;
+    left: 0;
+    top: 0;
+    width: 46px;
+    height: 22px;
+    display: block;
+    margin: 0;
+    position: absolute;
+}
+.constant-preview-value {
+    height: 24px;
+    line-height: 24px;
+    display: block;
+    left: 56px;
+    top: 0;
+    position: absolute;
+}

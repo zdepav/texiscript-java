@@ -3,7 +3,7 @@ package cz.zdepav.school.texiscript.generators.perlin;
 import cz.zdepav.school.texiscript.generators.Generator;
 import cz.zdepav.school.texiscript.utils.Rand;
 
-/** @author Zdenek Pavlatka */
+/** Generates velvet texture. */
 public class VelvetGenerator extends PerlinGenerator {
 
     private final PerlinGradient[] gradients;
@@ -13,6 +13,7 @@ public class VelvetGenerator extends PerlinGenerator {
         gradients = new PerlinGradient[3];
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         super.init(outputSize, randomize);
@@ -21,10 +22,12 @@ public class VelvetGenerator extends PerlinGenerator {
             for (var i = 0; i < 3; ++i) {
                 gradients[i] = new PerlinGradient(inverseScale, rand);
             }
+            inverseScale = gradients[0].realScale;
             randomized = randomize;
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected double get(double x, double y) {
         x *= inverseScale;

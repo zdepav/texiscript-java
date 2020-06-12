@@ -6,12 +6,25 @@ import cz.zdepav.school.texiscript.script.parser.CodePosition;
 import cz.zdepav.school.texiscript.utils.RgbaColor;
 import cz.zdepav.school.texiscript.utils.Utils;
 
-/** @author Zdenek Pavlatka */
+/** Blurs the input. */
 public class BlurGenerator extends Generator {
 
-    private final Generator base, hstrength, vstrength;
+    /** input generator */
+    private final Generator base;
+
+    /** horizontal blur */
+    private final Generator hstrength;
+
+    /** vertical blur */
+    private final Generator vstrength;
+
+    /** whether input should be tiled */
     private final boolean tiled;
+
+    /** pixel offset */
     private double offset;
+
+    /** output size for which the generator is initialized */
     private int initializedSize;
 
     private BlurGenerator(Generator base, Generator hstrength, Generator vstrength, boolean tiled) {
@@ -23,6 +36,7 @@ public class BlurGenerator extends Generator {
         offset = 0;
     }
 
+    /** {@inheritDoc} */
     @Override
     public RgbaColor getColor(double x, double y) {
         var hstr = (int)Math.round(Utils.clamp(hstrength.getDouble(x, y), 0, 4) * 0.25 / offset);
@@ -62,10 +76,12 @@ public class BlurGenerator extends Generator {
         return color.divide(sum);
     }
 
+    /** Returns color at given coordinates while taking tiling into account. */
     private RgbaColor colorAt(double x, double y) {
         return tiled ? base.getColor(Utils.wrap(x), Utils.wrap(y)) : base.getColor(x, y);
     }
 
+    /** {@inheritDoc} */
     @Override
     public double getDouble(double x, double y) {
         var hstr = (int)Math.round(Utils.clamp(hstrength.getDouble(x, y), 0, 4) * 0.25 / offset);
@@ -105,10 +121,12 @@ public class BlurGenerator extends Generator {
         return number / sum;
     }
 
+    /** Returns value at given coordinates while taking tiling into account. */
     private double doubleAt(double x, double y) {
         return tiled ? base.getDouble(Utils.wrap(x), Utils.wrap(y)) : base.getDouble(x, y);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         base.init(outputSize, randomize);
@@ -120,10 +138,18 @@ public class BlurGenerator extends Generator {
         }
     }
 
+    /** Computes coeficient for pixel based on its position. */
     private double gaussianDistribution(double x, double sigma) {
         return Math.exp(-x * x / (2.0 * sigma * sigma)) * (1.0 / (Math.sqrt(2.0 * Math.PI) * sigma));
     }
 
+    /**
+     * Builds the generator.
+     * @param pos current position in script
+     * @param args function arguments
+     * @return created generator
+     * @throws SemanticException When the arguments are not valid.
+     */
     public static Generator build(CodePosition pos, Generator[] args) throws SemanticException {
         switch (args.length) {
             case 1:

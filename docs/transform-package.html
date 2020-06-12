@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>transform package</title>
+    <link href="styles.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <div class="main-panel">
+      <h1>transform package</h1>
+      <p>Package with transforming filters.</p>
+      <h3>Filters</h3>
+      <table>
+        <tr class="header">
+          <td><img alt="transform.fisheye" src="examples/transform.fisheye.png" class="example-image"/></td>
+          <td class="filter-name" id="f-transform-fisheye" colSpan="2"><strong>fisheye</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Creates a fish eye effect. Negative values of scale create inverted effect.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">transform.</span>fisheye()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="5">Argument&nbsp;types:</td>
+          <td><code>source:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>centerX:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>centerY:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>radius:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>scale:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">transform.</span>fisheye(<span class="txscr-var">$image</span>, <span class="txscr-number">0.5</span>, <span class="txscr-number">0.5</span>, <span class="txscr-number">0.5</span>, <span class="txscr-number">0.5</span>)</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="transform.depolar" src="examples/transform.depolar.png" class="example-image"/></td>
+          <td class="filter-name" id="f-transform-depolar" colSpan="2"><strong>depolar</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Transforms input from polar coordinates.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">transform.</span>depolar()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="3">Argument&nbsp;types:</td>
+          <td><code>source:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>centerX:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>centerY:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">transform.</span>depolar(<span class="txscr-var">$image</span>, <span class="txscr-number">0.5</span>, <span class="txscr-number">0.5</span>)</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="transform.polar" src="examples/transform.polar.png" class="example-image"/></td>
+          <td class="filter-name" id="f-transform-polar" colSpan="2"><strong>polar</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Transforms input to polar coordinates.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">transform.</span>polar()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="3">Argument&nbsp;types:</td>
+          <td><code>source:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>centerX:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>centerY:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">transform.</span>polar(<span class="txscr-var">$image</span>, <span class="txscr-number">0.5</span>, <span class="txscr-number">0.5</span>)</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="transform.translate" src="examples/transform.translate.png" class="example-image"/></td>
+          <td class="filter-name" id="f-transform-translate" colSpan="2"><strong>translate</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Offsets the input by the given distance.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">transform.</span>translate()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="3">Argument&nbsp;types:</td>
+          <td><code>source:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>x:</code></td>
+          <td><code>number</code></td>
+        </tr>
+        <tr>
+          <td><code>y:</code></td>
+          <td><code>number</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">transform.</span>translate(<span class="txscr-var">$image</span>, <span class="txscr-number">0.5</span>, <span class="txscr-number">0.5</span>)</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="transform.offset" src="examples/transform.offset.png" class="example-image"/></td>
+          <td class="filter-name" id="f-transform-offset" colSpan="2"><strong>offset</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Offsets the input by the given distance minus <span class="txscr-number">0.5</span> (so that supplying <span class="txscr-number">0.5</span>, <span class="txscr-number">0.5</span> as x, y means no movement).</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">transform.</span>offset()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="3">Argument&nbsp;types:</td>
+          <td><code>source:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>x:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>y:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">transform.</span>offset(<span class="txscr-var">$image</span>, <span class="txscr-number">0.7</span>, <span class="txscr-number">0.5</span>)</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="transform.rotate" src="examples/transform.rotate.png" class="example-image"/></td>
+          <td class="filter-name" id="f-transform-rotate" colSpan="2"><strong>rotate</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Scales the input around the given origin by the given angle. Angle values between <span class="txscr-number">0</span> and <span class="txscr-number">1</span> correspond to <span class="txscr-number">0</span> to <span class="txscr-number">360</span> degrees.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">transform.</span>rotate()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="4">Argument&nbsp;types:</td>
+          <td><code>source:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>originX:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>originY:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>angle:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">transform.</span>rotate(<span class="txscr-var">$image</span>, <span class="txscr-number">0.5</span>, <span class="txscr-number">0.5</span>, <span class="txscr-number">0.125</span>)</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="transform.rrot" src="examples/transform.rrot.png" class="example-image"/></td>
+          <td class="filter-name" id="f-transform-rrot" colSpan="2"><strong>rrot</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Rotates source by <span class="txscr-number">90</span> degrees clockwise.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">transform.</span>rrot()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="1">Argument&nbsp;types:</td>
+          <td><code>source:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">transform.</span>rrot(<span class="txscr-var">$image</span>)</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="transform.hrot" src="examples/transform.hrot.png" class="example-image"/></td>
+          <td class="filter-name" id="f-transform-hrot" colSpan="2"><strong>hrot</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Rotates source by <span class="txscr-number">180</span> degrees.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">transform.</span>hrot()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="1">Argument&nbsp;types:</td>
+          <td><code>source:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">transform.</span>hrot(<span class="txscr-var">$image</span>)</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="transform.lrot" src="examples/transform.lrot.png" class="example-image"/></td>
+          <td class="filter-name" id="f-transform-lrot" colSpan="2"><strong>lrot</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Rotates source by <span class="txscr-number">90</span> degrees anti-clockwise.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">transform.</span>lrot()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="1">Argument&nbsp;types:</td>
+          <td><code>source:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">transform.</span>lrot(<span class="txscr-var">$image</span>)</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="transform.flipx" src="examples/transform.flipx.png" class="example-image"/></td>
+          <td class="filter-name" id="f-transform-flipx" colSpan="2"><strong>flipx</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Flips the input horizontally.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">transform.</span>flipx()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="1">Argument&nbsp;types:</td>
+          <td><code>source:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">transform.</span>flipx(<span class="txscr-var">$image</span>)</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="transform.flipy" src="examples/transform.flipy.png" class="example-image"/></td>
+          <td class="filter-name" id="f-transform-flipy" colSpan="2"><strong>flipy</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Flips the input vertically.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">transform.</span>flipy()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="1">Argument&nbsp;types:</td>
+          <td><code>source:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">transform.</span>flipy(<span class="txscr-var">$image</span>)</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="transform.scale" src="examples/transform.scale.png" class="example-image"/></td>
+          <td class="filter-name" id="f-transform-scale" colSpan="2"><strong>scale</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Scales the input from the given origin. If only horizontal scale count is specified, it will be used for both directions.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">transform.</span>scale()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="5">Argument&nbsp;types:</td>
+          <td><code>source:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>originX:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>originY:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>horizontalScale:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>verticalScale:</code></td>
+          <td><code>[optional] any generator</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">transform.</span>scale(<span class="txscr-var">$image</span>, <span class="txscr-number">0.5</span>, <span class="txscr-number">0.5</span>, <span class="txscr-number">2</span>)</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td><img alt="transform.tiles" src="examples/transform.tiles.png" class="example-image"/></td>
+          <td class="filter-name" id="f-transform-tiles" colSpan="2"><strong>tiles</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Repeats the input specified number of times. If only horizontal repetition count is specified, it will be used for both directions.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">transform.</span>tiles()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="3">Argument&nbsp;types:</td>
+          <td><code>source:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>horizontalRepetitions:</code></td>
+          <td><code>number</code></td>
+        </tr>
+        <tr>
+          <td><code>verticalRepetitions:</code></td>
+          <td><code>[optional] number</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">transform.</span>tiles(<span class="txscr-var">$image</span>, <span class="txscr-number">4</span>)</code></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="side-panel">
+      <ul>
+        <li class="home"><a href="index.html">Home</a></li>
+        <li><a href="Language-syntax.html">Language syntax</a></li>
+        <li><a href="Commands.html">Commands</a></li>
+        <li><a href="Filter-library.html">Filter library</a>
+          <ul>
+            <li><a href="cellular-package.html">cellular package</a></li>
+            <li><a href="color-package.html">color package</a></li>
+            <li><a href="curve-package.html">curve package</a></li>
+            <li><a href="filter-package.html">filter package</a></li>
+            <li><a href="gradient-package.html">gradient package</a></li>
+            <li><a href="math-package.html">math package</a></li>
+            <li><a href="mix-package.html">mix package</a></li>
+            <li><a href="perlin-package.html">perlin package</a></li>
+            <li><a href="shape-package.html">shape package</a></li>
+            <li><b>transform package</b></li>
+            <li><a href="video-package.html">video package</a></li>
+          </ul>
+        </li>
+        <li><a href="code/index.html">Source code</a></li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -32,17 +32,17 @@ $f  = mix.switch(perlin.frost:15(0.5), #215210, #83DE43, #F5FFDF)
 $l  = switch($T, $g, $f)
 
 // reflection
-$r1 = filter.fastblur(translate(flipy($l), 0.5, 0.7), 0.1)
+$r1 = filter.fastblur(offset(flipy($l), 0.5, 0.7), 0.1)
 $r2 = switch(0.35, scale(perlin.glass:36(0.5, 1, #7AB6FF, #AAE2FF), 0, 0, 1, 0.5), $r1)
 $d  = switch(rrot(curve.linear(0.5, 1)), 0.5, scale(perlin.noise:24(1, 0.35, 0.65), 0, 0, 1, 0.5))
 $d2_a = sub($d, 0.5)
 $d2_b = mul(sub($d, 0.5), 0.25)
 $d2 = add(0.5, mul(sub($d, 0.5), 0.25))
-$R  = translate(add(mul(2, sub($d, 0.5)), $r2), $d, $d2)
+$R  = offset(add(mul(2, sub($d, 0.5)), $r2), $d, $d2)
 
 // water area
 $W0 = rect($w, $b, -1, 0.6, 3, 3)
-$W1 = translate(rect($w, $b, -1, 0.6, 3, 3), $d, $d2)
+$W1 = offset(rect($w, $b, -1, 0.6, 3, 3), $d, $d2)
 $L1 = switch($W1, $l, $R)
 
 
@@ -54,4 +54,3 @@ Size(64)  Filename("logo-64")  Texture($L1)
 Size(128) Filename("logo-128") Texture($L1)
 Size(256) Filename("logo-256") Texture($L1)
 Size(512) Filename("logo-512") Texture($L1)
-

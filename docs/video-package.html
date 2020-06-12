@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>video package</title>
+    <link href="styles.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <div class="main-panel">
+      <h1>video package</h1>
+      <p>Package with filters that can be used with the <a href="Commands.html#Video"><span class="txscr-command">Video</span></a> command.</p>
+      <h3>Filters</h3>
+      <table>
+        <tr class="header">
+          <td></td>
+          <td class="filter-name" id="f-video-time" colSpan="2"><strong>time</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Returns the curent video frame index normalized to range [<span class="txscr-number">0</span>,<span class="txscr-number">1</span>).<br/><i>For example in video with <span class="txscr-number">5</span> frames this filter would return <span class="txscr-number">0</span>, <span class="txscr-number">0.2</span>, <span class="txscr-number">0.4</span>, <span class="txscr-number">0.6</span> and <span class="txscr-number">0.8</span>.</i></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">video.</span>time()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">video.</span>time()</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td></td>
+          <td class="filter-name" id="f-video-frame" colSpan="2"><strong>frame</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Returns the curent video frame length. The video.time filter will always return multiple of frame length.<br/><i>For example in video with <span class="txscr-number">5</span> frames this filter would return <span class="txscr-number">0.2</span>.</i></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">video.</span>frame()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">video.</span>frame()</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
+        <tr class="header">
+          <td></td>
+          <td class="filter-name" id="f-video-transition" colSpan="2"><strong>transition</strong></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Meaning:</td>
+          <td colSpan="2">Defines a transition between two values starting at the first video frame and ending at the last one. A curve can be supplied to alter the transition speed.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Syntax:</td>
+          <td colSpan="2"><code><span class="txscr-package">video.</span>transition()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold" rowspan="3">Argument&nbsp;types:</td>
+          <td><code>startingValue:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>endValue:</code></td>
+          <td><code>any generator</code></td>
+        </tr>
+        <tr>
+          <td><code>curve:</code></td>
+          <td><code>[optional] any generator, default value is <span class="txscr-package">curve.</span>linear()</code></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Usage&nbsp;example:</td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">video.</span>transition(<span class="txscr-number">0</span>, <span class="txscr-number">1</span>, <span class="txscr-package">curve.</span>sin(<span class="txscr-number">0</span>, <span class="txscr-number">0.5</span>, <span class="txscr-number">0</span>, <span class="txscr-package">curve.</span>sin(<span class="txscr-number">1</span>, <span class="txscr-number">0.5</span>, <span class="txscr-number">0</span>, <span class="txscr-number">1</span>)))</code></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="side-panel">
+      <ul>
+        <li class="home"><a href="index.html">Home</a></li>
+        <li><a href="Language-syntax.html">Language syntax</a></li>
+        <li><a href="Commands.html">Commands</a></li>
+        <li><a href="Filter-library.html">Filter library</a>
+          <ul>
+            <li><a href="cellular-package.html">cellular package</a></li>
+            <li><a href="color-package.html">color package</a></li>
+            <li><a href="curve-package.html">curve package</a></li>
+            <li><a href="filter-package.html">filter package</a></li>
+            <li><a href="gradient-package.html">gradient package</a></li>
+            <li><a href="math-package.html">math package</a></li>
+            <li><a href="mix-package.html">mix package</a></li>
+            <li><a href="perlin-package.html">perlin package</a></li>
+            <li><a href="shape-package.html">shape package</a></li>
+            <li><a href="transform-package.html">transform package</a></li>
+            <li><b>video package</b></li>
+          </ul>
+        </li>
+        <li><a href="code/index.html">Source code</a></li>
+      </ul>
+    </div>
+  </body>
+</html>

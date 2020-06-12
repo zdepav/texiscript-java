@@ -5,10 +5,11 @@ import cz.zdepav.school.texiscript.script.interpreter.SemanticException;
 import cz.zdepav.school.texiscript.script.parser.CodePosition;
 import cz.zdepav.school.texiscript.utils.RgbaColor;
 
-/** @author Zdenek Pavlatka */
+/** Position-color pair. */
 public class GradientStopGenerator extends Generator implements Comparable<GradientStopGenerator> {
 
     public final double pos;
+
     private final Generator color;
 
     public GradientStopGenerator(CodePosition pos, Generator position, Generator color) throws SemanticException {
@@ -19,26 +20,31 @@ public class GradientStopGenerator extends Generator implements Comparable<Gradi
         this.color = color;
     }
 
+    /** {@inheritDoc} */
     @Override
     public int compareTo(GradientStopGenerator o) {
         return Double.compare(pos, o.pos);
     }
 
+    /** {@inheritDoc} */
     @Override
     public RgbaColor getColor(double x, double y) {
         return color.getColor(x, y);
     }
 
+    /** {@inheritDoc} */
     @Override
     public double getDouble(double x, double y) {
         return color.getDouble(x, y);
     }
 
+    /** {@inheritDoc} */
     @Override
     public double getDouble(double x, double y, double min, double max) {
         return color.getDouble(x, y, min, max);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         color.init(outputSize, randomize);

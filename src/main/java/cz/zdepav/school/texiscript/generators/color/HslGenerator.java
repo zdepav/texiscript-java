@@ -5,10 +5,17 @@ import cz.zdepav.school.texiscript.script.parser.CodePosition;
 import cz.zdepav.school.texiscript.utils.RgbaColor;
 import cz.zdepav.school.texiscript.utils.Utils;
 
-/** @author Zdenek Pavlatka */
+/** Converts HSL to a color. */
 public class HslGenerator extends Generator {
 
-    private final Generator hGen, sGen, lGen;
+    /** hue input generator */
+    private final Generator hGen;
+
+    /** saturation input generator */
+    private final Generator sGen;
+
+    /** lightness input generator */
+    private final Generator lGen;
 
     public HslGenerator(CodePosition pos, Generator hGen, Generator sGen, Generator lGen) {
         this.hGen = hGen;
@@ -16,6 +23,7 @@ public class HslGenerator extends Generator {
         this.lGen = lGen;
     }
 
+    /** {@inheritDoc} */
     @Override
     public RgbaColor getColor(double x, double y) {
         var l = lGen.getDouble(x, y);
@@ -33,6 +41,7 @@ public class HslGenerator extends Generator {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public double getDouble(double x, double y) {
         var l = lGen.getDouble(x, y);
@@ -41,6 +50,7 @@ public class HslGenerator extends Generator {
         return (c * (2 - Math.abs(h % 2 - 1))) / 3 + l - c / 2;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         hGen.init(outputSize, randomize);

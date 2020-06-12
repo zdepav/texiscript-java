@@ -6,12 +6,19 @@ import cz.zdepav.school.texiscript.script.parser.CodePosition;
 import cz.zdepav.school.texiscript.utils.RgbaColor;
 import cz.zdepav.school.texiscript.utils.Utils;
 
-/** @author Zdenek Pavlatka */
+/** Blurs the input using a optimized implementation. */
 public class FastBlurGenerator extends Generator {
 
+    /** input generator */
     private final Generator base;
+
+    /** blur intensity */
     private final double strength;
+
+    /** output size for which the generator is initialized */
     private int initializedSize;
+
+    /** buffered output */
     private RgbaColor[] image;
 
     private FastBlurGenerator(Generator base, double strength) {
@@ -21,6 +28,7 @@ public class FastBlurGenerator extends Generator {
         initializedSize = -1;
     }
 
+    /** {@inheritDoc} */
     @Override
     public RgbaColor getColor(double x, double y) {
         // uses linear interpolation, texture is tiled
@@ -40,11 +48,13 @@ public class FastBlurGenerator extends Generator {
         return c00.lerp(c10, xd).lerp(c01.lerp(c11, xd), yd);
     }
 
+    /** {@inheritDoc} */
     @Override
     public double getDouble(double x, double y) {
         return getColor(x, y).intensity;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         base.init(outputSize, randomize);
@@ -60,6 +70,7 @@ public class FastBlurGenerator extends Generator {
         }
     }
 
+    /** Applies horizontal blur. */
     private void preRenderHorizontal(int outputSize, double[] kernel, double offset, RgbaColor[] buffer, int str) {
         RgbaColor c;
         for (var y = 0; y < outputSize; ++y) {
@@ -79,6 +90,7 @@ public class FastBlurGenerator extends Generator {
         }
     }
 
+    /** Applies vertical blur. */
     private void preRenderVertical(int outputSize, double[] kernel, RgbaColor[] buffer, int str) {
         RgbaColor c;
         for (var x = 0; x < outputSize; ++x) {
@@ -97,10 +109,12 @@ public class FastBlurGenerator extends Generator {
         }
     }
 
+    /** Computes coeficient for pixel based on its position. */
     private double gaussianDistribution(double x, double sigma) {
         return Math.exp(-x * x / (2.0 * sigma * sigma)) * (1.0 / (Math.sqrt(2.0 * Math.PI) * sigma));
     }
 
+    /** Computes coeficients for pixels. */
     private double[] generateGaussianKernel(int str) {
         var kernelSize = 1 + 2 * str;
         var gaussianKernel = new double[kernelSize];
@@ -120,6 +134,13 @@ public class FastBlurGenerator extends Generator {
         return gaussianKernel;
     }
 
+    /**
+     * Builds the generator.
+     * @param pos current position in script
+     * @param args function arguments
+     * @return created generator
+     * @throws SemanticException When the arguments are not valid.
+     */
     public static Generator build(CodePosition pos, Generator[] args) throws SemanticException {
         switch (args.length) {
             case 1:

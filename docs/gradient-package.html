@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"/>
     <title>gradient package</title>
-    <link type="text/css" rel="stylesheet" href="styles.css"/>
+    <link href="styles.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
     <div class="main-panel">
@@ -13,18 +13,15 @@
       <table>
         <tr class="header">
           <td></td>
-          <td id="f-gradient-stop" colspan="2"
-            style="text-align:left;font-size:1.1em;padding-left:32px">
-            <strong>stop</strong>
-          </td>
+          <td class="filter-name" id="f-gradient-stop" colSpan="2"><strong>stop</strong></td>
         </tr>
         <tr>
           <td style="font-weight: bold">Meaning:</td>
-          <td colspan="2">Used to specify colors in a gradient.</td>
+          <td colSpan="2">Used to specify colors in a gradient.</td>
         </tr>
         <tr>
           <td style="font-weight: bold">Syntax:</td>
-          <td colspan="2"><code><span class="txscr-package">gradient.</span>stop()</code></td>
+          <td colSpan="2"><code><span class="txscr-package">gradient.</span>stop()</code></td>
         </tr>
         <tr>
           <td style="font-weight: bold" rowspan="2">Argument&nbsp;types:</td>
@@ -37,26 +34,24 @@
         </tr>
         <tr>
           <td style="font-weight: bold">Usage&nbsp;example:</td>
-          <td colspan="2"><pre><code><span class="txscr-package">gradient.</span>stop(<span class="txscr-number">0.5</span>, <span class="txscr-color">#FF0000</span>)</code></pre></td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">gradient.</span>stop(<span class="txscr-number">0.5</span>, <span class="txscr-color" text-decoration-color="#FF0000">#FF0000</span>)</code></pre>
+          </td>
         </tr>
-        <tr><td colspan="3" style="border:0"></td></tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
         <tr class="header">
-          <td>
-            <img alt="gradient.linear" src="examples/gradient.linear.png"
-              style="width:128px;height:128px;margin:0 auto;border:1px solid #E0E0E0"/>
-          </td>
-          <td id="f-gradient-linear" colspan="2"
-            style="text-align:left;font-size:1.1em;padding-left:32px">
-            <strong>linear</strong>
-          </td>
+          <td><img alt="gradient.linear" src="examples/gradient.linear.png" class="example-image"/></td>
+          <td class="filter-name" id="f-gradient-linear" colSpan="2"><strong>linear</strong></td>
         </tr>
         <tr>
           <td style="font-weight: bold">Meaning:</td>
-          <td colspan="2">Creates a linear gradient between two points.</td>
+          <td colSpan="2">Creates a linear gradient between two points.</td>
         </tr>
         <tr>
           <td style="font-weight: bold">Syntax:</td>
-          <td colspan="2"><code><span class="txscr-package">gradient.</span>linear(x1, y1, x2, y2, stops...)</code></td>
+          <td colSpan="2"><code><span class="txscr-package">gradient.</span>linear(x1, y1, x2, y2, stops...)</code></td>
         </tr>
         <tr>
           <td style="font-weight: bold" rowspan="5">Argument&nbsp;types:</td>
@@ -81,26 +76,24 @@
         </tr>
         <tr>
           <td style="font-weight: bold">Usage&nbsp;example:</td>
-          <td colspan="2"><pre><code><span class="txscr-package">gradient.</span>linear(<br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="txscr-number">0</span>, <span class="txscr-number">0</span>, <span class="txscr-number">1</span>, <span class="txscr-number">0</span>,<br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a>(<span class="txscr-number">0</span>, <span class="txscr-color">#C04040</span>),<br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a>(<span class="txscr-number">0.333</span>, <span class="txscr-color">#40C040</span>),<br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a>(<span class="txscr-number">0.667</span>, <span class="txscr-color">#4040C0</span>),<br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a>(<span class="txscr-number">1</span>, <span class="txscr-color">#C04040</span>)<br/>)</code></pre></td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">gradient.</span>linear(<br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="txscr-number">0</span>, <span class="txscr-number">0</span>, <span class="txscr-number">1</span>, <span class="txscr-number">0</span>,<br/>&nbsp;&nbsp;&nbsp;&nbsp;<code><a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a></code>(<span class="txscr-number">0</span>, <span class="txscr-color" text-decoration-color="#C04040">#C04040</span>),<br/>&nbsp;&nbsp;&nbsp;&nbsp;<code><a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a></code>(<span class="txscr-number">0.333</span>, <span class="txscr-color" text-decoration-color="#40C040">#40C040</span>),<br/>&nbsp;&nbsp;&nbsp;&nbsp;<code><a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a></code>(<span class="txscr-number">0.667</span>, <span class="txscr-color" text-decoration-color="#4040C0">#4040C0</span>),<br/>&nbsp;&nbsp;&nbsp;&nbsp;<code><a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a></code>(<span class="txscr-number">1</span>, <span class="txscr-color" text-decoration-color="#C04040">#C04040</span>)<br/>)</code></pre>
+          </td>
         </tr>
-        <tr><td colspan="3" style="border:0"></td></tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
         <tr class="header">
-          <td>
-            <img alt="gradient.radial" src="examples/gradient.radial.png"
-              style="width:128px;height:128px;margin:0 auto;border:1px solid #E0E0E0"/>
-          </td>
-          <td id="f-gradient-radial" colspan="2"
-            style="text-align:left;font-size:1.1em;padding-left:32px">
-            <strong>radial</strong>
-          </td>
+          <td><img alt="gradient.radial" src="examples/gradient.radial.png" class="example-image"/></td>
+          <td class="filter-name" id="f-gradient-radial" colSpan="2"><strong>radial</strong></td>
         </tr>
         <tr>
           <td style="font-weight: bold">Meaning:</td>
-          <td colspan="2">Creates a radial gradient between concentric circles.</td>
+          <td colSpan="2">Creates a radial gradient between concentric circles.</td>
         </tr>
         <tr>
           <td style="font-weight: bold">Syntax:</td>
-          <td colspan="2"><code><span class="txscr-package">gradient.</span>radial(centerX, centerY, radius1, radius2, stops...)</code></td>
+          <td colSpan="2"><code><span class="txscr-package">gradient.</span>radial(centerX, centerY, radius1, radius2, stops...)</code></td>
         </tr>
         <tr>
           <td style="font-weight: bold" rowspan="5">Argument&nbsp;types:</td>
@@ -125,26 +118,24 @@
         </tr>
         <tr>
           <td style="font-weight: bold">Usage&nbsp;example:</td>
-          <td colspan="2"><pre><code><span class="txscr-package">gradient.</span>radial(<br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="txscr-number">0.5</span>, <span class="txscr-number">0.5</span>, <span class="txscr-number">0</span>, <span class="txscr-number">0.5</span>,<br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a>(<span class="txscr-number">0</span>, <span class="txscr-color">#C04040</span>),<br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a>(<span class="txscr-number">0.333</span>, <span class="txscr-color">#40C040</span>),<br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a>(<span class="txscr-number">0.667</span>, <span class="txscr-color">#4040C0</span>),<br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a>(<span class="txscr-number">1</span>, <span class="txscr-color">#C04040</span>)<br/>)</code></pre></td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">gradient.</span>radial(<br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="txscr-number">0.5</span>, <span class="txscr-number">0.5</span>, <span class="txscr-number">0</span>, <span class="txscr-number">0.5</span>,<br/>&nbsp;&nbsp;&nbsp;&nbsp;<code><a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a></code>(<span class="txscr-number">0</span>, <span class="txscr-color" text-decoration-color="#C04040">#C04040</span>),<br/>&nbsp;&nbsp;&nbsp;&nbsp;<code><a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a></code>(<span class="txscr-number">0.333</span>, <span class="txscr-color" text-decoration-color="#40C040">#40C040</span>),<br/>&nbsp;&nbsp;&nbsp;&nbsp;<code><a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a></code>(<span class="txscr-number">0.667</span>, <span class="txscr-color" text-decoration-color="#4040C0">#4040C0</span>),<br/>&nbsp;&nbsp;&nbsp;&nbsp;<code><a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a></code>(<span class="txscr-number">1</span>, <span class="txscr-color" text-decoration-color="#C04040">#C04040</span>)<br/>)</code></pre>
+          </td>
         </tr>
-        <tr><td colspan="3" style="border:0"></td></tr>
+        <tr>
+          <td colSpan="3" style="border: 0"></td>
+        </tr>
         <tr class="header">
-          <td>
-            <img alt="gradient.angular" src="examples/gradient.angular.png"
-              style="width:128px;height:128px;margin:0 auto;border:1px solid #E0E0E0"/>
-          </td>
-          <td id="f-gradient-angular" colspan="2"
-            style="text-align:left;font-size:1.1em;padding-left:32px">
-            <strong>angular</strong>
-          </td>
+          <td><img alt="gradient.angular" src="examples/gradient.angular.png" class="example-image"/></td>
+          <td class="filter-name" id="f-gradient-angular" colSpan="2"><strong>angular</strong></td>
         </tr>
         <tr>
           <td style="font-weight: bold">Meaning:</td>
-          <td colspan="2">Creates a gradient around a point.</td>
+          <td colSpan="2">Creates a gradient around a point.</td>
         </tr>
         <tr>
           <td style="font-weight: bold">Syntax:</td>
-          <td colspan="2"><code><span class="txscr-package">gradient.</span>angular(centerX, centerY, stops...)</code></td>
+          <td colSpan="2"><code><span class="txscr-package">gradient.</span>angular(centerX, centerY, stops...)</code></td>
         </tr>
         <tr>
           <td style="font-weight: bold" rowspan="3">Argument&nbsp;types:</td>
@@ -161,7 +152,9 @@
         </tr>
         <tr>
           <td style="font-weight: bold">Usage&nbsp;example:</td>
-          <td colspan="2"><pre><code><span class="txscr-package">gradient.</span>angular(<br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="txscr-number">0.5</span>, <span class="txscr-number">0.5</span>,<br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a>(<span class="txscr-number">0</span>, <span class="txscr-color">#C04040</span>),<br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a>(<span class="txscr-number">0.333</span>, <span class="txscr-color">#40C040</span>),<br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a>(<span class="txscr-number">0.667</span>, <span class="txscr-color">#4040C0</span>),<br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a>(<span class="txscr-number">1</span>, <span class="txscr-color">#C04040</span>)<br/>)</code></pre></td>
+          <td colSpan="2">
+            <pre><code><span class="txscr-package">gradient.</span>angular(<br/>&nbsp;&nbsp;&nbsp;&nbsp;<span class="txscr-number">0.5</span>, <span class="txscr-number">0.5</span>,<br/>&nbsp;&nbsp;&nbsp;&nbsp;<code><a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a></code>(<span class="txscr-number">0</span>, <span class="txscr-color" text-decoration-color="#C04040">#C04040</span>),<br/>&nbsp;&nbsp;&nbsp;&nbsp;<code><a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a></code>(<span class="txscr-number">0.333</span>, <span class="txscr-color" text-decoration-color="#40C040">#40C040</span>),<br/>&nbsp;&nbsp;&nbsp;&nbsp;<code><a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a></code>(<span class="txscr-number">0.667</span>, <span class="txscr-color" text-decoration-color="#4040C0">#4040C0</span>),<br/>&nbsp;&nbsp;&nbsp;&nbsp;<code><a href="#f-gradient-stop"><span class="txscr-package">gradient.</span>stop</a></code>(<span class="txscr-number">1</span>, <span class="txscr-color" text-decoration-color="#C04040">#C04040</span>)<br/>)</code></pre>
+          </td>
         </tr>
       </table>
     </div>
@@ -178,8 +171,14 @@
             <li><a href="filter-package.html">filter package</a></li>
             <li><b>gradient package</b></li>
             <li><a href="math-package.html">math package</a></li>
+            <li><a href="mix-package.html">mix package</a></li>
+            <li><a href="perlin-package.html">perlin package</a></li>
+            <li><a href="shape-package.html">shape package</a></li>
+            <li><a href="transform-package.html">transform package</a></li>
+            <li><a href="video-package.html">video package</a></li>
           </ul>
         </li>
+        <li><a href="code/index.html">Source code</a></li>
       </ul>
     </div>
   </body>

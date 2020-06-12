@@ -7,7 +7,7 @@ import cz.zdepav.school.texiscript.script.parser.CodePosition;
 import cz.zdepav.school.texiscript.utils.RgbaColor;
 import cz.zdepav.school.texiscript.utils.Utils;
 
-/** @author Zdenek Pavlatka */
+/** Base class for perlin-based generators. */
 public abstract class PerlinGenerator extends Generator {
 
     @FunctionalInterface
@@ -15,8 +15,18 @@ public abstract class PerlinGenerator extends Generator {
         Generator construct(Generator color1, Generator color2, double scale, Generator curve);
     }
 
+    /** whether generation should be fully randomized or deterministic */
     protected boolean randomized;
-    protected Generator color1, color2, curve;
+
+    /** grid color */
+    protected final Generator color1;
+
+    /** fill color */
+    protected final Generator color2;
+
+    /** curve for color interpolation */
+    protected final Generator curve;
+
     protected double inverseScale;
 
     protected PerlinGenerator(Generator color1, Generator color2, double scale, Generator curve) {
@@ -27,6 +37,7 @@ public abstract class PerlinGenerator extends Generator {
         randomized = false;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         color1.init(outputSize, randomize);
@@ -36,6 +47,7 @@ public abstract class PerlinGenerator extends Generator {
 
     protected abstract double get(double x, double y);
 
+    /** {@inheritDoc} */
     @Override
     public RgbaColor getColor(double x, double y) {
         return color1.getColor(x, y).lerp(
@@ -44,6 +56,7 @@ public abstract class PerlinGenerator extends Generator {
         );
     }
 
+    /** {@inheritDoc} */
     @Override
     public double getDouble(double x, double y) {
         return Utils.lerp(
@@ -53,6 +66,15 @@ public abstract class PerlinGenerator extends Generator {
         );
     }
 
+    /**
+     * Builds the generator.
+     * @param pos current position in script
+     * @param args function arguments
+     * @param name generator name
+     * @param constructor generator constructor to use
+     * @return created generator
+     * @throws SemanticException When the arguments are not valid.
+     */
     public static Generator build(
         CodePosition pos,
         Generator[] args,
@@ -61,22 +83,22 @@ public abstract class PerlinGenerator extends Generator {
     ) throws SemanticException {
         if (args.length == 0) {
             return constructor.construct(
-                RgbaColor.black.generator(),
-                RgbaColor.white.generator(),
+                Generator.get(0),
+                Generator.get(1),
                 1, CurveGenerator.LINEAR
             );
         } else if (args[0].isNumber()) {
             switch (args.length) {
                 case 1:
                     return constructor.construct(
-                        RgbaColor.black.generator(),
-                        RgbaColor.white.generator(),
+                        Generator.get(0),
+                        Generator.get(1),
                         args[0].getDouble(0, 0),
                         CurveGenerator.LINEAR
                     );
                 case 2:
                     return constructor.construct(
-                        RgbaColor.black.generator(),
+                        Generator.get(0),
                         args[1],
                         args[0].getDouble(0, 0),
                         CurveGenerator.LINEAR

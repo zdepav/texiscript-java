@@ -5,23 +5,42 @@ import cz.zdepav.school.texiscript.script.syntaxtree.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/** @author Zdenek Pavlatka */
+/** A basic code parser, builds a syntax tree from a sequence of tokens. */
 public class Parser {
 
-    private TokenSource tokenSource;
+    /** input token sequence */
+    private final TokenSource tokenSource;
 
+    /** Constructs a parser from a token source. */
     public Parser(TokenSource tokenSource) {
         this.tokenSource = tokenSource;
     }
 
+    /**
+     * Helper method for exception construction.
+     * @param badToken token that caused the error
+     * @param message error message
+     * @return the constructed exception
+     */
     private SyntaxException error(Token badToken, String message) {
         return new SyntaxException(badToken.getCodePosition(), message);
     }
 
+    /**
+     * Helper method for exception construction.
+     * @param message error message
+     * @return the constructed exception
+     */
     private SyntaxException error(String message) {
         return new SyntaxException(tokenSource.getCodePosition(), message);
     }
 
+    /**
+     * Reads next token and checks whether it is of the correct type before returning it.
+     * @param expectedType expected token type
+     * @return the read token
+     * @throws SyntaxException When the next token is of a wrong type or EOF was reached.
+     */
     private Token checkToken(TokenType expectedType) throws SyntaxException {
         var t = tokenSource.readToken();
         if (t == null) {
@@ -33,6 +52,11 @@ public class Parser {
         return t;
     }
 
+    /**
+     * Returns type of the next token without advancing position.
+     * @return type of the next token
+     * @throws SyntaxException When EOF was reached.
+     */
     private TokenType peekTokenType() throws SyntaxException {
         var t = tokenSource.peekToken();
         if (t == null) {
@@ -41,7 +65,11 @@ public class Parser {
         return t.getType();
     }
 
-    // program: ( command | assignment )+ ;
+    /**
+     * Syntax: ( command | assignment )+
+     * @return list of parsed tree nodes
+     * @throws SyntaxException When the script contains errors
+     */
     public List<StNode> parseScript() throws SyntaxException {
         var nodes = new ArrayList<StNode>();
         Token t;
@@ -60,7 +88,11 @@ public class Parser {
         return nodes;
     }
 
-    // command: COMMAND LPAR command_argument ( COMMA command_argument )* RPAR ;
+    /**
+     * Syntax: COMMAND LPAR command_argument ( COMMA command_argument )* RPAR
+     * @return parsed command node
+     * @throws SyntaxException When the script contains errors
+     */
     private StCommand parseCommand() throws SyntaxException {
         var cmd = checkToken(TokenType.COMMAND);
         var posA = cmd.getCodePosition();
@@ -85,7 +117,11 @@ public class Parser {
         return new StCommand(posA.until(rpar.getCodePosition()), cmd.getString(), args.toArray(new StCommandArgument[args.size()]));
     }
 
-    // command_argument: STRING | generator ;
+    /**
+     * Syntax: STRING | generator
+     * @return parsed command argument node
+     * @throws SyntaxException When the script contains errors
+     */
     private StCommandArgument parseCommandArgument() throws SyntaxException {
         if (peekTokenType() == TokenType.STRING) {
             var token = tokenSource.readToken();
@@ -93,7 +129,11 @@ public class Parser {
         } else return parseGenerator();
     }
 
-    // generator: NUMBER | COLOR | VARIABLE | function_call ;
+    /**
+     * Syntax: NUMBER | COLOR | VARIABLE | function_call
+     * @return parsed generator node
+     * @throws SyntaxException When the script contains errors
+     */
     private StGenerator parseGenerator() throws SyntaxException {
         Token token;
         switch (peekTokenType()) {
@@ -117,7 +157,11 @@ public class Parser {
         }
     }
 
-    // function_call: FUNCTION SEED? LPAR ( generator ( COMMA generator )* )? RPAR ;
+    /**
+     * Syntax: FUNCTION SEED? LPAR ( generator ( COMMA generator )* )? RPAR
+     * @return parsed function call node
+     * @throws SyntaxException When the script contains errors
+     */
     private StFunctionCall parseFunctionCall() throws SyntaxException {
         var fn = checkToken(TokenType.FUNCTION);
         var posA = fn.getCodePosition();
@@ -150,7 +194,11 @@ public class Parser {
         );
     }
 
-    // assignment: VARIABLE ASSIGNMENT generator ;
+    /**
+     * Syntax: VARIABLE ASSIGNMENT generator
+     * @return parsed assignment node
+     * @throws SyntaxException When the script contains errors
+     */
     private StAssignment parseAssignment() throws SyntaxException {
         var var = checkToken(TokenType.VARIABLE);
         var posA = var.getCodePosition();

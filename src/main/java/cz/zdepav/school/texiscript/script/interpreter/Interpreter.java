@@ -1,6 +1,7 @@
 package cz.zdepav.school.texiscript.script.interpreter;
 
 import cz.zdepav.school.texiscript.generators.Generator;
+import cz.zdepav.school.texiscript.generators.video.FrameLengthGenerator;
 import cz.zdepav.school.texiscript.generators.video.TimeGenerator;
 import cz.zdepav.school.texiscript.script.parser.Lexer;
 import cz.zdepav.school.texiscript.script.parser.Parser;
@@ -22,7 +23,6 @@ import cz.zdepav.school.texiscript.utils.Utils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.InvalidPathException;
@@ -31,17 +31,33 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.regex.Pattern;
 
-/** @author Zdenek Pavlatka */
+/** Basic script interpreter. */
 public class Interpreter {
 
-    private static Pattern fileNamePattern = Pattern.compile("^(?:.*[/\\\\])*([^\\\\/]+?)(?:\\.[^./\\\\]+)?$");
+    /** regexp used to extract file name from path */
+    private static final Pattern fileNamePattern = Pattern.compile("^(?:.*[/\\\\])*([^\\\\/]+?)(?:\\.[^./\\\\]+)?$");
 
+    /** parsed script */
     private List<StNode> script;
-    private Scope scope;
-    private Path directory;
-    private TokenSource tokenSource;
-    private ImageRenderer imageRenderer;
 
+    /** current execution scope */
+    private final Scope scope;
+
+    /** working directory */
+    private final Path directory;
+
+    /** token source (lexer) used to read the script */
+    private final TokenSource tokenSource;
+
+    /** image renderer used to generate images */
+    private final ImageRenderer imageRenderer;
+
+    /**
+     * Constructs an interpreter.
+     * @param directory working directory
+     * @param scriptFileName name of the script file that will be executed
+     * @param input input stream to read the script from
+     */
     public Interpreter(Path directory, String scriptFileName, InputStream input) {
         this.directory = directory;
         this.tokenSource = new Lexer(input);
@@ -51,6 +67,10 @@ public class Interpreter {
         imageRenderer = new ImageRenderer(directory, m.find() ? m.group(1) : "tex");
     }
 
+    /**
+     * Parses the entire script in advance.
+     * @throws SyntaxException When the script contains errors.
+     */
     public void precompile() throws SyntaxException {
         if (script != null) {
             return;
@@ -59,6 +79,11 @@ public class Interpreter {
         script = parser.parseScript();
     }
 
+    /**
+     * Parses the script (unless it was already parsed) and executes it.
+     * @throws SyntaxException When the script contains errors.
+     * @throws SemanticException When the script contains errors.
+     */
     public void execute() throws SyntaxException, SemanticException {
         if (script == null) {
             precompile();
@@ -78,10 +103,22 @@ public class Interpreter {
         }
     }
 
+    /**
+     * Helper method for exception construction.
+     * @param badNode syntax tree node that caused the error
+     * @param message error message
+     * @return the constructed exception
+     */
     private SemanticException error(StNode badNode, String message) {
         return new SemanticException(badNode.getCodePosition(), message);
     }
 
+    /**
+     * Constructs a generator instance from a syntax tree node.
+     * @param expression syntax tree node to interpret
+     * @return the constructed generator
+     * @throws SemanticException When the syntax tree node contains errors.
+     */
     private Generator buildGenerator(StGenerator expression) throws SemanticException {
         if (expression instanceof StNumber) {
             return Generator.get(((StNumber)expression).getValue());
@@ -111,6 +148,12 @@ public class Interpreter {
         }
     }
 
+    /**
+     * Converts a syntax tree node to a TypedArgument.
+     * @param arg syntax tree node to convert
+     * @return a TypedArgument instance equivalent to arg
+     * @throws SemanticException When the syntax tree node contains errors.
+     */
     private TypedArgument makeTypedArgument(StCommandArgument arg) throws SemanticException {
         if (arg instanceof StString) {
             return new TypedArgument(((StString)arg).getValue());
@@ -119,6 +162,12 @@ public class Interpreter {
         }
     }
 
+    /**
+     * Checks whether the command has the correct number of arguments.
+     * @param command command syntax tree node to check
+     * @param count expected argument count
+     * @throws SemanticException When there are too many or too few arguments.
+     */
     private void checkArgumentCount(StCommand command, int count) throws SemanticException {
         if (command.getArgumentCount() != count) {
             if (count == 0) {
@@ -129,6 +178,13 @@ public class Interpreter {
         }
     }
 
+    /**
+     * Checks types of all command arguments and converts them to TypedArgument.
+     * @param command command node to use
+     * @param argumentTypes expected argument types
+     * @return array of converted arguments
+     * @throws SemanticException When the command contains errors.
+     */
     private TypedArgument[] getArguments(StCommand command, StType... argumentTypes) throws SemanticException {
         if (argumentTypes == null || argumentTypes.length == 0) {
             if (command.getArgumentCount() > 0) {
@@ -164,6 +220,11 @@ public class Interpreter {
         }
     }
 
+    /**
+     * Executes a command.
+     * @param command command to execute
+     * @throws SemanticException When the command contains errors.
+     */
     private void executeCommand(StCommand command) throws SemanticException {
         switch (command.getName()) {
             case "Debugtex":
@@ -199,6 +260,11 @@ public class Interpreter {
         }
     }
 
+    /**
+     * Executes "debug texture" command.
+     * @param command command to execute
+     * @throws SemanticException When the command contains errors.
+     */
     private void executeDebugtexCommand(StCommand command) throws SemanticException {
         TypedArgument[] args = getArguments(command, StType.NUMBER);
         var size = args[0].getNumber();
@@ -219,6 +285,11 @@ public class Interpreter {
         imageRenderer.setOutputFile(outputFile);
     }
 
+    /**
+     * Executes "debug time" command.
+     * @param command command to execute
+     * @throws SemanticException When the command contains errors.
+     */
     private void executeDebugtimeCommand(StCommand command) throws SemanticException {
         TypedArgument[] args = getArguments(command, StType.NUMBER);
         var time = args[0].getNumber();
@@ -228,6 +299,11 @@ public class Interpreter {
         imageRenderer.setMeasureTime((int)time != 0);
     }
 
+    /**
+     * Executes "filename" command.
+     * @param command command to execute
+     * @throws SemanticException When the command contains errors.
+     */
     private void executeFilenameCommand(StCommand command) throws SemanticException {
         TypedArgument[] args = getArguments(command, StType.STRING);
         try {
@@ -237,11 +313,21 @@ public class Interpreter {
         }
     }
 
+    /**
+     * Executes "import" command.
+     * @param command command to execute
+     * @throws SemanticException When the command contains errors.
+     */
     private void executeImportCommand(StCommand command) throws SemanticException {
         TypedArgument[] args = getArguments(command, StType.STRING);
         scope.importPackage(command.getCodePosition(), args[0].getString());
     }
 
+    /**
+     * Executes "load" command.
+     * @param command command to execute
+     * @throws SemanticException When the command contains errors.
+     */
     private void executeLoadCommand(StCommand command) throws SemanticException {
         checkArgumentCount(command, 2);
         String varName;
@@ -271,11 +357,21 @@ public class Interpreter {
         scope.createConstant(command.getCodePosition(), varName, Generator.get(img));
     }
 
+    /**
+     * Executes "randomize" command.
+     * @param command command to execute
+     * @throws SemanticException When the command contains errors.
+     */
     private void executeRandomizeCommand(StCommand command) throws SemanticException {
         TypedArgument[] args = getArguments(command, StType.NUMBER);
         imageRenderer.setRandomization((int)args[0].getNumber() != 0);
     }
 
+    /**
+     * Executes "size" command.
+     * @param command command to execute
+     * @throws SemanticException When the command contains errors.
+     */
     private void executeSizeCommand(StCommand command) throws SemanticException {
         TypedArgument[] args = getArguments(command, StType.NUMBER);
         var size = args[0].getNumber();
@@ -285,28 +381,44 @@ public class Interpreter {
         imageRenderer.setTextureSize((int)size);
     }
 
+    /**
+     * Executes "smoothing" command.
+     * @param command command to execute
+     * @throws SemanticException When the command contains errors.
+     */
     private void executeSmoothingCommand(StCommand command) throws SemanticException {
         TypedArgument[] args = getArguments(command, StType.NUMBER);
         var smoothing = args[0].getNumber();
-        if (smoothing < 0.0 || smoothing >= 3.0) {
-            throw error(command.getArgument(0), "Texture smoothing has to be between 0 and 2");
+        if (smoothing < 0.0 || smoothing >= 11.0) {
+            throw error(command.getArgument(0), "Texture smoothing has to be between 0 and 10");
         }
         imageRenderer.setTextureSmoothing((int)smoothing);
     }
 
+    /**
+     * Executes "texture" command.
+     * @param command command to execute
+     * @throws SemanticException When the command contains errors.
+     */
     private void executeTextureCommand(StCommand command) throws SemanticException {
         TypedArgument[] args = getArguments(command, StType.GENERATOR);
         imageRenderer.generateImage(command.getArgument(0).getCodePosition(), args[0].getGenerator());
     }
 
+    /**
+     * Executes "video" command.
+     * @param command command to execute
+     * @throws SemanticException When the command contains errors.
+     */
     private void executeVideoCommand(StCommand command) throws SemanticException {
         TypedArgument[] args = getArguments(command, StType.NUMBER, StType.GENERATOR);
         var frameCount = (int)args[0].getNumber();
         if (frameCount < 1) {
             throw error(command.getArgument(0), "Video has to have at least one frame");
-        } else if (frameCount > 7_500) {
-            throw error(command.getArgument(0), "Video can't have more than 7,500 frames");
+        } else if (frameCount > 9_999) {
+            throw error(command.getArgument(0), "Video can't have more than 9999 frames");
         }
+        FrameLengthGenerator.setGlobalLength(1.0 / frameCount);
         for (var frame = 0; frame < frameCount; ++frame) {
             TimeGenerator.setGlobalTime((double)frame / frameCount);
             imageRenderer.generateFrame(command.getArgument(0).getCodePosition(), args[1].getGenerator(), frame);

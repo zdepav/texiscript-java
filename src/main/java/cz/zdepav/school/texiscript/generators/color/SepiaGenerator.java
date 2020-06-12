@@ -4,15 +4,17 @@ import cz.zdepav.school.texiscript.generators.Generator;
 import cz.zdepav.school.texiscript.script.parser.CodePosition;
 import cz.zdepav.school.texiscript.utils.RgbaColor;
 
-/** @author Zdenek Pavlatka */
+/** Converts its input to sepia. */
 public class SepiaGenerator extends Generator {
 
+    /** input generator */
     private final Generator base;
 
     public SepiaGenerator(CodePosition pos, Generator base) {
         this.base = base;
     }
 
+    /** {@inheritDoc} */
     @Override
     public RgbaColor getColor(double x, double y) {
         var col = base.getColor(x, y);
@@ -24,17 +26,20 @@ public class SepiaGenerator extends Generator {
         );
     }
 
+    /** {@inheritDoc} */
     @Override
     public double getDouble(double x, double y) {
         var col = base.getColor(x, y);
         return col.r * 0.338 + col.g * 0.663 + col.b * 0.163;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean isColor() {
         return base.isColor();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         base.init(outputSize, randomize);

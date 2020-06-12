@@ -6,7 +6,7 @@ import cz.zdepav.school.texiscript.script.parser.CodePosition;
 import cz.zdepav.school.texiscript.utils.RgbaColor;
 import cz.zdepav.school.texiscript.utils.Utils;
 
-/** @author Zdenek Pavlatka */
+/** Repeats its input. */
 public class TilesGenerator extends Generator {
 
     private final Generator base;
@@ -18,16 +18,19 @@ public class TilesGenerator extends Generator {
         this.verticatCount = verticatCount;
     }
 
+    /** {@inheritDoc} */
     @Override
     public RgbaColor getColor(double x, double y) {
         return base.getColor(x * horizontalCount % 1, y * verticatCount % 1);
     }
 
+    /** {@inheritDoc} */
     @Override
     public double getDouble(double x, double y) {
         return base.getDouble(x * horizontalCount % 1, y * verticatCount % 1);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         base.init(outputSize, randomize);

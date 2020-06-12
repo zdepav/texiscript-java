@@ -5,9 +5,11 @@ import cz.zdepav.school.texiscript.utils.Angle;
 import cz.zdepav.school.texiscript.utils.Rand;
 import cz.zdepav.school.texiscript.utils.Utils;
 
+/** Generates pattern similar to tree bark. */
 public class BarkGenerator extends TurbulentPerlinGenerator {
 
     private final double[] inverseScales, coeficients;
+
     private final PerlinGradient[] gradients;
 
     public BarkGenerator(Generator color1, Generator color2, double scale, Generator turbulence, Generator curve) {
@@ -22,6 +24,21 @@ public class BarkGenerator extends TurbulentPerlinGenerator {
         gradients = new PerlinGradient[4];
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void init(int outputSize, boolean randomize) {
+        super.init(outputSize, randomize);
+        if (gradients[0] == null || randomize || randomized) {
+            var rand = randomize ? Rand.INSTANCE : getRandom();
+            for (var i = 0; i < 4; ++i) {
+                gradients[i] = new PerlinGradient(inverseScales[i], rand);
+                inverseScales[i] = gradients[i].realScale;
+            }
+            randomized = randomize;
+        }
+    }
+
+    /** {@inheritDoc} */
     @Override
     protected double get(double x, double y) {
         var v = 0.0;
@@ -32,20 +49,8 @@ public class BarkGenerator extends TurbulentPerlinGenerator {
                 y * inverseScales[i]
             ) * coeficients[i] * turbulence;
         }
-        v = Utils.granulate(Math.sin(x * inverseScale * Angle.deg360 + 8 * v), 2);
-        v += Utils.granulate(gradients[3].perlin(x * inverseScales[3], y * inverseScales[3]), 5);
+        v = Utils.granulate(Math.sin(x * inverseScale * Angle.deg360 + 24 * v), 2);
+        v += Utils.granulate(gradients[3].perlin(x * inverseScales[3], y * inverseScales[3]), 3);
         return v / 2;
-    }
-
-    @Override
-    public void init(int outputSize, boolean randomize) {
-        super.init(outputSize, randomize);
-        if (gradients[0] == null || randomize || randomized) {
-            var rand = randomize ? Rand.INSTANCE : getRandom();
-            for (var i = 0; i < 4; ++i) {
-                gradients[i] = new PerlinGradient(inverseScales[i], rand);
-            }
-            randomized = randomize;
-        }
     }
 }

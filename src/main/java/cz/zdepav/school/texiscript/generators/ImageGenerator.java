@@ -5,11 +5,20 @@ import cz.zdepav.school.texiscript.utils.Utils;
 
 import java.awt.image.BufferedImage;
 
-/** @author Zdenek Pavlatka */
+/**
+ * Generator used for already existing images (loaded from files).
+ * Uses linear interpolation to resize the image if needed.
+ */
 public class ImageGenerator extends Generator {
 
+    /** original image */
     private final BufferedImage image;
-    private final int width, height;
+
+    /** original image width */
+    private final int width;
+
+    /** original image height */
+    private final int height;
 
     ImageGenerator(BufferedImage image) {
         this.image = image;
@@ -17,6 +26,7 @@ public class ImageGenerator extends Generator {
         height = image.getHeight();
     }
 
+    /** {@inheritDoc} */
     @Override
     public RgbaColor getColor(double x, double y) {
         // uses linear interpolation, texture is tiled
@@ -35,16 +45,19 @@ public class ImageGenerator extends Generator {
         return c00.lerp(c10, xd).lerp(c01.lerp(c11, xd), yd);
     }
 
+    /** {@inheritDoc} */
     @Override
     public double getDouble(double x, double y) {
         return getColor(x, y).intensity;
     }
 
+    /** {@inheritDoc} */
     @Override
     public double getDouble(double x, double y, double min, double max) {
         return Utils.lerp(min, max, getColor(x, y).intensity);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) { }
 }

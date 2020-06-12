@@ -5,7 +5,7 @@ import cz.zdepav.school.texiscript.script.parser.CodePosition;
 import cz.zdepav.school.texiscript.utils.Angle;
 import cz.zdepav.school.texiscript.utils.Vec2;
 
-/** @author Zdenek Pavlatka */
+/** Rotates its input. */
 public class RotationGenerator extends TransformationGenerator {
 
     private final Generator angle, x, y;
@@ -17,6 +17,7 @@ public class RotationGenerator extends TransformationGenerator {
         this.y = y;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Vec2 reverseTransform(double x, double y) {
         return new Vec2(x, y).rotateAround(
@@ -25,6 +26,7 @@ public class RotationGenerator extends TransformationGenerator {
         );
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         super.init(outputSize, randomize);

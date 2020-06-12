@@ -5,7 +5,7 @@ import cz.zdepav.school.texiscript.utils.Metric;
 import cz.zdepav.school.texiscript.utils.RgbaColor;
 import cz.zdepav.school.texiscript.utils.Utils;
 
-/** @author Zdenek Pavlatka */
+/** Generates pattern resembling cobbles. */
 public class CobbleCellularGenerator extends CellularGenerator {
 
     public CobbleCellularGenerator(
@@ -16,11 +16,13 @@ public class CobbleCellularGenerator extends CellularGenerator {
         super(density, metric, color1, color2, chaos, curve);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected double getDistance(double x, double y, double[] distancesTo2Nearest) {
         return distancesTo2Nearest[1] - distancesTo2Nearest[0];
     }
 
+    /** {@inheritDoc} */
     @Override
     public RgbaColor getColor(double x, double y) {
         return color1.getColor(x, y).lerp(
@@ -29,6 +31,7 @@ public class CobbleCellularGenerator extends CellularGenerator {
         );
     }
 
+    /** {@inheritDoc} */
     @Override
     public double getDouble(double x, double y) {
         return Utils.lerp(

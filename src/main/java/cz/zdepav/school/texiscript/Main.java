@@ -9,20 +9,19 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-/** @author Zdenek Pavlatka */
 public class Main {
 
     public static void main(String[] args) {
-        /*for (var i = 0; i < 8; ++i) {
-            testRandom(i);
-        }
-        testRandom2();*/
         for (var arg: args) {
             try {
                 var file = Paths.get(arg).getFileName().toFile();
                 System.out.println("Executing " + file);
                 try (var input = new FileInputStream(arg)) {
-                    var interpreter = new Interpreter(Paths.get(arg).getParent(), file.getName(), input);
+                    var directory = Paths.get(arg).getParent();
+                    if (directory == null) {
+                        directory = Paths.get(".");
+                    }
+                    var interpreter = new Interpreter(directory, file.getName(), input);
                     interpreter.execute();
                 }
             } catch (SyntaxException ex) {
@@ -38,41 +37,4 @@ public class Main {
             }
         }
     }
-//
-    /*private static void testRandom(int predefs) {
-        try (var f = new FileWriter("out" + predefs + ".dat")) {
-            var distribution = new int[1000];
-            for (var i = 0; i < 1024; ++i) {
-                for (var j = 0; j < 1024; ++j) {
-                    var rand = new SeededPositionedRandom(1024, i / 1024.0, j / 1024.0);
-                    for (var k = 0; k < predefs; ++k) {
-                        rand.r();
-                    }
-                    ++distribution[(int)(rand.r() * 1000)];
-                }
-            }
-            for (var i = 0; i < 1000; ++i) {
-                f.write(i + " " + distribution[i] + "\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void testRandom2() {
-        try (var f = new FileWriter("out8.dat")) {
-            var distribution = new int[1000];
-            var rand = new SeededPositionedRandom(1024, 3.1415, 9.2653);
-            for (var i = 0; i < 1024; ++i) {
-                for (var j = 0; j < 1024; ++j) {
-                    ++distribution[(int)(rand.r() * 1000)];
-                }
-            }
-            for (var i = 0; i < 1000; ++i) {
-                f.write(i + " " + distribution[i] + "\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
 }

@@ -4,7 +4,7 @@ import cz.zdepav.school.texiscript.generators.Generator;
 import cz.zdepav.school.texiscript.script.parser.CodePosition;
 import cz.zdepav.school.texiscript.utils.RgbaColor;
 
-/** @author Zdenek Pavlatka */
+/** Cuts output into 4 triangles and fills them using the inputs. */
 public class SidesGenerator extends Generator {
 
     private final Generator top, right, bottom, left;
@@ -16,6 +16,7 @@ public class SidesGenerator extends Generator {
         this.left = left;
     }
 
+    /** {@inheritDoc} */
     @Override
     public RgbaColor getColor(double x, double y) {
         if (x + y < 1) {
@@ -25,6 +26,7 @@ public class SidesGenerator extends Generator {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public double getDouble(double x, double y) {
         if (x + y < 1) {
@@ -34,6 +36,7 @@ public class SidesGenerator extends Generator {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         top.init(outputSize, randomize);

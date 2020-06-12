@@ -1,6 +1,6 @@
 package cz.zdepav.school.texiscript.script.syntaxtree;
 
-/** @author Zdenek Pavlatka */
+/** Represents the type an expression results in. */
 public enum StType {
     STRING,
     COLOR,
@@ -8,6 +8,11 @@ public enum StType {
     GENERATOR,
     VOID;
 
+    /**
+     * Checks if given type is a subtype of this.
+     * @param type type to check
+     * @return true if given type is a subtype of this, false otherwise
+     */
     public boolean isAssignableFrom(StType type) {
         switch (this) {
             case STRING:
@@ -23,14 +28,29 @@ public enum StType {
         }
     }
 
+    /**
+     * Checks if the type associated with the given class is a subtype of this.
+     * @param className class name of syntax tree node type
+     * @return true if the type associated with the given class is a subtype of this, false otherwise
+     */
     public boolean isAssignableFrom(String className) {
         return isAssignableFrom(get(className));
     }
 
+    /**
+     * Checks if given syntax tree node's type is a subtype of this.
+     * @param arg syntax tree node to check
+     * @return true if given syntax tree node's type is a subtype of this, false otherwise
+     */
     public boolean isAssignableFrom(StCommandArgument arg) {
         return isAssignableFrom(get(arg.getClass().getSimpleName()));
     }
 
+    /**
+     * Checks if the type associated with the given class is a subtype of this.
+     * @param cls class of syntax tree node type
+     * @return true if the type associated with the given class is a subtype of this, false otherwise
+     */
     public boolean isAssignableFrom(Class<? extends StCommandArgument> cls) {
         return isAssignableFrom(get(cls.getSimpleName()));
     }
@@ -51,6 +71,11 @@ public enum StType {
         }
     }
 
+    /**
+     * Gets the type associated with the given class.
+     * @param className class name of syntax tree node type
+     * @return type associated with the given class
+     */
     public static StType get(String className) {
         switch (className) {
             case "StString":
@@ -68,10 +93,20 @@ public enum StType {
         }
     }
 
+    /**
+     * Gets the type associated with the given syntax tree node.
+     * @param arg syntax tree node to get type of
+     * @return type associated with the given syntax tree node
+     */
     public static StType get(StCommandArgument arg) {
         return get(arg.getClass().getSimpleName());
     }
 
+    /**
+     * Gets the type associated with the given class.
+     * @param cls class of syntax tree node type
+     * @return type associated with the given class
+     */
     public static StType get(Class<? extends StCommandArgument> cls) {
         return get(cls.getSimpleName());
     }

@@ -1,0 +1,4 @@
+var interfacecz_1_1zdepav_1_1school_1_1texiscript_1_1generators_1_1cellular_1_1_cellular_generator_1_1_basic_constructor =
+[
+    [ "construct", "interfacecz_1_1zdepav_1_1school_1_1texiscript_1_1generators_1_1cellular_1_1_cellular_generator_1_1_basic_constructor.html#a49c5886154c4477d4d090d71be8575bd", null ]
+];

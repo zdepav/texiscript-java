@@ -6,10 +6,10 @@ import cz.zdepav.school.texiscript.script.interpreter.SemanticException;
 import cz.zdepav.school.texiscript.script.parser.CodePosition;
 import cz.zdepav.school.texiscript.utils.RgbaColor;
 
-/** @author Zdenek Pavlatka */
+/** Generates emboss effect. */
 public class EmbosGenerator extends Generator {
 
-    private static double offset = 0.0001;
+    private static final double offset = 0.0001;
 
     private final Generator base, mask, strength;
 
@@ -19,6 +19,7 @@ public class EmbosGenerator extends Generator {
         this.strength = strength;
     }
 
+    /** {@inheritDoc} */
     @Override
     public RgbaColor getColor(double x, double y) {
         var a = mask.getDouble(x - offset, y - offset);
@@ -26,6 +27,7 @@ public class EmbosGenerator extends Generator {
         return base.getColor(x, y).add((b - a) * 20 * strength.getDouble(x, y));
     }
 
+    /** {@inheritDoc} */
     @Override
     public double getDouble(double x, double y) {
         var a = mask.getDouble(x - offset, y - offset);
@@ -33,6 +35,7 @@ public class EmbosGenerator extends Generator {
         return base.getDouble(x, y) + (b - a) * 20 * strength.getDouble(x, y);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         base.init(outputSize, randomize);
@@ -40,6 +43,13 @@ public class EmbosGenerator extends Generator {
         strength.init(outputSize, randomize);
     }
 
+    /**
+     * Builds the generator.
+     * @param pos current position in script
+     * @param args function arguments
+     * @return created generator
+     * @throws SemanticException When the arguments are not valid.
+     */
     public static Generator build(CodePosition pos, Generator[] args) throws SemanticException {
         switch (args.length) {
             case 1:

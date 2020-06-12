@@ -10,25 +10,58 @@ import cz.zdepav.school.texiscript.utils.RgbaColor;
 import cz.zdepav.school.texiscript.utils.Utils;
 import cz.zdepav.school.texiscript.utils.Vec2;
 
-/** @author Zdenek Pavlatka */
+/** Base class for cellular generators. */
 public abstract class CellularGenerator extends Generator {
 
+    /** Interface for cellular generator constructors. */
     @FunctionalInterface
     public interface BasicConstructor {
-        Generator construct(
+
+        /**
+         * Constructs a cellular generator.
+         * @param density determines how many cells will be generated (cell count is second power of density)
+         * @param metric metric to use for distance measurement
+         * @param color1 grid color
+         * @param color2 fill color
+         * @param chaos with lower chaos the cells will be closer to a 2d grid
+         * @param curve curve for color interpolation
+         * @return the constructed generator
+         */
+        CellularGenerator construct(
             double density, Metric metric,
             Generator color1, Generator color2,
             double chaos, Generator curve
         );
     }
 
+    /** base points for cells */
     protected final Vec2[] points;
-    protected final Generator color1, color2, curve;
-    protected final double chaos, tileSize;
+
+    /** grid color */
+    protected final Generator color1;
+
+    /** fill color */
+    protected final Generator color2;
+
+    /** curve for color interpolation */
+    protected final Generator curve;
+
+    /** with lower chaos the cells will be closer to a 2d grid */
+    protected final double chaos;
+
+    /** cell size (equal to cell width with chaos equal to 0) */
+    protected final double tileSize;
+
+    /** determines how many cells will be generated (cell count is second power of density) */
     protected final int density;
+
+    /** metric to use for distance measurement */
     protected final Metric metric;
 
+    /** whether generation should be fully randomized or deterministic */
     protected boolean randomized;
+
+    /** maximum computed distance (value returned by getDistance) to a point */
     protected double maxDist;
 
     protected CellularGenerator(
@@ -36,7 +69,7 @@ public abstract class CellularGenerator extends Generator {
         Generator color1, Generator color2,
         double chaos, Generator curve
     ) {
-        this.density = Utils.lerpInt(1, 128, density / 2);
+        this.density = Utils.clamp((int)density, 2, 256);
         tileSize = 1.0 / this.density;
         points = new Vec2[this.density * this.density];
         this.metric = metric;
@@ -48,12 +81,26 @@ public abstract class CellularGenerator extends Generator {
         maxDist = 1;
     }
 
+    /**
+     * Computes distance to the nearest instance of the given point.
+     * @param x horizontal coordinate
+     * @param y vertical coordinate
+     * @param p point to measure distance from, the point is repeated with interval 1 on each direction on each axis
+     * @return computed distance
+     */
     protected double wrappedDistance(double x, double y, Vec2 p) {
         var dx = Math.abs(x - p.x);
         var dy = Math.abs(y - p.y);
         return metric.distance(dx > 0.5 ? 1 - dx : dx, dy > 0.5 ? 1 - dy : dy);
     }
 
+    /**
+     * Gets distances to two nearest points.
+     * @param x horizontal coordinate
+     * @param y vertical coordinate
+     * @param nearPts 9 points to check
+     * @return 2-item array with computed distances
+     */
     protected double[] getDistancesTo2Nearest(double x, double y, Vec2[] nearPts) {
         var min1 = Double.POSITIVE_INFINITY;
         var min2 = Double.POSITIVE_INFINITY;
@@ -66,11 +113,24 @@ public abstract class CellularGenerator extends Generator {
                 min2 = d;
             }
         }
-        return new double[] {min1, min2};
+        return new double[] { min1, min2 };
     }
 
+    /**
+     * Computes value used to generate the cellular pattern.
+     * @param x horizontal coordinate
+     * @param y vertical coordinate
+     * @param distancesTo2Nearest array returned by getDistancesTo2Nearest
+     * @return computed value
+     */
     protected abstract double getDistance(double x, double y, double[] distancesTo2Nearest);
 
+    /**
+     * Computes value used to generate the cellular pattern.
+     * @param x horizontal coordinate
+     * @param y vertical coordinate
+     * @return computed value
+     */
     protected double getDistance(double x, double y) {
         var _x = (int)(x * density);
         var _y = (int)(y * density);
@@ -84,15 +144,17 @@ public abstract class CellularGenerator extends Generator {
         return getDistance(x, y, getDistancesTo2Nearest(x, y, nearPts));
     }
 
+    /** Computes maximum distance (value returned by getDistance) to a point. */
     protected void getMaxDistance() {
         maxDist = 0.00001;
-        for (var x = 0.0; x <= 1; x += 0.01) {
-            for (var y = 0.0; y <= 1; y += 0.01) {
+        for (var x = 0.0; x <= 1; x += 0.001) {
+            for (var y = 0.0; y <= 1; y += 0.001) {
                 maxDist = Math.max(maxDist, getDistance(x, y));
             }
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public RgbaColor getColor(double x, double y) {
         return color1.getColor(x, y).lerp(
@@ -101,6 +163,7 @@ public abstract class CellularGenerator extends Generator {
         );
     }
 
+    /** {@inheritDoc} */
     @Override
     public double getDouble(double x, double y) {
         return Utils.lerp(
@@ -110,6 +173,7 @@ public abstract class CellularGenerator extends Generator {
         );
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         color1.init(outputSize, randomize);
@@ -131,6 +195,15 @@ public abstract class CellularGenerator extends Generator {
         }
     }
 
+    /**
+     * Builds a cellular generator with given name from arguments using it's constructor.
+     * @param pos current position in script
+     * @param args function arguments
+     * @param name generator name
+     * @param constructor generator constructor to use
+     * @return created generator
+     * @throws SemanticException When the arguments are not valid.
+     */
     public static Generator build(
         CodePosition pos,
         Generator[] args,
@@ -139,7 +212,7 @@ public abstract class CellularGenerator extends Generator {
     ) throws SemanticException {
         if (args.length == 0) {
             return constructor.construct(
-                0.5, Metric.euclidean,
+                20, Metric.euclidean,
                 RgbaColor.black.generator(),
                 RgbaColor.white.generator(),
                 1, CurveGenerator.LINEAR

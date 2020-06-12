@@ -5,10 +5,19 @@ import cz.zdepav.school.texiscript.script.parser.CodePosition;
 import cz.zdepav.school.texiscript.utils.Rand;
 import cz.zdepav.school.texiscript.utils.RgbaColor;
 
-/** @author Zdenek Pavlatka */
+/** Adds random noise to its input. */
 public class NoiseGenerator extends Generator {
 
-    private final Generator base, intensity, saturation;
+    /** input generator */
+    private final Generator base;
+
+    /** noise intensity generator */
+    private final Generator intensity;
+
+    /** noise color saturation generator */
+    private final Generator saturation;
+
+    /** random generator seed if randomization is enabled, -1 otherwise */
     private int randomizedSeed;
 
     public NoiseGenerator(CodePosition pos, Generator base, Generator intensity, Generator saturation) {
@@ -18,6 +27,7 @@ public class NoiseGenerator extends Generator {
         randomizedSeed = -1;
     }
 
+    /** {@inheritDoc} */
     @Override
     public RgbaColor getColor(double x, double y) {
         return base.getColor(x, y).addNoise(
@@ -27,6 +37,7 @@ public class NoiseGenerator extends Generator {
         );
     }
 
+    /** {@inheritDoc} */
     @Override
     public double getDouble(double x, double y) {
         return base.getColor(x, y).addNoise(
@@ -36,6 +47,7 @@ public class NoiseGenerator extends Generator {
         ).intensity;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init(int outputSize, boolean randomize) {
         randomizedSeed = randomize ? Rand.INSTANCE.i(10000) : -1;

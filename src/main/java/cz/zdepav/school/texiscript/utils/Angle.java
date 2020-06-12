@@ -1,36 +1,70 @@
 package cz.zdepav.school.texiscript.utils;
 
-/** @author Zdenek Pavlatka */
+/** Utility class with angle manipulating methods */
 public class Angle {
 
-    private static double rad2deg, deg2rad;
+    // Constants for degrees-radians conversions
+    private static final double rad2deg, deg2rad;
 
+    // Constants for common angles
     public static double
-        deg10, deg15, deg18, deg20, deg30, deg36, deg45, deg60, deg72, deg90,
+        deg10, deg15, deg18, deg20, deg30,
+        deg36, deg45, deg60, deg72, deg90,
         deg120, deg135, deg150, deg180,
         deg210, deg225, deg240, deg270,
         deg300, deg315, deg330, deg360;
 
+    /**
+     * Converts the given value from degrees to radians.
+     * @param degrees Value in degrees to convert.
+     * @return Converted value.
+     */
     public static double deg(double degrees) {
         return degrees * deg2rad;
     }
 
+    /**
+     * Converts the given value from radians to degrees.
+     * @param radians Value in radians to convert.
+     * @return Converted value.
+     */
     public static double toDegrees(double radians) {
         return radians * rad2deg;
     }
 
+    /**
+     * Generates a random angle.
+     * @return A random angle.
+     */
     public static double rand() {
         return Rand.INSTANCE.r(deg360);
     }
 
+    /**
+     * Generates a random angle using the specified generator.
+     * @param rand A random generator.
+     * @return A random angle.
+     */
     public static double rand(RandomGenerator rand) {
-        return rand.r(deg360);
+        return (rand != null ? rand : Rand.INSTANCE).r(deg360);
     }
 
+    /**
+     * Normalizes the angle to a range 0..2pi (~ 0°..360°).
+     * @param angle Angle to wrap.
+     * @return Normalized value equivalent to angle.
+     */
     public static double wrap(double angle) {
         return (angle < 0 ? (deg360 + angle % deg360) : angle) % deg360;
     }
 
+    /**
+     * Computes lower of the two angles between two given directions. Sign of the returned angle corresponds to the
+     * direction from angle1 to angle2. angle1 + difference(angle1, angle2) ~ angle2
+     * @param angle1 First angle.
+     * @param angle2 Second angle.
+     * @return Computed angle.
+     */
     public static double difference(double angle1, double angle2) {
         angle1 = wrap(angle1);
         angle2 = wrap(angle2);
@@ -43,6 +77,12 @@ public class Angle {
         }
     }
 
+    /**
+     * Computes lower of the two angles between two given directions.
+     * @param angle1 First angle.
+     * @param angle2 Second angle.
+     * @return Computed angle.
+     */
     public static double absDifference(double angle1, double angle2) {
         angle1 = wrap(angle1);
         angle2 = wrap(angle2);
@@ -54,6 +94,13 @@ public class Angle {
         }
     }
 
+    /**
+     * Computes angle (direction) between two given directions. difference(angle1, result) == difference(result,
+     * angle2)
+     * @param angle1 First angle.
+     * @param angle2 Second angle.
+     * @return Computed angle.
+     */
     public static double between(double angle1, double angle2) {
         angle1 = wrap(angle1);
         angle2 = wrap(angle2);
