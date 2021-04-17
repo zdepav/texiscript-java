@@ -139,7 +139,7 @@ public class Package {
      * @param builder function implementation
      * @return this
      */
-    public Package func(String name, Function builder) {
+    public Package funcAny(String name, Function builder) {
         fns.put(name, builder);
         return this;
     }
@@ -150,7 +150,7 @@ public class Package {
      * @param builder function implementation (generator builder)
      * @return this
      */
-    public Package func0(String name, BuildFrom0 builder) {
+    public Package func(String name, BuildFrom0 builder) {
         fns.put(name, (pos, args) -> {
             if (args.length != 0) {
                 throw new SemanticException(pos, this.name + "." + name + " requires 0 arguments");
@@ -167,7 +167,7 @@ public class Package {
      * @param builder function implementation (generator builder)
      * @return this
      */
-    public Package func1(String name, BuildFrom1 builder) {
+    public Package func(String name, BuildFrom1 builder) {
         fns.put(name, (pos, args) -> {
             if (args.length != 1) {
                 throw new SemanticException(pos, this.name + "." + name + " requires 1 argument");
@@ -184,7 +184,7 @@ public class Package {
      * @param builder function implementation (generator builder)
      * @return this
      */
-    public Package func2(String name, BuildFrom2 builder) {
+    public Package func(String name, BuildFrom2 builder) {
         fns.put(name, (pos, args) -> {
             if (args.length != 2) {
                 throw new SemanticException(pos, this.name + "." + name + " requires 2 arguments");
@@ -201,7 +201,7 @@ public class Package {
      * @param builder function implementation (generator builder)
      * @return this
      */
-    public Package func3(String name, BuildFrom3 builder) {
+    public Package func(String name, BuildFrom3 builder) {
         fns.put(name, (pos, args) -> {
             if (args.length != 3) {
                 throw new SemanticException(pos, this.name + "." + name + " requires 3 arguments");
@@ -218,7 +218,7 @@ public class Package {
      * @param builder function implementation (generator builder)
      * @return this
      */
-    public Package func4(String name, BuildFrom4 builder) {
+    public Package func(String name, BuildFrom4 builder) {
         fns.put(name, (pos, args) -> {
             if (args.length != 4) {
                 throw new SemanticException(pos, this.name + "." + name + " requires 4 arguments");
@@ -235,7 +235,7 @@ public class Package {
      * @param builder function implementation (generator builder)
      * @return this
      */
-    public Package func5(String name, BuildFrom5 builder) {
+    public Package func(String name, BuildFrom5 builder) {
         fns.put(name, (pos, args) -> {
             if (args.length != 5) {
                 throw new SemanticException(pos, this.name + "." + name + " requires 5 arguments");
@@ -252,7 +252,7 @@ public class Package {
      * @param builder function implementation (generator builder)
      * @return this
      */
-    public Package func6(String name, BuildFrom6 builder) {
+    public Package func(String name, BuildFrom6 builder) {
         fns.put(name, (pos, args) -> {
             if (args.length != 6) {
                 throw new SemanticException(pos, this.name + "." + name + " requires 6 arguments");
@@ -269,7 +269,7 @@ public class Package {
      * @param builder function implementation (generator builder)
      * @return this
      */
-    public Package func7(String name, BuildFrom7 builder) {
+    public Package func(String name, BuildFrom7 builder) {
         fns.put(name, (pos, args) -> {
             if (args.length != 7) {
                 throw new SemanticException(pos, this.name + "." + name + " requires 7 arguments");
@@ -286,7 +286,7 @@ public class Package {
      * @param builder function implementation (generator builder)
      * @return this
      */
-    public Package func8(String name, BuildFrom8 builder) {
+    public Package func(String name, BuildFrom8 builder) {
         fns.put(name, (pos, args) -> {
             if (args.length != 8) {
                 throw new SemanticException(pos, this.name + "." + name + " requires 8 arguments");
@@ -303,7 +303,7 @@ public class Package {
      * @param builder function implementation (generator builder)
      * @return this
      */
-    public Package func9(String name, BuildFrom9 builder) {
+    public Package func(String name, BuildFrom9 builder) {
         fns.put(name, (pos, args) -> {
             if (args.length != 9) {
                 throw new SemanticException(pos, this.name + "." + name + " requires 9 arguments");
@@ -322,7 +322,7 @@ public class Package {
      * @param builder function implementation (generator builder)
      * @return this
      */
-    public Package func10(String name, BuildFrom10 builder) {
+    public Package func(String name, BuildFrom10 builder) {
         fns.put(name, (pos, args) -> {
             if (args.length != 10) {
                 throw new SemanticException(pos, this.name + "." + name + " requires 10 arguments");

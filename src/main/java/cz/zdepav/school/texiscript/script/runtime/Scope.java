@@ -230,14 +230,13 @@ public class Scope {
     private void addCellularPackage() {
         addPackage(
             new Package("cellular")
-                .func("cells", (pos, args) ->
+                .funcAny("cells", (pos, args) ->
                     CellularGenerator.build(pos, args, "cells", CellsCellularGenerator::new))
-                .func("sparks", (pos, args) ->
+                .funcAny("sparks", (pos, args) ->
                     CellularGenerator.build(pos, args, "sparks", SparksCellularGenerator::new))
-                .func("cobble", (pos, args) ->
+                .funcAny("cobble", (pos, args) ->
                     CellularGenerator.build(pos, args, "cobble", CobbleCellularGenerator::new))
-                .func("mosaic", (pos, args) ->
-                    CellularGenerator.build(pos, args, "mosaic", MosaicGenerator::new))
+                .funcAny("mosaic", MosaicGenerator::build)
                 .value("M_EUCLIDEAN", 0)
                 .value("M_MANHATTAN", 1)
                 .value("M_CHEBYSHEV", 2)
@@ -249,32 +248,32 @@ public class Scope {
     private void addColorPackage() {
         addPackage(
             new Package("color")
-                .func1("r", RedChannelGenerator::new)
-                .func1("g", GreenChannelGenerator::new)
-                .func1("b", BlueChannelGenerator::new)
-                .func1("a", AlphaChannelGenerator::new)
-                .func1("h", HueGenerator::new)
-                .func1("s", SaturationGenerator::new)
-                .func1("l", LightnessGenerator::new)
-                .func3("rgb", RgbGenerator::new)
-                .func4("rgba", RgbaGenerator::new)
-                .func3("hsl", HslGenerator::new)
-                .func4("hsla", HslaGenerator::new)
-                .func2("setalpha", SetAlphaGenerator::new)
-                .func1("grayscale", GrayscaleGenerator::new)
-                .func3("noise", NoiseGenerator::new)
-                .func1("lightinvert", SmartInvertGenerator::new)
-                .func1("sepia", SepiaGenerator::new)
-                .func0("black", p -> RgbaColor.black.generator())
-                .func0("red", p -> RgbaColor.red.generator())
-                .func0("green", p -> RgbaColor.green.generator())
-                .func0("blue", p -> RgbaColor.blue.generator())
-                .func0("yellow", p -> RgbaColor.yellow.generator())
-                .func0("cyan", p -> RgbaColor.cyan.generator())
-                .func0("magenta", p -> RgbaColor.magenta.generator())
-                .func0("gray", p -> RgbaColor.gray.generator())
-                .func0("white", p -> RgbaColor.white.generator())
-                .func0("transparent", p -> RgbaColor.transparent.generator())
+                .func("r", RedChannelGenerator::new)
+                .func("g", GreenChannelGenerator::new)
+                .func("b", BlueChannelGenerator::new)
+                .func("a", AlphaChannelGenerator::new)
+                .func("h", HueGenerator::new)
+                .func("s", SaturationGenerator::new)
+                .func("l", LightnessGenerator::new)
+                .func("rgb", RgbGenerator::new)
+                .func("rgba", RgbaGenerator::new)
+                .func("hsl", HslGenerator::new)
+                .func("hsla", HslaGenerator::new)
+                .func("setalpha", SetAlphaGenerator::new)
+                .func("grayscale", GrayscaleGenerator::new)
+                .func("noise", NoiseGenerator::new)
+                .func("lightinvert", SmartInvertGenerator::new)
+                .func("sepia", SepiaGenerator::new)
+                .func("black", p -> RgbaColor.black.generator())
+                .func("red", p -> RgbaColor.red.generator())
+                .func("green", p -> RgbaColor.green.generator())
+                .func("blue", p -> RgbaColor.blue.generator())
+                .func("yellow", p -> RgbaColor.yellow.generator())
+                .func("cyan", p -> RgbaColor.cyan.generator())
+                .func("magenta", p -> RgbaColor.magenta.generator())
+                .func("gray", p -> RgbaColor.gray.generator())
+                .func("white", p -> RgbaColor.white.generator())
+                .func("transparent", p -> RgbaColor.transparent.generator())
                 .value("C_BLACK", RgbaColor.parseHex("#000000"))
                 .value("C_NAVY", RgbaColor.parseHex("#000080"))
                 .value("C_DARKBLUE", RgbaColor.parseHex("#00008B"))
@@ -430,26 +429,26 @@ public class Scope {
     private void addCurvePackage() {
         addPackage(
             new Package("curve")
-                .func("linear", (pos, args) ->
+                .funcAny("linear", (pos, args) ->
                     CurveGenerator.build(pos, Curve.linear, "linear", args))
-                .func("arc", (pos, args) ->
+                .funcAny("arc", (pos, args) ->
                     CurveGenerator.build(pos, Curve.arc, "arc", args))
-                .func("invarc", (pos, args) ->
+                .funcAny("invarc", (pos, args) ->
                     CurveGenerator.build(pos, Curve.invArc, "invarc", args))
-                .func("doublearc", (pos, args) ->
+                .funcAny("doublearc", (pos, args) ->
                     CurveGenerator.build(pos, Curve.doubleArc, "doublearc", args))
-                .func("invdoublearc", (pos, args) ->
+                .funcAny("invdoublearc", (pos, args) ->
                     CurveGenerator.build(pos, Curve.invDoubleArc, "invdoublearc", args))
-                .func("sqr", (pos, args) ->
+                .funcAny("sqr", (pos, args) ->
                     CurveGenerator.build(pos, Curve.sqr, "sqr", args))
-                .func("sqrt", (pos, args) ->
+                .funcAny("sqrt", (pos, args) ->
                     CurveGenerator.build(pos, Curve.sqrt, "sqrt", args))
-                .func("log", (pos, args) ->
+                .funcAny("log", (pos, args) ->
                     CurveGenerator.build(pos, Curve.log, "log", args))
-                .func("sin", (pos, args) ->
+                .funcAny("sin", (pos, args) ->
                     CurveGenerator.build(pos, Curve.sin, "sin", args))
-                .func("quadratic", QuadraticBezierCurveGenerator::build)
-                .func("bezier", CubicBezierCurveGenerator::build)
+                .funcAny("quadratic", QuadraticBezierCurveGenerator::build)
+                .funcAny("bezier", CubicBezierCurveGenerator::build)
         );
     }
 
@@ -457,10 +456,10 @@ public class Scope {
     private void addGradientPackage() {
         addPackage(
             new Package("gradient")
-                .func2("stop", GradientStopGenerator::new)
-                .func("linear", LinearGradientGenerator::build)
-                .func("radial", RadialGradientGenerator::build)
-                .func("angular", AngularGradientGenerator::build)
+                .func("stop", GradientStopGenerator::new)
+                .funcAny("linear", LinearGradientGenerator::build)
+                .funcAny("radial", RadialGradientGenerator::build)
+                .funcAny("angular", AngularGradientGenerator::build)
         );
     }
 
@@ -468,16 +467,16 @@ public class Scope {
     private void addMathPackage() {
         addPackage(
             new Package("math")
-                .func1("abs", AbsoluteValueGenerator::new)
-                .func1("normalize", NormalizationGenerator::new)
-                .func("add", BatchAdditionGenerator::build)
-                .func2("sub", SubtractionGenerator::new)
-                .func("mul", BatchMultiplicationGenerator::build)
-                .func2("div", DivisionGenerator::new)
-                .func1("sin", SineGenerator::new)
-                .func1("cos", CosineGenerator::new)
-                .func("random", RandomGenerator::build)
-                .func1("invert", InvertingGenerator::new)
+                .func("abs", AbsoluteValueGenerator::new)
+                .func("normalize", NormalizationGenerator::new)
+                .funcAny("add", BatchAdditionGenerator::build)
+                .func("sub", SubtractionGenerator::new)
+                .funcAny("mul", BatchMultiplicationGenerator::build)
+                .func("div", DivisionGenerator::new)
+                .func("sin", SineGenerator::new)
+                .func("cos", CosineGenerator::new)
+                .funcAny("random", RandomGenerator::build)
+                .func("invert", InvertingGenerator::new)
         );
     }
 
@@ -485,11 +484,11 @@ public class Scope {
     private void addMixPackage() {
         addPackage(
             new Package("mix")
-                .func2("blend", BlendGenerator::new)
-                .func4("quattro", QuattroGenerator::new)
-                .func4("sides", SidesGenerator::new)
-                .func("choice", ChoiceGenerator::build)
-                .func("switch", SwitchGenerator::build)
+                .func("blend", BlendGenerator::new)
+                .func("quattro", QuattroGenerator::new)
+                .func("sides", SidesGenerator::new)
+                .funcAny("choice", ChoiceGenerator::build)
+                .funcAny("switch", SwitchGenerator::build)
         );
     }
 
@@ -497,19 +496,19 @@ public class Scope {
     private void addPerlinPackage() {
         addPackage(
             new Package("perlin")
-                .func("noise", (pos, args) ->
+                .funcAny("noise", (pos, args) ->
                     PerlinGenerator.build(pos, args, "noise", PerlinNoiseGenerator::new))
-                .func("frost", (pos, args) ->
+                .funcAny("frost", (pos, args) ->
                     PerlinGenerator.build(pos, args, "frost", FrostedGlassGenerator::new))
-                .func("camouflage", (pos, args) ->
+                .funcAny("camouflage", (pos, args) ->
                     PerlinGenerator.build(pos, args, "camouflage", CamouflageGenerator::new))
-                .func("velvet", (pos, args) ->
+                .funcAny("velvet", (pos, args) ->
                     PerlinGenerator.build(pos, args, "velvet", VelvetGenerator::new))
-                .func("clouds", (pos, args) ->
+                .funcAny("clouds", (pos, args) ->
                     PerlinGenerator.build(pos, args, "clouds", CloudsGenerator::new))
-                .func("glass", (pos, args) ->
+                .funcAny("glass", (pos, args) ->
                     TurbulentPerlinGenerator.build(pos, args, "glass", GlassGenerator::new))
-                .func("bark", (pos, args) ->
+                .funcAny("bark", (pos, args) ->
                     TurbulentPerlinGenerator.build(pos, args, "bark", BarkGenerator::new))
         );
     }
@@ -518,9 +517,9 @@ public class Scope {
     private void addPostprocessingPackage() {
         addPackage(
             new Package("filter")
-                .func("emboss", EmbosGenerator::build)
-                .func("fastblur", FastBlurGenerator::build)
-                .func("blur", BlurGenerator::build)
+                .funcAny("emboss", EmbosGenerator::build)
+                .funcAny("fastblur", FastBlurGenerator::build)
+                .funcAny("blur", BlurGenerator::build)
         );
     }
 
@@ -528,12 +527,12 @@ public class Scope {
     private void addShapePackage() {
         addPackage(
             new Package("shape")
-                .func("rect", RectangleGenerator::build)
-                .func("circle", CircleGenerator::build)
-                .func("ellipse", EllipseGenerator::build)
-                .func("triangle", TriangleGenerator::build)
-                .func("star", StarGenerator::build)
-                .func10("itriangle", InterpolatedTriangleGenerator::new)
+                .funcAny("rect", RectangleGenerator::build)
+                .funcAny("circle", CircleGenerator::build)
+                .funcAny("ellipse", EllipseGenerator::build)
+                .funcAny("triangle", TriangleGenerator::build)
+                .funcAny("star", StarGenerator::build)
+                .func("itriangle", InterpolatedTriangleGenerator::new)
         );
     }
 
@@ -541,19 +540,19 @@ public class Scope {
     private void addTransformPackage() {
         addPackage(
             new Package("transform")
-                .func5("fisheye", FisheyeGenerator::new)
-                .func3("polar", PolarGenerator::new)
-                .func3("depolar", DepolarGenerator::new)
-                .func3("offset", OffsetGenerator::new)
-                .func3("translate", TranslationGenerator::new)
-                .func4("rotate", RotationGenerator::new)
-                .func1("rrot", RightRotationGenerator::new)
-                .func1("hrot", HalfRotationGenerator::new)
-                .func1("lrot", LeftRotationGenerator::new)
-                .func1("flipx", FlipXGenerator::new)
-                .func1("flipy", FlipYGenerator::new)
-                .func("scale", ScaleGenerator::build)
-                .func("tiles", TilesGenerator::build)
+                .func("fisheye", FisheyeGenerator::new)
+                .func("polar", PolarGenerator::new)
+                .func("depolar", DepolarGenerator::new)
+                .func("offset", OffsetGenerator::new)
+                .func("translate", TranslationGenerator::new)
+                .func("rotate", RotationGenerator::new)
+                .func("rrot", RightRotationGenerator::new)
+                .func("hrot", HalfRotationGenerator::new)
+                .func("lrot", LeftRotationGenerator::new)
+                .func("flipx", FlipXGenerator::new)
+                .func("flipy", FlipYGenerator::new)
+                .funcAny("scale", ScaleGenerator::build)
+                .funcAny("tiles", TilesGenerator::build)
         );
     }
 
@@ -561,9 +560,9 @@ public class Scope {
     private void addVideoPackage() {
         addPackage(
             new Package("video")
-                .func0("time", TimeGenerator::new)
-                .func0("frame", FrameLengthGenerator::new)
-                .func("transition", TransitionGenerator::build)
+                .func("time", TimeGenerator::new)
+                .func("frame", FrameLengthGenerator::new)
+                .funcAny("transition", TransitionGenerator::build)
         );
     }
 
